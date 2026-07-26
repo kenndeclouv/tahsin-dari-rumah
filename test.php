@@ -1,0 +1,1 @@
+<?php $html = file_get_contents('d:\Projects\averroes\ust-icas\syarihub.html'); preg_match('/<body[^>]*>(.*?)<\/body>/is', $html, $matches); $body = $matches[1] ?? ''; echo substr(trim(preg_replace('/\s+/', ' ', strip_tags($body))), 4000, 4000); ?>
