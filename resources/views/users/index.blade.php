@@ -2,105 +2,108 @@
 
     <x-slot:actions>
         @can('users:create')
-            <a href="{{ route('users.create') }}" class="btn btn-primary">
-                <i class="ti ti-user-plus me-1"></i> Tambah User
+            <a href="{{ route('users.create') }}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50 disabled:pointer-events-none">
+                <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
+                Tambah User
             </a>
         @endcan
     </x-slot:actions>
 
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center border-bottom border-dashed">
-                    <h4 class="header-title">Daftar User</h4>
-                    <span class="badge bg-primary-subtle text-primary">{{ $users->count() }} User</span>
-                </div>
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-custom table-centered table-hover mb-0">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nama</th>
-                                    <th>Email</th>
-                                    <th>Roles</th>
-                                    <th>Bergabung</th>
-                                    <th class="text-end">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($users as $user)
-                                    <tr>
-                                        <td class="text-muted">{{ $loop->iteration }}</td>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="avatar-sm rounded-circle d-flex align-items-center justify-content-center fw-bold text-white"
-                                                    style="width: 34px; height: 34px; background: var(--bs-primary); font-size: 13px; flex-shrink: 0;">
-                                                    {{ strtoupper(substr($user->name, 0, 1)) }}
-                                                </div>
-                                                <span class="fw-semibold">{{ $user->name }}</span>
+    <div class="flex flex-col">
+        <div class="-m-1.5 overflow-x-auto">
+            <div class="p-1.5 min-w-full inline-block align-middle">
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+                    
+                    {{-- Header --}}
+                    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
+                        <h2 class="text-xl font-semibold text-gray-800">Daftar User</h2>
+                        <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                            {{ $users->count() }} User
+                        </span>
+                    </div>
+
+                    {{-- Table --}}
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">#</th>
+                                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Nama</th>
+                                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Email</th>
+                                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Roles</th>
+                                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Bergabung</th>
+                                <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            @forelse ($users as $user)
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $loop->iteration }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center gap-x-3">
+                                            <div class="flex items-center justify-center size-[34px] rounded-full bg-emerald-600 text-white font-bold text-sm shrink-0">
+                                                {{ strtoupper(substr($user->name, 0, 1)) }}
+                                            </div>
+                                            <div>
+                                                <span class="block text-sm font-semibold text-gray-800">{{ $user->name }}</span>
                                                 @if ($user->id === auth()->id())
-                                                    <span class="badge bg-warning-subtle text-warning"
-                                                        style="font-size: 10px;">Kamu</span>
+                                                    <span class="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-md text-xs font-medium bg-amber-100 text-amber-800 mt-0.5">Kamu</span>
                                                 @endif
                                             </div>
-                                        </td>
-                                        <td class="text-muted">{{ $user->email }}</td>
-                                        <td>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $user->email }}</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex flex-wrap gap-1">
                                             @forelse ($user->roles as $role)
-                                                <span
-                                                    class="badge bg-primary-subtle text-primary me-1">{{ $role->name }}</span>
+                                                <span class="inline-flex items-center gap-x-1.5 py-1 px-2 rounded-md text-xs font-medium bg-emerald-100 text-emerald-800">{{ $role->name }}</span>
                                             @empty
-                                                <span class="text-muted fs-12">— Tidak ada role</span>
+                                                <span class="text-sm text-gray-500">— Tidak ada role</span>
                                             @endforelse
-                                        </td>
-                                        <td class="text-muted fs-12">{{ $user->created_at->format('d M Y') }}</td>
-                                        <td class="text-end">
-                                            <div class="d-flex gap-1 justify-content-end">
-                                                @can('users:edit')
-                                                    <a href="{{ route('users.edit', $user) }}"
-                                                        class="btn btn-sm btn-outline-secondary" title="Edit User">
-                                                        <i class="ti ti-pencil"></i>
-                                                    </a>
-                                                @endcan
-                                                @can('users:delete')
-                                                    @if ($user->id !== auth()->id())
-                                                        <button type="button" class="btn btn-sm btn-outline-danger"
-                                                            title="Hapus User" data-user-id="{{ $user->id }}"
-                                                            data-user-name="{{ $user->name }}"
-                                                            onclick="confirmDelete(this)">
-                                                            <i class="ti ti-trash"></i>
-                                                        </button>
-                                                        <form id="delete-user-{{ $user->id }}"
-                                                            action="{{ route('users.destroy', $user) }}" method="POST"
-                                                            class="d-none">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                        </form>
-                                                    @endif
-                                                @endcan
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="6" class="text-center text-muted py-4">
-                                            <i class="ti ti-users-group fs-24 d-block mb-2"></i>
-                                            Belum ada user.
-                                            @can('users:create')
-                                                <a href="{{ route('users.create') }}">Tambah sekarang</a>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $user->created_at->format('d M Y') }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                                        <div class="flex items-center justify-end gap-x-2">
+                                            @can('users:edit')
+                                                <a href="{{ route('users.edit', $user) }}" class="inline-flex items-center justify-center size-8 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" title="Edit User">
+                                                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+                                                </a>
                                             @endcan
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
+                                            @can('users:delete')
+                                                @if ($user->id !== auth()->id())
+                                                    <button type="button" class="inline-flex items-center justify-center size-8 rounded-lg border border-red-200 bg-white text-red-600 shadow-sm hover:bg-red-50 hover:border-red-300 disabled:opacity-50 disabled:pointer-events-none" title="Hapus User" data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}" onclick="confirmDelete(this)">
+                                                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                                                    </button>
+                                                    <form id="delete-user-{{ $user->id }}" action="{{ route('users.destroy', $user) }}" method="POST" class="hidden">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                    </form>
+                                                @endif
+                                            @endcan
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="px-6 py-12 text-center">
+                                        <div class="flex flex-col justify-center items-center">
+                                            <svg class="shrink-0 size-12 text-gray-400 mb-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                            <p class="text-gray-500 mb-2">Belum ada user.</p>
+                                            @can('users:create')
+                                                <a href="{{ route('users.create') }}" class="text-emerald-600 hover:text-emerald-800 font-medium text-sm">Tambah sekarang</a>
+                                            @endcan
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 
+    @push('scripts')
     <script>
         function confirmDelete(btn) {
             const id = btn.dataset.userId;
@@ -110,8 +113,8 @@
                 text: `User "${name}" akan dihapus secara permanen.`,
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: 'var(--bs-danger)',
-                cancelButtonColor: 'var(--bs-secondary)',
+                confirmButtonColor: '#ef4444', // text-red-500
+                cancelButtonColor: '#6b7280', // text-gray-500
                 confirmButtonText: 'Ya, Hapus!',
                 cancelButtonText: 'Batal',
             }).then((result) => {
@@ -121,5 +124,6 @@
             });
         }
     </script>
+    @endpush
 
 </x-layouts.app>

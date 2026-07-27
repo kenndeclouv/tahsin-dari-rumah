@@ -1,28 +1,34 @@
-<x-layouts.app title="Edit Field Santri">
-    <div class="row">
-        <div class="col-12 col-md-8 offset-md-2">
-            <div class="card">
-                <div class="card-header border-bottom border-dashed">
-                    <h5 class="header-title mb-0">Edit Field: {{ $PengajarField->label }}</h5>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('pengajar_fields.update', $PengajarField->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="mb-3">
-                            <label class="form-label">Label <span class="text-danger">*</span></label>
-                            <input type="text" name="label" class="form-control" required value="{{ old('label', $PengajarField->label) }}">
+<x-layouts.app title="Edit Field Pengajar">
+    <div class="max-w-4xl">
+        <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
+            <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                <h2 class="text-xl font-semibold text-gray-800">Edit Field: {{ $PengajarField->label }}</h2>
+                <a href="{{ route('pengajar_fields.index') }}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                    Kembali
+                </a>
+            </div>
+            
+            <div class="p-6">
+                <form action="{{ route('pengajar_fields.update', $PengajarField->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Label <span class="text-red-500">*</span></label>
+                            <input type="text" name="label" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('label', $PengajarField->label) }}">
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Name (Key di Database) <span class="text-danger">*</span></label>
-                            <input type="text" name="name" class="form-control" required value="{{ old('name', $PengajarField->name) }}">
-                            <small class="text-muted">Hanya boleh huruf kecil, angka, dan underscore (_).</small>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Name (Key di Database) <span class="text-red-500">*</span></label>
+                            <input type="text" name="name" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('name', $PengajarField->name) }}">
+                            <p class="text-sm text-gray-500 mt-2">Hanya boleh huruf kecil, angka, dan underscore (_).</p>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Tipe Input <span class="text-danger">*</span></label>
-                            <select name="type" class="form-select" required>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Tipe Input <span class="text-red-500">*</span></label>
+                            <select name="type" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required>
                                 <option value="text" {{ old('type', $PengajarField->type) == 'text' ? 'selected' : '' }}>Text (Teks Pendek)</option>
                                 <option value="number" {{ old('type', $PengajarField->type) == 'number' ? 'selected' : '' }}>Number (Angka)</option>
                                 <option value="textarea" {{ old('type', $PengajarField->type) == 'textarea' ? 'selected' : '' }}>Textarea (Teks Panjang)</option>
@@ -31,28 +37,36 @@
                             </select>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Opsi Pilihan (Hanya jika tipe Select)</label>
-                            <input type="text" name="options" class="form-control" value="{{ old('options', $PengajarField->options ? implode(', ', $PengajarField->options) : '') }}">
-                            <small class="text-muted">Pisahkan dengan koma.</small>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Opsi Pilihan (Hanya jika tipe Select)</label>
+                            <input type="text" name="options" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ old('options', $PengajarField->options ? implode(', ', $PengajarField->options) : '') }}">
+                            <p class="text-sm text-gray-500 mt-2">Pisahkan dengan koma.</p>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Urutan Tampil (Order) <span class="text-danger">*</span></label>
-                            <input type="number" name="order" class="form-control" required value="{{ old('order', $PengajarField->order) }}">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Urutan Tampil (Order) <span class="text-red-500">*</span></label>
+                            <input type="number" name="order" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('order', $PengajarField->order) }}">
                         </div>
 
-                        <div class="form-check mb-4">
-                            <input type="checkbox" class="form-check-input" id="is_required" name="is_required" {{ old('is_required', $PengajarField->is_required) ? 'checked' : '' }}>
-                            <label class="form-check-label" for="is_required">Wajib Diisi (Required)</label>
+                        <div class="flex items-center">
+                            <div class="flex">
+                                <input type="checkbox" id="is_required" name="is_required" class="shrink-0 mt-0.5 border-gray-200 rounded text-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" {{ old('is_required', $PengajarField->is_required) ? 'checked' : '' }}>
+                            </div>
+                            <div class="ms-3">
+                                <label for="is_required" class="text-sm font-medium text-gray-800">Wajib Diisi (Required)</label>
+                            </div>
                         </div>
+                    </div>
 
-                        <div class="d-flex justify-content-end gap-2 border-top border-dashed pt-3">
-                            <a href="{{ route('pengajar_fields.index') }}" class="btn btn-light">Batal</a>
-                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                        </div>
-                    </form>
-                </div>
+                    <div class="mt-8 pt-6 border-t border-gray-200 flex justify-end gap-x-3">
+                        <a href="{{ route('pengajar_fields.index') }}" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                            Batal
+                        </a>
+                        <button type="submit" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50 disabled:pointer-events-none">
+                            Simpan Perubahan
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

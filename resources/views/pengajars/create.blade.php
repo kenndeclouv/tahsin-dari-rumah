@@ -1,91 +1,110 @@
 <x-layouts.app title="Tambah Pengajar">
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header border-bottom border-dashed">
-                    <h5 class="header-title mb-0">Tambah Pengajar Baru</h5>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('pengajars.store') }}" method="POST">
-                        @csrf
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h6 class="fs-15 mb-3">Informasi Login</h6>
-                                <div class="mb-3">
-                                    <label class="form-label">Nama Lengkap <span class="text-danger">*</span></label>
-                                    <input type="text" name="name" class="form-control" required value="{{ old('name') }}">
-                                    @error('name') <small class="text-danger">{{ $message }}</small> @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Email (Username Login) <span class="text-danger">*</span></label>
-                                    <input type="email" name="email" class="form-control" required value="{{ old('email') }}">
-                                    @error('email') <small class="text-danger">{{ $message }}</small> @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Password <span class="text-danger">*</span></label>
-                                    <input type="password" name="password" class="form-control" required minlength="8">
-                                    @error('password') <small class="text-danger">{{ $message }}</small> @enderror
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label">Konfirmasi Password <span class="text-danger">*</span></label>
-                                    <input type="password" name="password_confirmation" class="form-control" required minlength="8">
-                                </div>
+    <div class="max-w-4xl">
+        <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
+            
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-xl font-semibold text-gray-800">Tambah Pengajar Baru</h2>
+            </div>
+            
+            <div class="p-6">
+                <form action="{{ route('pengajars.store') }}" method="POST">
+                    @csrf
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        
+                        <!-- Kolom Kiri: Informasi Login -->
+                        <div class="space-y-6">
+                            <h3 class="text-lg font-semibold text-gray-800 border-b border-gray-200 pb-2">Informasi Login</h3>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Nama Lengkap <span class="text-red-500">*</span></label>
+                                <input type="text" name="name" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('name') }}">
+                                @error('name') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
                             </div>
 
-                            <div class="col-md-6">
-                                <h6 class="fs-15 mb-3">Data Diri (Opsional)</h6>
-                                <div class="mb-3">
-                                    <label class="form-label">Jenis Kelamin <span class="text-danger">*</span></label>
-                                    <select name="jenis_kelamin" class="form-select" required>
-                                        <option value="">-- Pilih Jenis Kelamin --</option>
-                                        <option value="L" {{ old('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki-laki</option>
-                                        <option value="P" {{ old('jenis_kelamin') == 'P' ? 'selected' : '' }}>Perempuan</option>
-                                    </select>
-                                    @error('jenis_kelamin') <small class="text-danger">{{ $message }}</small> @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Nomor WhatsApp (HP)</label>
-                                    <input type="text" name="no_hp" class="form-control" value="{{ old('no_hp') }}">
-                                    @error('no_hp') <small class="text-danger">{{ $message }}</small> @enderror
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Pendidikan Terakhir</label>
-                                    <input type="text" name="pendidikan_terakhir" class="form-control" value="{{ old('pendidikan_terakhir') }}" placeholder="Contoh: S1 Pendidikan Agama Islam">
-                                    @error('pendidikan_terakhir') <small class="text-danger">{{ $message }}</small> @enderror
-                                </div>
-                                <div class="mb-4">
-                                    <label class="form-label">Alamat Lengkap</label>
-                                    <textarea name="alamat" class="form-control" rows="3">{{ old('alamat') }}</textarea>
-                                    @error('alamat') <small class="text-danger">{{ $message }}</small> @enderror
-                                </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Email (Username Login) <span class="text-red-500">*</span></label>
+                                <input type="email" name="email" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('email') }}">
+                                @error('email') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Password <span class="text-red-500">*</span></label>
+                                <input type="password" name="password" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required minlength="8">
+                                @error('password') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Konfirmasi Password <span class="text-red-500">*</span></label>
+                                <input type="password" name="password_confirmation" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required minlength="8">
                             </div>
                         </div>
 
-                        @if($customFields->count() > 0)
-                        <hr class="border-dashed my-3">
-                        <h6 class="fs-15 mb-3">Informasi Tambahan</h6>
-                        <div class="row">
+                        <!-- Kolom Kanan: Data Diri -->
+                        <div class="space-y-6">
+                            <h3 class="text-lg font-semibold text-gray-800 border-b border-gray-200 pb-2">Data Diri (Opsional)</h3>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Jenis Kelamin <span class="text-red-500">*</span></label>
+                                <select name="jenis_kelamin" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required>
+                                    <option value="">-- Pilih --</option>
+                                    <option value="L" {{ old('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki-laki</option>
+                                    <option value="P" {{ old('jenis_kelamin') == 'P' ? 'selected' : '' }}>Perempuan</option>
+                                </select>
+                                @error('jenis_kelamin') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Nomor WhatsApp (HP)</label>
+                                <input type="text" name="no_hp" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ old('no_hp') }}" placeholder="Contoh: 08123456789">
+                                @error('no_hp') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Pendidikan Terakhir</label>
+                                <input type="text" name="pendidikan_terakhir" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ old('pendidikan_terakhir') }}" placeholder="Contoh: S1 Pendidikan Agama Islam">
+                                @error('pendidikan_terakhir') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Alamat Lengkap</label>
+                                <textarea name="alamat" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" rows="3">{{ old('alamat') }}</textarea>
+                                @error('alamat') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
+                            </div>
+                        </div>
+
+                    </div>
+
+                    @if($customFields->count() > 0)
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-6">Informasi Tambahan</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             @foreach ($customFields as $field)
-                                <div class="col-md-6 mb-3">
-                                    <label class="form-label">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2">
                                         {{ $field->label }} 
-                                        @if($field->is_required) <span class="text-danger">*</span> @endif
+                                        @if($field->is_required) <span class="text-red-500">*</span> @endif
                                     </label>
                                     
                                     @if($field->type == 'text')
-                                        <input type="text" name="additional_data[{{ $field->name }}]" class="form-control" 
+                                        <input type="text" name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" 
                                             {{ $field->is_required ? 'required' : '' }} value="{{ old('additional_data.' . $field->name) }}">
+                                            
                                     @elseif($field->type == 'number')
-                                        <input type="number" name="additional_data[{{ $field->name }}]" class="form-control" 
+                                        <input type="number" name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" 
                                             {{ $field->is_required ? 'required' : '' }} value="{{ old('additional_data.' . $field->name) }}">
+                                            
                                     @elseif($field->type == 'date')
-                                        <input type="date" name="additional_data[{{ $field->name }}]" class="form-control" 
+                                        <input type="date" name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" 
                                             {{ $field->is_required ? 'required' : '' }} value="{{ old('additional_data.' . $field->name) }}">
+                                            
                                     @elseif($field->type == 'textarea')
-                                        <textarea name="additional_data[{{ $field->name }}]" class="form-control" rows="2" 
+                                        <textarea name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" rows="3" 
                                             {{ $field->is_required ? 'required' : '' }}>{{ old('additional_data.' . $field->name) }}</textarea>
+                                            
                                     @elseif($field->type == 'select')
-                                        <select name="additional_data[{{ $field->name }}]" class="form-select" {{ $field->is_required ? 'required' : '' }}>
+                                        <select name="additional_data[{{ $field->name }}]" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" {{ $field->is_required ? 'required' : '' }}>
                                             <option value="">-- Pilih --</option>
                                             @foreach($field->options as $opt)
                                                 <option value="{{ $opt }}" {{ old('additional_data.' . $field->name) == $opt ? 'selected' : '' }}>
@@ -93,34 +112,40 @@
                                                 </option>
                                             @endforeach
                                         </select>
+                                        
                                     @elseif($field->type == 'radio')
-                                        <div>
+                                        <div class="flex flex-wrap gap-4 mt-2">
                                             @foreach($field->options as $idx => $opt)
-                                                <div class="form-check form-check-inline mt-1">
-                                                    <input class="form-check-input" type="radio" name="additional_data[{{ $field->name }}]" 
+                                                <div class="flex items-center">
+                                                    <input type="radio" name="additional_data[{{ $field->name }}]" 
                                                         id="radio_{{ $field->name }}_{{ $idx }}" value="{{ $opt }}" 
+                                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none"
                                                         {{ old('additional_data.' . $field->name) == $opt ? 'checked' : '' }} 
                                                         {{ $field->is_required ? 'required' : '' }}>
-                                                    <label class="form-check-label" for="radio_{{ $field->name }}_{{ $idx }}">{{ $opt }}</label>
+                                                    <label class="text-sm text-gray-700 ms-2" for="radio_{{ $field->name }}_{{ $idx }}">{{ $opt }}</label>
                                                 </div>
                                             @endforeach
                                         </div>
                                     @endif
                                     
                                     @error('additional_data.' . $field->name)
-                                        <small class="text-danger">{{ $message }}</small>
+                                        <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
                                     @enderror
                                 </div>
                             @endforeach
                         </div>
-                        @endif
-                        
-                        <div class="d-flex justify-content-end gap-2 border-top border-dashed pt-3 mt-2">
-                            <a href="{{ route('pengajars.index') }}" class="btn btn-light">Batal</a>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    @endif
+
+                    <div class="mt-8 pt-6 border-t border-gray-200 flex justify-end gap-x-3">
+                        <a href="{{ route('pengajars.index') }}" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                            Batal
+                        </a>
+                        <button type="submit" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50 disabled:pointer-events-none">
+                            Simpan Data Pengajar
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

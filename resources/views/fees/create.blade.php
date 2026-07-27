@@ -1,29 +1,36 @@
-<x-layouts.app title="Tambah Fee">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header border-bottom border-dashed">
-                    <h5 class="header-title mb-0">Tambah Fee Baru</h5>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('fees.store') }}" method="POST">
-                        @csrf
-                        <div class="mb-3">
-                            <label class="form-label">Nama / Deskripsi Paket <span class="text-danger">*</span></label>
-                            <input type="text" name="nama" class="form-control" placeholder="Misal: Tahsin 4x Pertemuan" required value="{{ old('nama') }}">
-                            @error('nama') <small class="text-danger">{{ $message }}</small> @enderror
+<x-layouts.app title="Tambah Master Data Fee">
+    <div class="max-w-3xl mx-auto">
+        <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
+            
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-xl font-semibold text-gray-800">Tambah Master Data Fee Baru</h2>
+            </div>
+            
+            <div class="p-6">
+                <form action="{{ route('fees.store') }}" method="POST">
+                    @csrf
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Nama / Deskripsi Paket <span class="text-red-500">*</span></label>
+                            <input type="text" name="nama" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('nama') }}" placeholder="Contoh: Paket 1 (4x Pertemuan) Offline" autofocus>
                         </div>
-                        <div class="mb-4">
-                            <label class="form-label">Nominal (Rp) <span class="text-danger">*</span></label>
-                            <input type="number" name="nominal" class="form-control" placeholder="Misal: 400000" required value="{{ old('nominal') }}">
-                            @error('nominal') <small class="text-danger">{{ $message }}</small> @enderror
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Nominal (Rp) <span class="text-red-500">*</span></label>
+                            <input type="number" name="nominal" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('nominal') }}" placeholder="Contoh: 150000">
                         </div>
-                        <div class="d-flex justify-content-end gap-2">
-                            <a href="{{ route('fees.index') }}" class="btn btn-light">Batal</a>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    
+                    <div class="mt-8 pt-6 border-t border-gray-200 flex justify-end gap-x-3">
+                        <a href="{{ route('fees.index') }}" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                            Batal
+                        </a>
+                        <button type="submit" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50 disabled:pointer-events-none">
+                            Simpan Fee
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
