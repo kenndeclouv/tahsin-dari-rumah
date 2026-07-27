@@ -1,36 +1,35 @@
 <x-layouts.auth>
-    <h4 class="fw-semibold mb-2">Masuk ke akun anda</h4>
+    <div class="text-start">
+        <h4 class="fw-bold mb-1" style="color: var(--premium-text);">Selamat Datang Kembali 👋</h4>
+        <p class="text-muted mb-4 fs-14" style="color: var(--premium-text-light);">Silakan masuk untuk mengakses panel kendali.</p>
 
-    <p class="text-muted mb-4">Masukkan email dan password anda untuk memesan.</p>
-
-    <form action="{{ route('login') }}" method="POST" class="text-start mb-3">
-        @csrf
-        <div class="mb-3">
-            <label class="form-label" for="email">Email</label>
-            <input type="email" id="email" name="email" class="form-control" placeholder="Masukkan Email">
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label" for="password">Password</label>
-            <input type="password" id="password" name="password" class="form-control"
-                placeholder="Masukkan Password">
-        </div>
-
-        <div class="d-flex justify-content-between mb-3">
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="checkbox-signin">
-                <label class="form-check-label" for="checkbox-signin">Ingat saya</label>
+        <form action="{{ route('login') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label class="form-label" for="email">Alamat Email</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="nama@email.com" required>
             </div>
 
-            <a href="{{ route('password.request') }}" class="text-muted border-bottom border-dashed">Lupa Password</a>
-        </div>
+            <div class="mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <label class="form-label mb-0" for="password">Password</label>
+                    <a href="{{ route('password.request') }}" class="text-decoration-none fs-13" style="color: var(--premium-primary); font-weight: 600;">Lupa Password?</a>
+                </div>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Masukkan password Anda" required>
+            </div>
 
-        <div class="d-grid">
-            <button class="btn btn-primary" type="submit">Login</button>
-        </div>
-    </form>
+            <div class="mb-4">
+                <div class="form-check custom-checkbox">
+                    <input type="checkbox" class="form-check-input" id="checkbox-signin">
+                    <label class="form-check-label fs-14 ms-1" style="color: var(--premium-text-light);" for="checkbox-signin">Ingat saya</label>
+                </div>
+            </div>
 
-    <p class="text-danger fs-14 mb-4">Tidak punya akun?
-        <a href="{{ route('register') }}" class="fw-semibold text-dark ms-1">Buat Sekarang!</a>
-    </p>
+            <div class="d-grid mb-3">
+                <button class="btn-premium d-flex justify-content-center align-items-center gap-2" type="submit">
+                    Masuk Sekarang <i class="ti ti-login fs-18"></i>
+                </button>
+            </div>
+        </form>
+    </div>
 </x-layouts.auth>

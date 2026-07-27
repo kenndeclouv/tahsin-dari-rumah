@@ -1,8 +1,14 @@
 <!-- Sidenav Menu Start -->
 <div class="sidenav-menu pt-3">
-    <div class="ms-3">
-        <x-logo></x-logo>
-    </div>
+    <!-- LOGO -->
+    <a href="/" class="logo text-decoration-none ms-3 mb-2 d-inline-block">
+        <span class="logo-lg text-dark">
+            <h4 class="fw-bold mb-0" style="white-space: nowrap;">📖 {{ config('app.name') }}</h4>
+        </span>
+        <span class="logo-sm text-dark ms-1">
+            <h3 class="fw-bold mb-0">📖</h3>
+        </span>
+    </a>
 
     <!-- Sidebar Hover Menu Toggle Button -->
     <button class="button-sm-hover">

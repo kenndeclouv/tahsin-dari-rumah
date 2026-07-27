@@ -15328,7 +15328,7 @@ html[data-bs-theme=dark] .app-topbar .logo .logo-dark {
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
   min-height: calc(100vh - var(--bs-topbar-height));
-  padding: 0 1rem;
+  padding: 0px;
 }
 
 .logo-lg img {

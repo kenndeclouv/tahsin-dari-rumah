@@ -5,7 +5,7 @@
             .hero-section {
                 padding: 8rem 0 6rem;
                 position: relative;
-                overflow: hidden;
+                overflow: visible;
             }
             .hero-mesh {
                 position: absolute;
@@ -20,6 +20,52 @@
                     radial-gradient(circle at 50% 10%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
                 z-index: 0;
                 pointer-events: none;
+            }
+
+            /* --- Marquee --- */
+            .hero-marquee-container {
+                position: absolute;
+                bottom: 40px;
+                left: 50%;
+                width: 110vw;
+                overflow: hidden;
+                background: var(--premium-primary);
+                padding: 15px 0;
+                z-index: 0;
+                transform: translateX(-50%) rotate(-1.5deg);
+                transform-origin: center;
+            }
+            .hero-marquee {
+                display: flex;
+                white-space: nowrap;
+                animation: marquee 25s linear infinite;
+            }
+            .hero-marquee span {
+                color: rgba(255, 255, 255, 0.9);
+                font-weight: 700;
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                margin-right: 30px;
+                display: inline-flex;
+                align-items: center;
+                gap: 30px;
+            }
+            .hero-marquee span::after {
+                content: '✦';
+                color: var(--premium-secondary);
+                font-size: 0.8rem;
+            }
+            @keyframes marquee {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+
+            .hero-gradient-text {
+                background: linear-gradient(135deg, var(--premium-primary) 0%, #34d399 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                display: inline-block;
             }
             .glass-badge {
                 background: rgba(255, 255, 255, 0.8);
@@ -53,8 +99,22 @@
                 font-size: 28px;
                 margin-bottom: 1.5rem;
             }
-            .bento-large { grid-column: span 2; }
-            @media (max-width: 991px) { .bento-large { grid-column: span 1; } }
+            .bento-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            @media (min-width: 768px) {
+                .bento-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+            }
+            @media (min-width: 992px) {
+                .bento-grid {
+                    grid-template-columns: repeat(3, 1fr);
+                }
+                .bento-large { grid-column: span 2; }
+            }
 
             /* --- Pricing --- */
             .price-card {
@@ -155,44 +215,55 @@
     <section class="hero-section text-center">
         <div class="hero-mesh"></div>
         <div class="container-xl position-relative z-1">
-            <div class="d-inline-flex align-items-center gap-2 px-4 py-2 glass-badge mb-4">
+            {{-- <div class="hero-badge d-inline-flex align-items-center gap-2 px-4 py-2 glass-badge mb-4">
                 <div class="d-flex align-items-center justify-content-center bg-success text-white rounded-circle" style="width:24px; height:24px; font-size:12px;">
                     <i class="ti ti-star-filled"></i>
                 </div>
                 <span class="fw-semibold fs-14" style="color:var(--premium-primary)">1200+ Murid Belajar Bersama Kami</span>
-            </div>
+            </div> --}}
             
-            <h1 class="display-3 fw-black mb-4 mx-auto" style="max-width: 900px; line-height: 1.15;">
-                Belajar Mengaji Online Privat <br>
-                <span style="background: linear-gradient(120deg, var(--premium-secondary), var(--premium-primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Dimana Saja dan Kapan Saja</span>
+            <h1 class="mt-5 pt-2 hero-h1 display-3 fw-black mb-4 mx-auto" style="max-width: 900px; line-height: 1.15;">
+                Belajar Mengaji Online/Offline <br>
+                <span class="hero-gradient-text" id="typewriter"></span>
             </h1>
             
-            <p class="fs-18 mb-5 mx-auto text-muted" style="max-width: 600px; line-height: 1.6;">
+            <p class="hero-subtitle fs-18 mb-5 mx-auto text-muted" style="max-width: 600px; line-height: 1.6;">
                 Kini belajar ngaji lebih mudah dan menyenangkan bersama asatidz {{ config('app.name') }} yang sabar dan profesional.
             </p>
             
-            <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 mb-5">
-                <a href="https://wa.me/628123456789" class="btn-premium text-decoration-none d-inline-flex align-items-center justify-content-center gap-2">
+            <div class="hero-cta d-flex flex-column flex-sm-row justify-content-center gap-3 mb-5">
+                <a href="https://wa.me/628123456789" class="btn-premium text-decoration-none">
                     <i class="ti ti-player-play-filled"></i> Belajar Sekarang
                 </a>
-                <a href="#biaya" class="btn-premium-outline text-decoration-none d-inline-flex align-items-center justify-content-center">
+                <a href="#biaya" class="btn-premium-outline text-decoration-none">
                     Lihat Pilihan Paket
                 </a>
             </div>
 
-            <div class="d-flex flex-wrap justify-content-center gap-4 pt-4 border-top" style="border-color: rgba(0,0,0,0.05)!important; max-width:800px; margin:0 auto;">
+            {{-- <div class="hero-stats d-flex flex-wrap justify-content-center gap-4 pt-4 border-top" style="border-color: rgba(0,0,0,0.05)!important; max-width:800px; margin:0 auto;">
                 <div class="d-flex align-items-center gap-2">
                     <i class="ti ti-users fs-24 text-success"></i>
-                    <span class="fw-semibold text-muted">90+ Guru Tersertifikasi</span>
+                    <span class="fw-semibold text-muted"><span class="count-up" data-target="90">0</span>+ Guru Tersertifikasi</span>
                 </div>
                 <div class="d-flex align-items-center gap-2">
                     <i class="ti ti-certificate fs-24 text-primary"></i>
-                    <span class="fw-semibold text-muted">2500+ Alumni</span>
+                    <span class="fw-semibold text-muted"><span class="count-up" data-target="2500">0</span>+ Alumni</span>
                 </div>
                 <div class="d-flex align-items-center gap-2">
                     <i class="ti ti-thumb-up-filled fs-24 text-warning"></i>
-                    <span class="fw-semibold text-muted">99% Kepuasan</span>
+                    <span class="fw-semibold text-muted"><span class="count-up" data-target="99">0</span>% Kepuasan</span>
                 </div>
+            </div> --}}
+        </div>
+
+        <!-- Marquee Tape -->
+        <div class="hero-marquee-container">
+            <div class="hero-marquee">
+                <!-- Text repeated twice for smooth infinite scroll (50% translation) -->
+                <span>BELAJAR MENGAJI ONLINE</span><span>TAHSIN & TAHFIDZ</span><span>GURU TERSERTIFIKASI</span><span>KAPAN SAJA</span><span>DIMANA SAJA</span>
+                <span>BELAJAR MENGAJI ONLINE</span><span>TAHSIN & TAHFIDZ</span><span>GURU TERSERTIFIKASI</span><span>KAPAN SAJA</span><span>DIMANA SAJA</span>
+                <span>BELAJAR MENGAJI ONLINE</span><span>TAHSIN & TAHFIDZ</span><span>GURU TERSERTIFIKASI</span><span>KAPAN SAJA</span><span>DIMANA SAJA</span>
+                <span>BELAJAR MENGAJI ONLINE</span><span>TAHSIN & TAHFIDZ</span><span>GURU TERSERTIFIKASI</span><span>KAPAN SAJA</span><span>DIMANA SAJA</span>
             </div>
         </div>
     </section>
@@ -200,15 +271,16 @@
     {{-- ─── BENTO GRID: KEUNGGULAN ─────────────────────────────────────────── --}}
     <section class="py-5" id="kenapa">
         <div class="container-xl">
-            <div class="text-center mb-5">
+            <div class="text-center mb-5 reveal-up">
                 <h6 class="fw-bold" style="color:var(--premium-secondary); text-transform:uppercase; letter-spacing:1px;">Mengapa {{ config('app.name') }}?</h6>
                 <h2 class="display-6 fw-black">Cocok buat kamu yang ingin lancar<br>baca Al-Quran, anak-anak maupun dewasa</h2>
+                <span class="line-draw"></span>
             </div>
 
-            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem;">
+            <div class="bento-grid">
                 
                 {{-- 1. Private --}}
-                <div class="bento-card bento-large position-relative overflow-hidden" style="background:var(--premium-primary); color:white;">
+                <div class="bento-card bento-large position-relative overflow-hidden reveal-scale" style="background:var(--premium-primary); color:white;">
                     <div style="position:absolute; right:-50px; bottom:-50px; font-size:200px; opacity:0.1; line-height:1;">👤</div>
                     <div class="bento-icon-wrapper" style="background:rgba(255,255,255,0.15); color:white;">
                         <i class="ti ti-user-check"></i>
@@ -218,8 +290,8 @@
                 </div>
 
                 {{-- 2. Jadwal Fleksibel --}}
-                <div class="bento-card">
-                    <div class="bento-icon-wrapper" style="background:rgba(16,185,129,0.1); color:var(--premium-secondary);">
+                <div class="bento-card reveal-up" style="transition-delay:0.1s">
+                    <div class="bento-icon-wrapper" style="background:color-mix(in srgb, var(--premium-secondary) 15%, transparent); color:var(--premium-secondary);">
                         <i class="ti ti-clock"></i>
                     </div>
                     <h4 class="fw-bold mb-3">Jadwal Fleksibel</h4>
@@ -227,8 +299,8 @@
                 </div>
 
                 {{-- 3. Sabar & Profesional --}}
-                <div class="bento-card">
-                    <div class="bento-icon-wrapper" style="background:rgba(59,130,246,0.1); color:#3b82f6;">
+                <div class="bento-card reveal-up" style="transition-delay:0.2s">
+                    <div class="bento-icon-wrapper" style="background:color-mix(in srgb, var(--premium-primary) 12%, transparent); color:var(--premium-primary);">
                         <i class="ti ti-award"></i>
                     </div>
                     <h4 class="fw-bold mb-3">Sabar & Profesional</h4>
@@ -236,24 +308,22 @@
                 </div>
 
                 {{-- 4. Bisa Request Materi --}}
-                <div class="bento-card bento-large">
-                    <div class="row align-items-center h-100">
+                <div class="bento-card bento-large position-relative overflow-hidden reveal-scale" style="background:var(--premium-primary); color:white;">
+                    <div style="position:absolute; right:-50px; bottom:-50px; font-size:200px; opacity:0.1; line-height:1;">📚</div>
+                    <div class="row align-items-center h-100 position-relative z-1">
                         <div class="col-md-7">
-                            <div class="bento-icon-wrapper" style="background:rgba(245,158,11,0.1); color:#f59e0b;">
+                            <div class="bento-icon-wrapper" style="background:rgba(255,255,255,0.15); color:white;">
                                 <i class="ti ti-book"></i>
                             </div>
-                            <h4 class="fw-bold mb-3">Bisa Request Materi Bebas</h4>
-                            <p class="text-muted mb-0">Mulai dasar, makhraj, tajwid, hafalan, fiqih, sirah nabi, atau memahami makna ayat - semua bisa di {{ config('app.name') }} sesuai request.</p>
-                        </div>
-                        <div class="col-md-5 text-center d-none d-md-block">
-                            <div style="font-size: 80px;">📚</div>
+                            <h4 class="fw-bold mb-3 text-white">Bisa Request Materi Bebas</h4>
+                            <p class="mb-0" style="opacity:0.9;">Mulai dasar, makhraj, tajwid, hafalan, fiqih, sirah nabi, atau memahami makna ayat - semua bisa di {{ config('app.name') }} sesuai request.</p>
                         </div>
                     </div>
                 </div>
 
                 {{-- 5. Laporan & Evaluasi --}}
                 <div class="bento-card">
-                    <div class="bento-icon-wrapper" style="background:rgba(239,68,68,0.1); color:#ef4444;">
+                    <div class="bento-icon-wrapper" style="background:color-mix(in srgb, var(--premium-primary) 12%, transparent); color:var(--premium-primary);">
                         <i class="ti ti-report-analytics"></i>
                     </div>
                     <h4 class="fw-bold mb-3">Laporan per Pertemuan</h4>
@@ -267,13 +337,12 @@
     {{-- ─── HARGA PAKET ──────────────────────────────────────────────────────── --}}
     <section class="py-5" id="biaya">
         <div class="container-xl py-4">
-            <div class="text-center mb-5">
-                <h6 class="fw-bold" style="color:var(--premium-secondary); text-transform:uppercase; letter-spacing:1px;">Biaya Fleksibel</h6>
+            <div class="text-center mb-5 reveal-up"><h6 class="fw-bold" style="color:var(--premium-secondary); text-transform:uppercase; letter-spacing:1px;">Biaya Fleksibel</h6>
                 <h2 class="display-6 fw-black">Harga paket investasi belajar Al-Quran</h2>
                 <p class="text-muted mt-3 mx-auto" style="max-width:520px;">Apapun paketnya, kualitas tetap yang utama dengan guru bersertifikat.</p>
             </div>
 
-            <div class="row g-4 align-items-center justify-content-center">
+            <div class="row g-2 align-items-center justify-content-center stagger-parent">
                 @php
                     $pakets = [
                         ['Paket 1', '300.000', '4x', '1x', false],
@@ -385,38 +454,13 @@
         </div>
     </section>
 
-    {{-- ─── UNDUH APLIKASI (App Banner) ────────────────────────────────────────── --}}
-    <section class="py-5 my-3">
-        <div class="container-xl">
-            <div class="rounded-4 overflow-hidden" style="background:var(--premium-surface); border: 1px solid rgba(0,0,0,0.05); box-shadow:0 20px 40px rgba(0,0,0,0.02);">
-                <div class="row g-0 align-items-center">
-                    <div class="col-md-7 p-5 p-lg-6">
-                        <h2 class="display-6 fw-black mb-3">Pantau progress belajarmu melalui aplikasi</h2>
-                        <p class="text-muted fs-16 mb-4">Sekarang memantau progress materi dan hafalan semakin mudah melalui aplikasi terintegrasi kami.</p>
-                        <div class="d-flex gap-3 flex-wrap">
-                            <a href="#" class="btn btn-dark btn-lg px-4 fw-bold d-inline-flex align-items-center justify-content-center gap-2" style="border-radius:100px;">
-                                <i class="ti ti-brand-google-play text-success fs-4"></i> Google Play
-                            </a>
-                            <a href="#" class="btn btn-dark btn-lg px-4 fw-bold d-inline-flex align-items-center justify-content-center gap-2" style="border-radius:100px;">
-                                <i class="ti ti-brand-apple fs-4"></i> App Store
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-5 bg-light d-flex justify-content-center align-items-center p-5" style="min-height:300px;">
-                        <div style="font-size: 100px;">📱</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     {{-- ─── FAQ ───────────────────────────────────────────────────────────── --}}
     <section class="py-5" id="faq">
         <div class="container-xl py-4 text-center">
             <h6 class="fw-bold" style="color:var(--premium-secondary); text-transform:uppercase; letter-spacing:1px;">Tanya Jawab</h6>
             <h2 class="display-6 fw-black mb-5">Pertanyaan Seputar {{ config('app.name') }}</h2>
             
-            <div class="row justify-content-center text-start">
+            <div class="row justify-content-center text-start reveal-up">
                 <div class="col-lg-8">
                     <div class="accordion faq-accordion" id="faqAccordion">
                         
@@ -472,7 +516,7 @@
     {{-- ─── CTA FOOTER ────────────────────────────────────────────────────────── --}}
     <section class="py-5 mb-4">
         <div class="container-xl">
-            <div class="cta-banner text-center text-white">
+            <div class="cta-banner text-center text-white reveal-scale">
                 <div class="cta-circle" style="width:400px; height:400px; top:-200px; left:-100px;"></div>
                 <div class="cta-circle" style="width:300px; height:300px; bottom:-150px; right:-50px;"></div>
                 
@@ -481,7 +525,7 @@
                     <p class="fs-18 mb-5 mx-auto text-white-50" style="max-width: 600px;">
                         Jangan tunda lagi. Mari belajar mengaji dan memahami Al-Quran bersama {{ config('app.name') }} sekarang juga!
                     </p>
-                    <a href="https://wa.me/628123456789" class="btn btn-light text-success btn-lg px-5 py-3 fw-bold shadow-lg d-inline-flex align-items-center justify-content-center gap-2" style="border-radius:100px; font-size:1.1rem; transition:transform 0.2s;">
+                    <a href="https://wa.me/628123456789" class="btn btn-light text-success btn-lg px-5 py-3 fw-bold shadow-lg d-inline-flex align-items-center justify-content-center gap-2" style="border-radius:100px; font-size:1.1rem; transition: background-color 0.2s;">
                         <i class="ti ti-brand-whatsapp fs-4"></i> Konsultasi & Daftar Sekarang
                     </a>
                 </div>
@@ -489,5 +533,22 @@
         </div>
     </section>
 
+    <x-slot name="scripts">
+        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                new Typed('#typewriter', {
+                    strings: ['Dimana Saja', 'Kapan Saja', 'Lebih Fleksibel', 'Dari Rumah'],
+                    typeSpeed: 60,
+                    backSpeed: 40,
+                    backDelay: 4500,
+                    loop: true,
+                    cursorChar: '|',
+                    autoInsertCss: true
+                });
+            });
+        </script>
+    </x-slot>
 </x-layouts.landing>
+
 
