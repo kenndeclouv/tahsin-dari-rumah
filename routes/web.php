@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 // ─── Public Routes ────────────────────────────────────────────────────────────
 Route::get('/', [LandingController::class, 'index'])->name('landing');
+Route::view('/syarat-ketentuan', 'syarat-ketentuan')->name('syarat-ketentuan');
+Route::view('/kebijakan-privasi', 'kebijakan-privasi')->name('kebijakan-privasi');
 
 // ─── Authenticated Routes ─────────────────────────────────────────────────────
 Route::middleware(['auth'])->group(function () {

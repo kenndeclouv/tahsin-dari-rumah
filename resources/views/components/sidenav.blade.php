@@ -14,13 +14,7 @@ bg-slate-900 border-e border-slate-800"
         <header class="py-4 px-2 flex justify-between items-center gap-x-2">
             <a class="flex-none font-bold text-md text-white focus:outline-none focus:opacity-80 hs-overlay-minified:hidden flex items-center gap-2 px-2"
                 href="/" aria-label="Brand">
-                {{-- <svg class="w-8 h-auto text-primary-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                </svg> --}}
-                <span class="text-primary">{{ config('app.name') }}</span>
+                <span class="text-primary-100">{{ config('app.name') }}</span>
             </a>
 
             <div class="lg:hidden">

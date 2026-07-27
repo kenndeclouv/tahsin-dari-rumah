@@ -2,7 +2,7 @@
     position: fixed;
     inset: 0;
     z-index: 99999;
-    background-color: var(--premium-primary, #064e3b);
+    background: linear-gradient(135deg, var(--primary-700), var(--primary-900));
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14,9 +14,9 @@
     <!-- Faint Islamic Background Text -->
     <div style="
         position: absolute; 
-        top: 50%; 
+        bottom: 0; 
         left: 50%; 
-        transform: translate(-50%, -50%); 
+        transform: translate(-50%, 0%); 
         color: rgba(255,255,255,0.03); 
         font-size: clamp(100px, 15vw, 300px); 
         font-family: 'Amiri', serif; 
@@ -30,11 +30,11 @@
     <!-- Center Content -->
     <div class="preloader-content" style="text-align: center; position: relative; z-index: 1;">
         <!-- Animated Icon -->
-        <div class="preloader-icon" style="font-size: 3.5rem; margin-bottom: 1rem; color: var(--premium-secondary, #34d399);">
+        {{-- <div class="preloader-icon" style="font-size: 3.5rem; margin-bottom: 1rem; color: var(--premium-secondary, #34d399);">
             <i class="fa-solid fa-book shrink-0 size-5"></i>
-        </div>
+        </div> --}}
         
-        <h2 style="font-weight: 800; letter-spacing: 2px; margin-bottom: 0.5rem; color: white;">
+        <h2 style="font-size: 2rem; font-weight: 800; letter-spacing: 2px; margin-bottom: 0.5rem; color: white;">
             {{ config('app.name') }}
         </h2>
         
