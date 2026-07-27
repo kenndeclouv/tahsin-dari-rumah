@@ -1,5 +1,5 @@
 <x-layouts.app title="Isi Presensi">
-    <div class="max-w-3xl mx-auto">
+    <div class="max-w-4xl">
         <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
             
             <div class="px-6 py-4 border-b border-gray-200">

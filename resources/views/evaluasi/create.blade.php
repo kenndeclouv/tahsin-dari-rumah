@@ -1,5 +1,5 @@
 <x-layouts.app title="Isi Evaluasi">
-    <div class="max-w-3xl mx-auto">
+    <div class="max-w-4xl">
         <div class="bg-white border border-orange-200 rounded-xl shadow-sm overflow-hidden">
             
             <div class="px-6 py-4 border-b border-orange-200 bg-orange-50 flex items-center gap-2">
