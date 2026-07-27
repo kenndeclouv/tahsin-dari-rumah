@@ -2,10 +2,10 @@
 <header class="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-[48] w-full bg-white border-b border-gray-200 text-sm py-2.5 sm:py-4 lg:ps-64 hs-overlay-minified:lg:ps-20 transition-all duration-300">
     <nav class="flex basis-full items-center w-full mx-auto px-4 sm:px-6 md:px-8" aria-label="Global">
         
-        <div class="me-5 lg:me-0 lg:hidden">
+        {{-- <div class="me-5 lg:me-0 lg:hidden">
             <!-- Mobile Logo -->
             <a class="flex-none text-xl font-semibold text-gray-900" href="/">📖</a>
-        </div>
+        </div> --}}
 
         <div class="w-full flex items-center justify-between sm:gap-x-3 sm:order-3">
             
@@ -23,7 +23,7 @@
 
                 <!-- Theme Toggle Placeholder (If needed) -->
                 <button type="button" class="w-[2.375rem] h-[2.375rem] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100">
-                    <i class="ti ti-moon text-lg"></i>
+                    <i class="fa-solid fa-moon text-lg"></i>
                 </button>
 
                 <!-- User Dropdown -->
@@ -38,14 +38,14 @@
                             <p class="text-xs text-gray-500">{{ auth()->user()->email }}</p>
                         </div>
                         <div class="mt-2 py-2 first:pt-0 last:pb-0">
-                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-emerald-500" href="{{ route('profile.show') }}">
-                                <i class="ti ti-user-hexagon text-lg"></i>
+                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-primary-500" href="{{ route('profile.show') }}">
+                                <i class="fa-solid fa-user-shield text-lg"></i>
                                 Pengaturan Profil
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button type="submit" class="w-full flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-red-600 hover:bg-red-50 focus:ring-2 focus:ring-red-500">
-                                    <i class="ti ti-logout text-lg"></i>
+                                    <i class="fa-solid fa-right-from-bracket text-lg"></i>
                                     Sign Out
                                 </button>
                             </form>

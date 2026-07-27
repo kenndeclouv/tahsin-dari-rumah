@@ -21,7 +21,7 @@
                             </h3>
                             <div class="flex items-center">
                                 <label for="toggle-{{ $module }}" class="text-xs text-gray-500 me-2 cursor-pointer">All</label>
-                                <input type="checkbox" id="toggle-{{ $module }}" data-module="{{ $module }}" class="module-toggle relative w-11 h-6 p-px bg-gray-100 border-transparent text-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none checked:bg-none checked:text-emerald-600 checked:border-emerald-600 focus:checked:border-emerald-600 before:inline-block before:size-5 before:bg-white checked:before:bg-emerald-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow before:transform before:ring-0 before:transition before:ease-in-out before:duration-200" {{ $permissions->every(fn($p) => in_array($p->name, $rolePermissions)) ? 'checked' : '' }}>
+                                <input type="checkbox" id="toggle-{{ $module }}" data-module="{{ $module }}" class="module-toggle relative w-11 h-6 p-px bg-gray-100 border-transparent text-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none checked:bg-none checked:text-primary-600 checked:border-primary-600 focus:checked:border-primary-600 before:inline-block before:size-5 before:bg-white checked:before:bg-primary-200 before:translate-x-0 checked:before:translate-x-full before:rounded-full before:shadow before:transform before:ring-0 before:transition before:ease-in-out before:duration-200" {{ $permissions->every(fn($p) => in_array($p->name, $rolePermissions)) ? 'checked' : '' }}>
                             </div>
                         </div>
                         <div class="p-5 flex-1">
@@ -31,7 +31,7 @@
                                         $action = explode(':', $permission->name)[1] ?? $permission->name;
                                     @endphp
                                     <label for="perm-{{ $permission->id }}" class="flex items-center gap-x-2 text-sm text-gray-700 cursor-pointer">
-                                        <input type="checkbox" name="permissions[]" id="perm-{{ $permission->id }}" value="{{ $permission->name }}" class="perm-check perm-{{ $module }} shrink-0 mt-0.5 border-gray-200 rounded text-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" {{ in_array($permission->name, $rolePermissions) ? 'checked' : '' }}>
+                                        <input type="checkbox" name="permissions[]" id="perm-{{ $permission->id }}" value="{{ $permission->name }}" class="perm-check perm-{{ $module }} shrink-0 mt-0.5 border-gray-200 rounded text-primary-600 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" {{ in_array($permission->name, $rolePermissions) ? 'checked' : '' }}>
                                         {{ $action }}
                                     </label>
                                 @endforeach
@@ -45,7 +45,7 @@
                 <a href="{{ route('roles.index') }}" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
                     Kembali
                 </a>
-                <button type="submit" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50 disabled:pointer-events-none">
+                <button type="submit" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">
                     Simpan Permissions
                 </button>
             </div>

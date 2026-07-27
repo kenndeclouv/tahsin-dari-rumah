@@ -18,25 +18,25 @@
                             
                             <div>
                                 <label class="block text-sm font-medium mb-2">Nama Lengkap <span class="text-red-500">*</span></label>
-                                <input type="text" name="name" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('name') }}">
+                                <input type="text" name="name" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('name') }}">
                                 @error('name') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium mb-2">Email (Username Login) <span class="text-red-500">*</span></label>
-                                <input type="email" name="email" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('email') }}">
+                                <input type="email" name="email" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('email') }}">
                                 @error('email') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium mb-2">Password <span class="text-red-500">*</span></label>
-                                <input type="password" name="password" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required minlength="8">
+                                <input type="password" name="password" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required minlength="8">
                                 @error('password') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium mb-2">Konfirmasi Password <span class="text-red-500">*</span></label>
-                                <input type="password" name="password_confirmation" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required minlength="8">
+                                <input type="password" name="password_confirmation" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required minlength="8">
                             </div>
                         </div>
 
@@ -46,7 +46,7 @@
                             
                             <div>
                                 <label class="block text-sm font-medium mb-2">Jenis Kelamin <span class="text-red-500">*</span></label>
-                                <select name="jenis_kelamin" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required>
+                                <select name="jenis_kelamin" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required>
                                     <option value="">-- Pilih --</option>
                                     <option value="L" {{ old('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki-laki</option>
                                     <option value="P" {{ old('jenis_kelamin') == 'P' ? 'selected' : '' }}>Perempuan</option>
@@ -56,19 +56,19 @@
 
                             <div>
                                 <label class="block text-sm font-medium mb-2">Nomor WhatsApp (HP)</label>
-                                <input type="text" name="no_hp" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ old('no_hp') }}" placeholder="Contoh: 08123456789">
+                                <input type="text" name="no_hp" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ old('no_hp') }}" placeholder="Contoh: 08123456789">
                                 @error('no_hp') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium mb-2">Pendidikan Terakhir</label>
-                                <input type="text" name="pendidikan_terakhir" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ old('pendidikan_terakhir') }}" placeholder="Contoh: S1 Pendidikan Agama Islam">
+                                <input type="text" name="pendidikan_terakhir" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ old('pendidikan_terakhir') }}" placeholder="Contoh: S1 Pendidikan Agama Islam">
                                 @error('pendidikan_terakhir') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
                             </div>
 
                             <div>
                                 <label class="block text-sm font-medium mb-2">Alamat Lengkap</label>
-                                <textarea name="alamat" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" rows="3">{{ old('alamat') }}</textarea>
+                                <textarea name="alamat" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" rows="3">{{ old('alamat') }}</textarea>
                                 @error('alamat') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
                             </div>
                         </div>
@@ -88,23 +88,23 @@
                                     </label>
                                     
                                     @if($field->type == 'text')
-                                        <input type="text" name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" 
+                                        <input type="text" name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" 
                                             {{ $field->is_required ? 'required' : '' }} value="{{ old('additional_data.' . $field->name) }}">
                                             
                                     @elseif($field->type == 'number')
-                                        <input type="number" name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" 
+                                        <input type="number" name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" 
                                             {{ $field->is_required ? 'required' : '' }} value="{{ old('additional_data.' . $field->name) }}">
                                             
                                     @elseif($field->type == 'date')
-                                        <input type="date" name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" 
+                                        <input type="date" name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" 
                                             {{ $field->is_required ? 'required' : '' }} value="{{ old('additional_data.' . $field->name) }}">
                                             
                                     @elseif($field->type == 'textarea')
-                                        <textarea name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" rows="3" 
+                                        <textarea name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" rows="3" 
                                             {{ $field->is_required ? 'required' : '' }}>{{ old('additional_data.' . $field->name) }}</textarea>
                                             
                                     @elseif($field->type == 'select')
-                                        <select name="additional_data[{{ $field->name }}]" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" {{ $field->is_required ? 'required' : '' }}>
+                                        <select name="additional_data[{{ $field->name }}]" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" {{ $field->is_required ? 'required' : '' }}>
                                             <option value="">-- Pilih --</option>
                                             @foreach($field->options as $opt)
                                                 <option value="{{ $opt }}" {{ old('additional_data.' . $field->name) == $opt ? 'selected' : '' }}>
@@ -119,7 +119,7 @@
                                                 <div class="flex items-center">
                                                     <input type="radio" name="additional_data[{{ $field->name }}]" 
                                                         id="radio_{{ $field->name }}_{{ $idx }}" value="{{ $opt }}" 
-                                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none"
+                                                        class="shrink-0 mt-0.5 border-gray-200 rounded-full text-primary-600 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none"
                                                         {{ old('additional_data.' . $field->name) == $opt ? 'checked' : '' }} 
                                                         {{ $field->is_required ? 'required' : '' }}>
                                                     <label class="text-sm text-gray-700 ms-2" for="radio_{{ $field->name }}_{{ $idx }}">{{ $opt }}</label>
@@ -141,7 +141,7 @@
                         <a href="{{ route('pengajars.index') }}" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
                             Batal
                         </a>
-                        <button type="submit" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50 disabled:pointer-events-none">
+                        <button type="submit" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">
                             Simpan Data Pengajar
                         </button>
                     </div>

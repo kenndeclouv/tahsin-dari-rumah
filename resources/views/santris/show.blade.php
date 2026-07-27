@@ -3,7 +3,7 @@
         <!-- Sidebar Profile -->
         <div class="flex flex-col gap-6">
             <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 text-center">
-                <div class="inline-flex items-center justify-center size-20 rounded-full bg-emerald-100 text-emerald-600 mb-4 text-3xl font-bold">
+                <div class="inline-flex items-center justify-center size-20 rounded-full bg-primary-100 text-primary-600 mb-4 text-3xl font-bold">
                     {{ substr($santri->nama, 0, 1) }}
                 </div>
                 <h4 class="text-xl font-bold text-gray-800 mb-1">{{ $santri->nama }}</h4>
@@ -15,7 +15,7 @@
                     <p class="mb-3 text-sm flex items-center justify-between">
                         <strong class="text-gray-800">Status:</strong> 
                         @if($santri->status == 'aktif')
-                            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-emerald-100 text-emerald-800">Aktif</span>
+                            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-primary-100 text-primary-800">Aktif</span>
                         @elseif($santri->status == 'selesai')
                             <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-blue-100 text-blue-800">Selesai</span>
                         @else
@@ -87,7 +87,7 @@
                                                 @elseif ($paket->status == 'menunggu_evaluasi')
                                                     <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-orange-100 text-orange-800">Menunggu Evaluasi</span>
                                                 @elseif ($paket->status == 'selesai')
-                                                    <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-emerald-100 text-emerald-800">Selesai</span>
+                                                    <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-primary-100 text-primary-800">Selesai</span>
                                                 @endif
                                             </td>
                                         </tr>

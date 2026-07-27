@@ -13,9 +13,8 @@
     <meta name="robots" content="{{ config('seo.robots.admin') }}">
 
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
-
-    <!-- Icons css (Remix Icons, etc) -->
-    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+    <!-- FontAwesome 7.2.0 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kenndeclouv/font-awesome@main/v7.2.0/css/all.css" />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 

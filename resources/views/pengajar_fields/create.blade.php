@@ -16,18 +16,18 @@
                     <div class="space-y-6">
                         <div>
                             <label class="block text-sm font-medium mb-2">Label <span class="text-red-500">*</span></label>
-                            <input type="text" name="label" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('label') }}" placeholder="Contoh: Asal Universitas" autofocus>
+                            <input type="text" name="label" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('label') }}" placeholder="Contoh: Asal Universitas" autofocus>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Name (Key di Database) <span class="text-red-500">*</span></label>
-                            <input type="text" name="name" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('name') }}" placeholder="Contoh: asal_universitas">
+                            <input type="text" name="name" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('name') }}" placeholder="Contoh: asal_universitas">
                             <p class="text-sm text-gray-500 mt-2">Hanya boleh huruf kecil, angka, dan underscore (_).</p>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Tipe Input <span class="text-red-500">*</span></label>
-                            <select name="type" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required>
+                            <select name="type" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required>
                                 <option value="text">Text (Teks Pendek)</option>
                                 <option value="number">Number (Angka)</option>
                                 <option value="textarea">Textarea (Teks Panjang)</option>
@@ -38,18 +38,18 @@
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Opsi Pilihan (Hanya jika tipe Select)</label>
-                            <input type="text" name="options" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ old('options') }}" placeholder="Contoh: S1, S2, S3">
+                            <input type="text" name="options" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ old('options') }}" placeholder="Contoh: S1, S2, S3">
                             <p class="text-sm text-gray-500 mt-2">Pisahkan dengan koma.</p>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Urutan Tampil (Order) <span class="text-red-500">*</span></label>
-                            <input type="number" name="order" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('order', 10) }}">
+                            <input type="number" name="order" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('order', 10) }}">
                         </div>
 
                         <div class="flex items-center">
                             <div class="flex">
-                                <input type="checkbox" id="is_required" name="is_required" class="shrink-0 mt-0.5 border-gray-200 rounded text-emerald-600 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" checked>
+                                <input type="checkbox" id="is_required" name="is_required" class="shrink-0 mt-0.5 border-gray-200 rounded text-primary-600 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" checked>
                             </div>
                             <div class="ms-3">
                                 <label for="is_required" class="text-sm font-medium text-gray-800">Wajib Diisi (Required)</label>
@@ -61,7 +61,7 @@
                         <a href="{{ route('pengajar_fields.index') }}" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
                             Batal
                         </a>
-                        <button type="submit" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50 disabled:pointer-events-none">
+                        <button type="submit" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">
                             Simpan Field
                         </button>
                     </div>

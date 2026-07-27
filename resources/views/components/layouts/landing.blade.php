@@ -13,13 +13,15 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('assets/css/vendor.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/icons.min.css') }}">
+    <!-- FontAwesome 7.2.0 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kenndeclouv/font-awesome@main/v7.2.0/css/all.css" />
 
     <style>
         :root {
-            --premium-primary: #064e3b;
-            --premium-secondary: #10b981;
+            --premium-primary: var(--primary-600);
+            --premium-secondary: var(--primary-500);
             --premium-accent: #f59e0b;
             --premium-bg: #fdfbf7;
             --premium-surface: #ffffff;
@@ -322,12 +324,12 @@
                             @auth
                                 <a href="{{ route('dashboard') }}" class="btn btn-primary btn-sm"
                                     style="border-radius:100px;">
-                                    <i class="ti ti-dashboard me-1"></i> Ke Dashboard
+                                    <i class="fa-solid fa-gauge me-1 shrink-0 size-5"></i> Ke Dashboard
                                 </a>
                             @else
                                 <a href="{{ route('login') }}" class="btn btn-light btn-sm"
                                     style="border-radius:100px; font-weight:600; border:1px solid #e2e8f0;">
-                                    <i class="ti ti-login me-1"></i> Masuk
+                                    <i class="fa-solid fa-right-to-bracket me-1 shrink-0 size-5"></i> Masuk
                                 </a>
                             @endauth
                         </div>

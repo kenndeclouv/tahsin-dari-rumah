@@ -62,7 +62,7 @@
             }
 
             .hero-gradient-text {
-                background: linear-gradient(135deg, var(--premium-primary) 0%, #34d399 100%);
+                background: linear-gradient(135deg, var(--primary-700) 0%, var(--primary-300) 100%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 display: inline-block;
@@ -197,7 +197,7 @@
 
             /* --- CTA Banner --- */
             .cta-banner {
-                background: linear-gradient(135deg, var(--premium-primary) 0%, #042f24 100%);
+                background: linear-gradient(135deg, var(--primary-800) 0%, var(--primary-600) 100%);
                 border-radius: var(--radius-xl);
                 padding: 5rem 3rem;
                 position: relative;
@@ -217,7 +217,7 @@
         <div class="container-xl position-relative z-1">
             {{-- <div class="hero-badge d-inline-flex align-items-center gap-2 px-4 py-2 glass-badge mb-4">
                 <div class="d-flex align-items-center justify-content-center bg-success text-white rounded-circle" style="width:24px; height:24px; font-size:12px;">
-                    <i class="ti ti-star-filled"></i>
+                    <i class="fa-solid fa-star shrink-0 size-5"></i>
                 </div>
                 <span class="fw-semibold fs-14" style="color:var(--premium-primary)">1200+ Murid Belajar Bersama Kami</span>
             </div> --}}
@@ -233,7 +233,7 @@
             
             <div class="hero-cta d-flex flex-column flex-sm-row justify-content-center gap-3 mb-5">
                 <a href="https://wa.me/628123456789" class="btn-premium text-decoration-none">
-                    <i class="ti ti-player-play-filled"></i> Belajar Sekarang
+                    <i class="fa-solid fa-play shrink-0 size-5"></i> Belajar Sekarang
                 </a>
                 <a href="#biaya" class="btn-premium-outline text-decoration-none">
                     Lihat Pilihan Paket
@@ -242,15 +242,15 @@
 
             {{-- <div class="hero-stats d-flex flex-wrap justify-content-center gap-4 pt-4 border-top" style="border-color: rgba(0,0,0,0.05)!important; max-width:800px; margin:0 auto;">
                 <div class="d-flex align-items-center gap-2">
-                    <i class="ti ti-users fs-24 text-success"></i>
+                    <i class="fa-solid fa-users fs-24 text-success"></i>
                     <span class="fw-semibold text-muted"><span class="count-up" data-target="90">0</span>+ Guru Tersertifikasi</span>
                 </div>
                 <div class="d-flex align-items-center gap-2">
-                    <i class="ti ti-certificate fs-24 text-primary"></i>
+                    <i class="fa-solid fa-certificate fs-24 text-primary"></i>
                     <span class="fw-semibold text-muted"><span class="count-up" data-target="2500">0</span>+ Alumni</span>
                 </div>
                 <div class="d-flex align-items-center gap-2">
-                    <i class="ti ti-thumb-up-filled fs-24 text-warning"></i>
+                    <i class="fa-solid fa-thumbs-up fs-24 text-warning"></i>
                     <span class="fw-semibold text-muted"><span class="count-up" data-target="99">0</span>% Kepuasan</span>
                 </div>
             </div> --}}
@@ -283,7 +283,7 @@
                 <div class="bento-card bento-large position-relative overflow-hidden reveal-scale" style="background:var(--premium-primary); color:white;">
                     <div style="position:absolute; right:-50px; bottom:-50px; font-size:200px; opacity:0.1; line-height:1;">👤</div>
                     <div class="bento-icon-wrapper" style="background:rgba(255,255,255,0.15); color:white;">
-                        <i class="ti ti-user-check"></i>
+                        <i class="fa-solid fa-user-check shrink-0 size-5"></i>
                     </div>
                     <h3 class="fw-bold mb-3 text-white">Belajarnya Private 1 on 1</h3>
                     <p class="fs-16 mb-0" style="opacity:0.9; max-width:400px;">Malu kalau belum bisa? Atau ingin lebih fokus? Private 1 on 1 aja di {{ config('app.name') }}. Anda mendapat perhatian penuh dari pengajar.</p>
@@ -292,7 +292,7 @@
                 {{-- 2. Jadwal Fleksibel --}}
                 <div class="bento-card reveal-up" style="transition-delay:0.1s">
                     <div class="bento-icon-wrapper" style="background:color-mix(in srgb, var(--premium-secondary) 15%, transparent); color:var(--premium-secondary);">
-                        <i class="ti ti-clock"></i>
+                        <i class="fa-solid fa-clock shrink-0 size-5"></i>
                     </div>
                     <h4 class="fw-bold mb-3">Jadwal Fleksibel</h4>
                     <p class="text-muted mb-0">Pilih jadwal sendiri, dari pagi sampai malam, weekdays atau weekend bebas atur waktu luang Anda.</p>
@@ -301,7 +301,7 @@
                 {{-- 3. Sabar & Profesional --}}
                 <div class="bento-card reveal-up" style="transition-delay:0.2s">
                     <div class="bento-icon-wrapper" style="background:color-mix(in srgb, var(--premium-primary) 12%, transparent); color:var(--premium-primary);">
-                        <i class="ti ti-award"></i>
+                        <i class="fa-solid fa-award shrink-0 size-5"></i>
                     </div>
                     <h4 class="fw-bold mb-3">Sabar & Profesional</h4>
                     <p class="text-muted mb-0">Alumni kampus/pesantren ternama & sudah tersertifikasi. Kami concern dengan kualitas pengajaran.</p>
@@ -313,7 +313,7 @@
                     <div class="row align-items-center h-100 position-relative z-1">
                         <div class="col-md-7">
                             <div class="bento-icon-wrapper" style="background:rgba(255,255,255,0.15); color:white;">
-                                <i class="ti ti-book"></i>
+                                <i class="fa-solid fa-book shrink-0 size-5"></i>
                             </div>
                             <h4 class="fw-bold mb-3 text-white">Bisa Request Materi Bebas</h4>
                             <p class="mb-0" style="opacity:0.9;">Mulai dasar, makhraj, tajwid, hafalan, fiqih, sirah nabi, atau memahami makna ayat - semua bisa di {{ config('app.name') }} sesuai request.</p>
@@ -324,7 +324,7 @@
                 {{-- 5. Laporan & Evaluasi --}}
                 <div class="bento-card">
                     <div class="bento-icon-wrapper" style="background:color-mix(in srgb, var(--premium-primary) 12%, transparent); color:var(--premium-primary);">
-                        <i class="ti ti-report-analytics"></i>
+                        <i class="fa-solid fa-chart-line shrink-0 size-5"></i>
                     </div>
                     <h4 class="fw-bold mb-3">Laporan per Pertemuan</h4>
                     <p class="text-muted mb-0">Pantau progress belajarnya melalui aplikasi, jadi bahan evaluasi & sekaligus penyemangat diri.</p>
@@ -365,11 +365,11 @@
                             </div>
                             
                             <ul class="list-unstyled mb-5">
-                                <li class="mb-3 d-flex"><i class="ti ti-check fs-18 me-2 {{ $isFeatured ? 'text-warning' : 'text-success' }}"></i> <span><strong>{{ $pertemuan }} Pertemuan</strong> Mengaji</span></li>
-                                <li class="mb-3 d-flex"><i class="ti ti-check fs-18 me-2 {{ $isFeatured ? 'text-warning' : 'text-success' }}"></i> <span>Jadwal <strong>{{ $jadwal }} Tiap Pekan</strong></span></li>
-                                <li class="mb-3 d-flex"><i class="ti ti-check fs-18 me-2 {{ $isFeatured ? 'text-warning' : 'text-success' }}"></i> <span>60 Menit Per Sesi</span></li>
-                                <li class="mb-3 d-flex"><i class="ti ti-check fs-18 me-2 {{ $isFeatured ? 'text-warning' : 'text-success' }}"></i> <span>Privat 1 Murid 1 Guru</span></li>
-                                <li class="mb-0 d-flex"><i class="ti ti-check fs-18 me-2 {{ $isFeatured ? 'text-warning' : 'text-success' }}"></i> <span>Free Materi Mengaji</span></li>
+                                <li class="mb-3 d-flex"><i class="fa-solid fa-check fs-18 me-2 {{ $isFeatured ? 'text-warning' : 'text-success' }}"></i> <span><strong>{{ $pertemuan }} Pertemuan</strong> Mengaji</span></li>
+                                <li class="mb-3 d-flex"><i class="fa-solid fa-check fs-18 me-2 {{ $isFeatured ? 'text-warning' : 'text-success' }}"></i> <span>Jadwal <strong>{{ $jadwal }} Tiap Pekan</strong></span></li>
+                                <li class="mb-3 d-flex"><i class="fa-solid fa-check fs-18 me-2 {{ $isFeatured ? 'text-warning' : 'text-success' }}"></i> <span>60 Menit Per Sesi</span></li>
+                                <li class="mb-3 d-flex"><i class="fa-solid fa-check fs-18 me-2 {{ $isFeatured ? 'text-warning' : 'text-success' }}"></i> <span>Privat 1 Murid 1 Guru</span></li>
+                                <li class="mb-0 d-flex"><i class="fa-solid fa-check fs-18 me-2 {{ $isFeatured ? 'text-warning' : 'text-success' }}"></i> <span>Free Materi Mengaji</span></li>
                             </ul>
                             
                             <a href="https://wa.me/628123456789" class="btn w-100 py-3 fw-bold {{ $isFeatured ? 'btn-light text-success' : 'btn-outline-dark' }}" style="border-radius:100px;">
@@ -435,7 +435,7 @@
                 @foreach (array_merge($testis, $testis) as [$name, $title, $review])
                     <div class="testi-card d-flex flex-column text-start">
                         <div class="d-flex align-items-center gap-1 mb-3">
-                            @for ($i = 0; $i < 5; $i++) <i class="ti ti-star-filled text-warning fs-14"></i> @endfor
+                            @for ($i = 0; $i < 5; $i++) <i class="fa-solid fa-star text-warning fs-14"></i> @endfor
                         </div>
                         <p class="fs-15 text-muted flex-grow-1 mb-4" style="line-height:1.6; font-style:italic;">{{ $review }}</p>
                         <div class="d-flex align-items-center gap-3 mt-auto">
@@ -526,7 +526,7 @@
                         Jangan tunda lagi. Mari belajar mengaji dan memahami Al-Quran bersama {{ config('app.name') }} sekarang juga!
                     </p>
                     <a href="https://wa.me/628123456789" class="btn btn-light text-success btn-lg px-5 py-3 fw-bold shadow-lg d-inline-flex align-items-center justify-content-center gap-2" style="border-radius:100px; font-size:1.1rem; transition: background-color 0.2s;">
-                        <i class="ti ti-brand-whatsapp fs-4"></i> Konsultasi & Daftar Sekarang
+                        <i class="fa-brands fa-whatsapp fs-4 shrink-0 size-5"></i> Konsultasi & Daftar Sekarang
                     </a>
                 </div>
             </div>

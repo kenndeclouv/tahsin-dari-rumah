@@ -2,16 +2,16 @@
     <!-- Welcome & Clock Section -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <!-- Welcome Card -->
-        <div class="md:col-span-2 relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-800 to-emerald-600 text-white shadow-sm">
+        <div class="md:col-span-2 relative overflow-hidden rounded-xl bg-gradient-to-br from-primary-800 to-primary-600 text-white shadow-sm">
             <div class="p-6 sm:p-8 flex items-center gap-5">
                 <img src="{{ auth()->user()->photo_url }}" class="size-20 rounded-full border-4 border-white/30 object-cover" alt="Avatar">
                 <div>
-                    <p class="text-emerald-100 text-sm font-medium mb-1">Selamat datang kembali,</p>
+                    <p class="text-primary-100 text-sm font-medium mb-1">Selamat datang kembali,</p>
                     <h2 class="text-2xl sm:text-3xl font-bold">{{ auth()->user()->name }}</h2>
                     <div class="flex flex-wrap gap-2 mt-3">
                         @foreach (auth()->user()->roles as $role)
                             <span class="inline-flex items-center gap-x-1.5 py-1 px-3 rounded-full text-xs font-medium bg-white/20 text-white backdrop-blur-sm">
-                                <i class="ti ti-shield-check"></i>
+                                <i class="fa-solid fa-shield-check shrink-0 size-5"></i>
                                 {{ $role->name }}
                             </span>
                         @endforeach
@@ -40,11 +40,11 @@
                 <div>
                     <p class="text-xs uppercase tracking-wide text-gray-500">Pengajar Aktif</p>
                     <div class="mt-1 flex items-center gap-x-2">
-                        <h3 class="text-xl sm:text-2xl font-medium text-emerald-600">{{ $pengajarAktif }}</h3>
+                        <h3 class="text-xl sm:text-2xl font-medium text-primary-600">{{ $pengajarAktif }}</h3>
                     </div>
                 </div>
-                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-emerald-100 text-emerald-600 rounded-full">
-                    <i class="ti ti-user-check text-xl"></i>
+                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-primary-100 text-primary-600 rounded-full">
+                    <i class="fa-solid fa-user-check text-xl"></i>
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-blue-100 text-blue-600 rounded-full">
-                    <i class="ti ti-users text-xl"></i>
+                    <i class="fa-solid fa-users text-xl"></i>
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
                     </div>
                 </div>
                 <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-purple-100 text-purple-600 rounded-full">
-                    <i class="ti ti-calendar text-xl"></i>
+                    <i class="fa-solid fa-calendar text-xl"></i>
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-indigo-100 text-indigo-600 rounded-full">
-                    <i class="ti ti-checklist text-xl"></i>
+                    <i class="fa-solid fa-list-check text-xl"></i>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
                     </div>
                 </div>
                 <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-cyan-100 text-cyan-600 rounded-full">
-                    <i class="ti ti-run text-xl"></i>
+                    <i class="fa-solid fa-person-running text-xl"></i>
                 </div>
             </div>
         </div>
@@ -119,7 +119,7 @@
                     </div>
                 </div>
                 <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-orange-100 text-orange-600 rounded-full">
-                    <i class="ti ti-clock text-xl"></i>
+                    <i class="fa-solid fa-clock text-xl"></i>
                 </div>
             </div>
         </div>
@@ -130,11 +130,11 @@
                 <div>
                     <p class="text-xs uppercase tracking-wide text-gray-500">Selesai Evaluasi</p>
                     <div class="mt-1 flex items-center gap-x-2">
-                        <h3 class="text-xl sm:text-2xl font-medium text-emerald-600">{{ $paketSelesai }}</h3>
+                        <h3 class="text-xl sm:text-2xl font-medium text-primary-600">{{ $paketSelesai }}</h3>
                     </div>
                 </div>
-                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-emerald-100 text-emerald-600 rounded-full">
-                    <i class="ti ti-file-check text-xl"></i>
+                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-primary-100 text-primary-600 rounded-full">
+                    <i class="fa-solid fa-file-circle-check text-xl"></i>
                 </div>
             </div>
         </div>
@@ -149,7 +149,7 @@
                     </div>
                 </div>
                 <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-rose-100 text-rose-600 rounded-full">
-                    <i class="ti ti-coin text-xl"></i>
+                    <i class="fa-solid fa-coins text-xl"></i>
                 </div>
             </div>
         </div>
@@ -165,10 +165,10 @@
             <div class="p-4 flex justify-between gap-x-3">
                 <div>
                     <p class="text-xs uppercase tracking-wide text-gray-500">Santri Diampu</p>
-                    <h3 class="text-xl font-medium text-emerald-600 mt-1">{{ $santriDiampu }}</h3>
+                    <h3 class="text-xl font-medium text-primary-600 mt-1">{{ $santriDiampu }}</h3>
                 </div>
-                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-emerald-100 text-emerald-600 rounded-full">
-                    <i class="ti ti-users text-xl"></i>
+                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-primary-100 text-primary-600 rounded-full">
+                    <i class="fa-solid fa-users text-xl"></i>
                 </div>
             </div>
         </div>
@@ -181,7 +181,7 @@
                     <h3 class="text-xl font-medium text-blue-600 mt-1">{{ $jadwalHariIni }}</h3>
                 </div>
                 <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-blue-100 text-blue-600 rounded-full">
-                    <i class="ti ti-calendar text-xl"></i>
+                    <i class="fa-solid fa-calendar text-xl"></i>
                 </div>
             </div>
         </div>
@@ -194,7 +194,7 @@
                     <h3 class="text-xl font-medium text-orange-600 mt-1">{{ $presensiBelumDiisi }}</h3>
                 </div>
                 <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-orange-100 text-orange-600 rounded-full">
-                    <i class="ti ti-clipboard-list text-xl"></i>
+                    <i class="fa-solid fa-clipboard-list text-xl"></i>
                 </div>
             </div>
         </div>
@@ -207,7 +207,7 @@
                     <h3 class="text-xl font-medium text-red-600 mt-1">{{ $evaluasiBelumDibuat }}</h3>
                 </div>
                 <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-red-100 text-red-600 rounded-full">
-                    <i class="ti ti-file-text text-xl"></i>
+                    <i class="fa-solid fa-file-lines text-xl"></i>
                 </div>
             </div>
         </div>
@@ -249,7 +249,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center gap-x-2">
                                             <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                                                <div class="flex flex-col justify-center rounded-full overflow-hidden bg-emerald-500" role="progressbar" style="width: {{ ($paket->presensis_count / $paket->jumlah_pertemuan) * 100 }}%" aria-valuenow="{{ $paket->presensis_count }}" aria-valuemin="0" aria-valuemax="{{ $paket->jumlah_pertemuan }}"></div>
+                                                <div class="flex flex-col justify-center rounded-full overflow-hidden bg-primary-500" role="progressbar" style="width: {{ ($paket->presensis_count / $paket->jumlah_pertemuan) * 100 }}%" aria-valuenow="{{ $paket->presensis_count }}" aria-valuemin="0" aria-valuemax="{{ $paket->jumlah_pertemuan }}"></div>
                                             </div>
                                             <span class="text-xs text-gray-600">{{ $paket->presensis_count }}/{{ $paket->jumlah_pertemuan }}</span>
                                         </div>
@@ -260,12 +260,12 @@
                                         @elseif ($paket->status == 'menunggu_evaluasi')
                                             <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-orange-100 text-orange-800">Menunggu Evaluasi</span>
                                         @elseif ($paket->status == 'selesai')
-                                            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-emerald-100 text-emerald-800">Selesai</span>
+                                            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-primary-100 text-primary-800">Selesai</span>
                                         @endif
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                                         @if ($paket->status == 'berjalan' && $paket->presensis_count < $paket->jumlah_pertemuan)
-                                            <a href="{{ route('presensi.create', $paket->id) }}" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-emerald-600 hover:text-emerald-800 disabled:opacity-50 disabled:pointer-events-none">
+                                            <a href="{{ route('presensi.create', $paket->id) }}" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-primary-600 hover:text-primary-800 disabled:opacity-50 disabled:pointer-events-none">
                                                 Isi Presensi
                                             </a>
                                         @elseif ($paket->status == 'menunggu_evaluasi' || ($paket->status == 'berjalan' && $paket->presensis_count >= $paket->jumlah_pertemuan))

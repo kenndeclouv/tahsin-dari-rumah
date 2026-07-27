@@ -15,7 +15,7 @@
                         
                         <div>
                             <label class="block text-sm font-medium mb-2">Pilih Santri <span class="text-red-500">*</span></label>
-                            <x-searchable-select name="santri_id" required="true" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500">
+                            <x-searchable-select name="santri_id" required="true" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500">
                                 @foreach ($santris as $santri)
                                     <option value="{{ $santri->id }}" {{ $paketBelajar->santri_id == $santri->id ? 'selected' : '' }}>{{ $santri->nama }}</option>
                                 @endforeach
@@ -24,7 +24,7 @@
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Pilih Pengajar <span class="text-red-500">*</span></label>
-                            <x-searchable-select name="pengajar_id" required="true" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500">
+                            <x-searchable-select name="pengajar_id" required="true" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500">
                                 @foreach ($pengajars as $pengajar)
                                     <option value="{{ $pengajar->id }}" {{ $paketBelajar->pengajar_id == $pengajar->id ? 'selected' : '' }}>{{ $pengajar->name }}</option>
                                 @endforeach
@@ -33,12 +33,12 @@
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Hari & Jam <span class="text-red-500">*</span></label>
-                            <input type="text" name="hari_jam" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ $paketBelajar->hari_jam }}" required>
+                            <input type="text" name="hari_jam" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ $paketBelajar->hari_jam }}" required>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Fee Paket</label>
-                            <x-searchable-select name="fee_id" placeholder="Tanpa Fee Master" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500">
+                            <x-searchable-select name="fee_id" placeholder="Tanpa Fee Master" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500">
                                 @foreach ($fees as $fee)
                                     <option value="{{ $fee->id }}" {{ $paketBelajar->fee_id == $fee->id ? 'selected' : '' }}>{{ $fee->nama }}</option>
                                 @endforeach
@@ -47,7 +47,7 @@
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Jumlah Pertemuan <span class="text-red-500">*</span></label>
-                            <select name="jumlah_pertemuan" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required>
+                            <select name="jumlah_pertemuan" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required>
                                 <option value="4" {{ $paketBelajar->jumlah_pertemuan == 4 ? 'selected' : '' }}>4 Kali</option>
                                 <option value="8" {{ $paketBelajar->jumlah_pertemuan == 8 ? 'selected' : '' }}>8 Kali</option>
                                 <option value="12" {{ $paketBelajar->jumlah_pertemuan == 12 ? 'selected' : '' }}>12 Kali</option>
@@ -57,7 +57,7 @@
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Status Kursus <span class="text-red-500">*</span></label>
-                            <select name="status" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" required>
+                            <select name="status" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required>
                                 <option value="berjalan" {{ $paketBelajar->status == 'berjalan' ? 'selected' : '' }}>Berjalan</option>
                                 <option value="menunggu_evaluasi" {{ $paketBelajar->status == 'menunggu_evaluasi' ? 'selected' : '' }}>Menunggu Evaluasi</option>
                                 <option value="selesai" {{ $paketBelajar->status == 'selesai' ? 'selected' : '' }}>Selesai</option>
@@ -81,10 +81,10 @@
                                     </label>
 
                                     @if ($field->type === 'textarea')
-                                        <textarea name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" rows="3" {{ $field->is_required ? 'required' : '' }}>{{ $val }}</textarea>
+                                        <textarea name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" rows="3" {{ $field->is_required ? 'required' : '' }}>{{ $val }}</textarea>
                                     
                                     @elseif ($field->type === 'select')
-                                        <select name="additional_data[{{ $field->name }}]" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" {{ $field->is_required ? 'required' : '' }}>
+                                        <select name="additional_data[{{ $field->name }}]" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" {{ $field->is_required ? 'required' : '' }}>
                                             <option value="">-- Pilih --</option>
                                             @foreach ($field->options as $option)
                                                 <option value="{{ $option }}" {{ $val == $option ? 'selected' : '' }}>{{ $option }}</option>
@@ -92,7 +92,7 @@
                                         </select>
                                     
                                     @else
-                                        <input type="{{ $field->type }}" name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ $val }}" {{ $field->is_required ? 'required' : '' }}>
+                                        <input type="{{ $field->type }}" name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ $val }}" {{ $field->is_required ? 'required' : '' }}>
                                     @endif
 
                                     @error('additional_data.'.$field->name)
@@ -108,7 +108,7 @@
                         <a href="{{ route('paket_belajars.index') }}" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
                             Batal
                         </a>
-                        <button type="submit" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50 disabled:pointer-events-none">
+                        <button type="submit" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">
                             Simpan Perubahan
                         </button>
                     </div>

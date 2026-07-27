@@ -2,7 +2,7 @@
 
     <x-slot:actions>
         @can('roles:create')
-            <a href="{{ route('roles.create') }}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50 disabled:pointer-events-none">
+            <a href="{{ route('roles.create') }}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">
                 <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                 Tambah Role
             </a>
@@ -17,7 +17,7 @@
                     {{-- Header --}}
                     <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
                         <h2 class="text-xl font-semibold text-gray-800">Daftar Role</h2>
-                        <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                        <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
                             {{ $roles->count() }} Role
                         </span>
                     </div>
@@ -49,7 +49,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                                         <div class="flex items-center justify-end gap-x-2">
                                             @can('roles:edit')
-                                                <a href="{{ route('roles.permissions', $role) }}" class="inline-flex items-center justify-center py-1.5 px-3 rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 disabled:opacity-50 disabled:pointer-events-none" title="Atur Permission">
+                                                <a href="{{ route('roles.permissions', $role) }}" class="inline-flex items-center justify-center py-1.5 px-3 rounded-lg border border-primary-200 bg-primary-50 text-primary-700 hover:bg-primary-100 disabled:opacity-50 disabled:pointer-events-none" title="Atur Permission">
                                                     <svg class="shrink-0 size-4 me-1.5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
                                                     Permissions
                                                 </a>
@@ -76,7 +76,7 @@
                                             <svg class="shrink-0 size-12 text-gray-400 mb-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><line x1="4" x2="20" y1="9" y2="9"/></svg>
                                             <p class="text-gray-500 mb-2">Belum ada role.</p>
                                             @can('roles:create')
-                                                <a href="{{ route('roles.create') }}" class="text-emerald-600 hover:text-emerald-800 font-medium text-sm">Buat sekarang</a>
+                                                <a href="{{ route('roles.create') }}" class="text-primary-600 hover:text-primary-800 font-medium text-sm">Buat sekarang</a>
                                             @endcan
                                         </div>
                                     </td>

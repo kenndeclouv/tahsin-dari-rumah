@@ -4,7 +4,7 @@
         <nav class="flex px-4 py-3 bg-white border border-gray-200 rounded-xl shadow-sm" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2">
                 <li class="inline-flex items-center">
-                    <a href="{{ route('dashboard') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-emerald-600">
+                    <a href="{{ route('dashboard') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary-600">
                         Dashboard
                     </a>
                 </li>
@@ -81,7 +81,7 @@
                                         <td class="px-4 py-3 whitespace-nowrap text-end text-sm font-medium">
                                             <form action="{{ route('mukafaah.pay', $paket->id) }}" method="POST">
                                                 @csrf
-                                                <button type="submit" class="py-1.5 px-3 inline-flex items-center gap-x-2 text-xs font-semibold rounded-lg border border-transparent bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50 disabled:pointer-events-none">
+                                                <button type="submit" class="py-1.5 px-3 inline-flex items-center gap-x-2 text-xs font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">
                                                     Tandai Lunas
                                                 </button>
                                             </form>
@@ -132,7 +132,7 @@
                                             @endif
                                         </td>
                                         <td class="px-4 py-3 whitespace-nowrap">
-                                            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-emerald-100 text-emerald-800">Lunas</span>
+                                            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-primary-100 text-primary-800">Lunas</span>
                                         </td>
                                         @can('mukafaahs:edit')
                                         <td class="px-4 py-3 whitespace-nowrap text-end text-sm font-medium">
@@ -156,7 +156,7 @@
         </div>
     @empty
         <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-12 text-center">
-            <svg class="size-16 text-emerald-500 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <svg class="size-16 text-primary-500 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             <h5 class="text-xl font-semibold text-gray-800 mb-2">Belum ada paket yang selesai</h5>
             <p class="text-gray-500">Jika pengajar menyelesaikan evaluasi paket santri, data payroll akan muncul di sini.</p>
         </div>

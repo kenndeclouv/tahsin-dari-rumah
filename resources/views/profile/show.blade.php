@@ -10,10 +10,10 @@
                 
                 {{-- Avatar --}}
                 <div class="relative inline-block mb-4">
-                    <img id="avatar-preview" src="{{ auth()->user()->photo_url }}" alt="avatar" class="size-24 rounded-full object-cover border-4 border-emerald-500">
+                    <img id="avatar-preview" src="{{ auth()->user()->photo_url }}" alt="avatar" class="size-24 rounded-full object-cover border-4 border-primary-500">
                     
                     {{-- Camera badge --}}
-                    <label for="photo-input" class="absolute bottom-0 end-0 flex justify-center items-center size-8 bg-emerald-600 text-white rounded-full border-2 border-white cursor-pointer hover:bg-emerald-700 transition-colors" title="Ganti foto">
+                    <label for="photo-input" class="absolute bottom-0 end-0 flex justify-center items-center size-8 bg-primary-600 text-white rounded-full border-2 border-white cursor-pointer hover:bg-primary-700 transition-colors" title="Ganti foto">
                         <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
                     </label>
                 </div>
@@ -23,7 +23,7 @@
 
                 <div class="flex flex-wrap justify-center gap-2 mb-4">
                     @foreach (auth()->user()->roles as $role)
-                        <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">{{ $role->name }}</span>
+                        <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-primary-100 text-primary-800">{{ $role->name }}</span>
                     @endforeach
                 </div>
 
@@ -71,7 +71,7 @@
             {{-- ── General Info ─────────────────────────────────────────────── --}}
             <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
                 <div class="px-6 py-4 border-b border-gray-200 flex items-center gap-2">
-                    <svg class="shrink-0 size-5 text-emerald-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="m19 8 3 3-3 3"/></svg>
+                    <svg class="shrink-0 size-5 text-primary-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="m19 8 3 3-3 3"/></svg>
                     <h5 class="text-lg font-semibold text-gray-800">Informasi Umum</h5>
                 </div>
                 <div class="p-6">
@@ -80,18 +80,18 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-sm font-medium mb-2">Nama <span class="text-red-500">*</span></label>
-                                <input type="text" name="name" value="{{ old('name', auth()->user()->name) }}" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Nama lengkap">
+                                <input type="text" name="name" value="{{ old('name', auth()->user()->name) }}" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Nama lengkap">
                                 @error('name') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-2">Email <span class="text-red-500">*</span></label>
-                                <input type="email" name="email" value="{{ old('email', auth()->user()->email) }}" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="alamat@email.com">
+                                <input type="email" name="email" value="{{ old('email', auth()->user()->email) }}" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="alamat@email.com">
                                 @error('email') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
                             </div>
                         </div>
 
                         <div class="mt-6 flex gap-2">
-                            <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50 disabled:pointer-events-none">
+                            <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">
                                 <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
                                 Simpan Perubahan
                             </button>
@@ -113,8 +113,8 @@
                             <div>
                                 <label class="block text-sm font-medium mb-2">Password Saat Ini <span class="text-red-500">*</span></label>
                                 <div class="relative">
-                                    <input type="password" name="current_password" id="cur-pass" class="py-3 px-4 pe-11 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Password lama">
-                                    <button type="button" onclick="togglePass('cur-pass', 'eye-cur')" class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-emerald-600">
+                                    <input type="password" name="current_password" id="cur-pass" class="py-3 px-4 pe-11 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Password lama">
+                                    <button type="button" onclick="togglePass('cur-pass', 'eye-cur')" class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-primary-600">
                                         <svg id="eye-cur" class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
                                     </button>
                                 </div>
@@ -124,8 +124,8 @@
                             <div>
                                 <label class="block text-sm font-medium mb-2">Password Baru <span class="text-red-500">*</span></label>
                                 <div class="relative">
-                                    <input type="password" name="password" id="new-pass" class="py-3 px-4 pe-11 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Min. 8 karakter, huruf & angka">
-                                    <button type="button" onclick="togglePass('new-pass', 'eye-new')" class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-emerald-600">
+                                    <input type="password" name="password" id="new-pass" class="py-3 px-4 pe-11 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Min. 8 karakter, huruf & angka">
+                                    <button type="button" onclick="togglePass('new-pass', 'eye-new')" class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-primary-600">
                                         <svg id="eye-new" class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
                                     </button>
                                 </div>
@@ -143,8 +143,8 @@
                             <div>
                                 <label class="block text-sm font-medium mb-2">Konfirmasi Password Baru <span class="text-red-500">*</span></label>
                                 <div class="relative">
-                                    <input type="password" name="password_confirmation" id="conf-pass" class="py-3 px-4 pe-11 block w-full border border-gray-200 rounded-lg text-sm focus:border-emerald-500 focus:ring-emerald-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Ulangi password baru">
-                                    <button type="button" onclick="togglePass('conf-pass', 'eye-conf')" class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-emerald-600">
+                                    <input type="password" name="password_confirmation" id="conf-pass" class="py-3 px-4 pe-11 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Ulangi password baru">
+                                    <button type="button" onclick="togglePass('conf-pass', 'eye-conf')" class="absolute inset-y-0 end-0 flex items-center z-20 px-3 cursor-pointer text-gray-400 rounded-e-md focus:outline-none focus:text-primary-600">
                                         <svg id="eye-conf" class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
                                     </button>
                                 </div>
@@ -248,7 +248,7 @@
                 },
                 {
                     pct: 100,
-                    cls: 'bg-emerald-500',
+                    cls: 'bg-primary-500',
                     txt: 'Kuat'
                 },
             ];

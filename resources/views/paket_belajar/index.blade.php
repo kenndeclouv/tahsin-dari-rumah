@@ -2,7 +2,7 @@
 
     <x-slot:actions>
         @can('paket_belajars:create')
-            <a href="{{ route('paket_belajars.create') }}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-emerald-600 text-white hover:bg-emerald-700 disabled:opacity-50 disabled:pointer-events-none">
+            <a href="{{ route('paket_belajars.create') }}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">
                 <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                 Buat Paket Baru
             </a>
@@ -17,7 +17,7 @@
                     {{-- Header --}}
                     <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
                         <h2 class="text-xl font-semibold text-gray-800">Daftar Paket Belajar</h2>
-                        <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800">
+                        <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
                             {{ $pakets->count() }} Paket
                         </span>
                     </div>
@@ -60,7 +60,7 @@
                                         @elseif ($paket->status == 'menunggu_evaluasi')
                                             <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-amber-100 text-amber-800">Menunggu Evaluasi</span>
                                         @elseif ($paket->status == 'selesai')
-                                            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-emerald-100 text-emerald-800">Selesai</span>
+                                            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-primary-100 text-primary-800">Selesai</span>
                                         @endif
                                     </td>
                                     @can('paket_belajars:delete')
@@ -87,7 +87,7 @@
                                             <svg class="shrink-0 size-12 text-gray-400 mb-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                                             <p class="text-gray-500 mb-2">Belum ada paket belajar.</p>
                                             @can('paket_belajars:create')
-                                                <a href="{{ route('paket_belajars.create') }}" class="text-emerald-600 hover:text-emerald-800 font-medium text-sm">Buat sekarang</a>
+                                                <a href="{{ route('paket_belajars.create') }}" class="text-primary-600 hover:text-primary-800 font-medium text-sm">Buat sekarang</a>
                                             @endcan
                                         </div>
                                     </td>

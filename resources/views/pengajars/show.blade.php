@@ -4,8 +4,8 @@
         <div class="flex flex-col gap-6">
             <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 text-center">
                 <div class="relative inline-block mb-4">
-                    <img src="{{ $pengajar->photo_url }}" class="inline-block size-32 rounded-full ring-4 ring-emerald-100 object-cover" alt="Profile Image">
-                    <span class="absolute bottom-1 right-1 block size-4 rounded-full ring-2 ring-white {{ $pengajar->status == 'aktif' ? 'bg-emerald-500' : 'bg-red-500' }}"></span>
+                    <img src="{{ $pengajar->photo_url }}" class="inline-block size-32 rounded-full ring-4 ring-primary-100 object-cover" alt="Profile Image">
+                    <span class="absolute bottom-1 right-1 block size-4 rounded-full ring-2 ring-white {{ $pengajar->status == 'aktif' ? 'bg-primary-500' : 'bg-red-500' }}"></span>
                 </div>
                 
                 <h4 class="text-xl font-bold text-gray-800 mb-1">{{ $pengajar->name }}</h4>
@@ -32,7 +32,7 @@
                     <div class="flex justify-between items-center">
                         <strong class="text-gray-800">Status:</strong> 
                         @if($pengajar->status == 'aktif')
-                            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-emerald-100 text-emerald-800">Aktif</span>
+                            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-primary-100 text-primary-800">Aktif</span>
                         @else
                             <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-red-100 text-red-800">Nonaktif</span>
                         @endif
@@ -117,7 +117,7 @@
                                                 @endphp
                                                 <div class="flex items-center gap-x-3">
                                                     <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                                                        <div class="flex flex-col justify-center overflow-hidden bg-emerald-500" role="progressbar" style="width: {{ $percent }}%" aria-valuenow="{{ $paket->presensis_count }}" aria-valuemin="0" aria-valuemax="{{ $paket->jumlah_pertemuan }}"></div>
+                                                        <div class="flex flex-col justify-center overflow-hidden bg-primary-500" role="progressbar" style="width: {{ $percent }}%" aria-valuenow="{{ $paket->presensis_count }}" aria-valuemin="0" aria-valuemax="{{ $paket->jumlah_pertemuan }}"></div>
                                                     </div>
                                                     <span class="text-xs font-medium text-gray-800">{{ $paket->presensis_count }}/{{ $paket->jumlah_pertemuan }}</span>
                                                 </div>
@@ -128,7 +128,7 @@
                                                 @elseif ($paket->status == 'menunggu_evaluasi')
                                                     <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-orange-100 text-orange-800">Menunggu Evaluasi</span>
                                                 @elseif ($paket->status == 'selesai')
-                                                    <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-emerald-100 text-emerald-800">Selesai</span>
+                                                    <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-primary-100 text-primary-800">Selesai</span>
                                                 @endif
                                             </td>
                                         </tr>

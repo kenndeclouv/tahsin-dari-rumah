@@ -31,7 +31,7 @@
     <div class="preloader-content" style="text-align: center; position: relative; z-index: 1;">
         <!-- Animated Icon -->
         <div class="preloader-icon" style="font-size: 3.5rem; margin-bottom: 1rem; color: var(--premium-secondary, #34d399);">
-            <i class="ti ti-book"></i>
+            <i class="fa-solid fa-book shrink-0 size-5"></i>
         </div>
         
         <h2 style="font-weight: 800; letter-spacing: 2px; margin-bottom: 0.5rem; color: white;">
