@@ -1,23 +1,18 @@
 <x-layouts.app title="Dashboard">
-    <div class="row justify-content-center g-4">
-        <div class="col-12 col-md-8">
-            {{-- Greeting Card --}}
-            <div class="card mb-4 h-100"
-                style="background: linear-gradient(135deg, var(--bs-primary) 0%, #1a6b3a 100%); color: #fff; border: none;">
-                <div class="card-body p-4">
-                    <div class="d-flex align-items-center gap-3 mb-3">
-                        <img src="{{ auth()->user()->photo_url }}" width="84" height="84" class="rounded-circle"
-                            alt="avatar" style="object-fit: cover; border: 3px solid rgba(255,255,255,0.4)">
-                        <div>
-                            <p class="mb-0 opacity-75 fs-13">Selamat datang kembali,</p>
-                            <h2 class="mb-0 fw-bold">{{ auth()->user()->name }}</h2>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-wrap gap-2 mt-3">
+    <!-- Welcome & Clock Section -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <!-- Welcome Card -->
+        <div class="md:col-span-2 relative overflow-hidden rounded-xl bg-gradient-to-br from-emerald-800 to-emerald-600 text-white shadow-sm">
+            <div class="p-6 sm:p-8 flex items-center gap-5">
+                <img src="{{ auth()->user()->photo_url }}" class="size-20 rounded-full border-4 border-white/30 object-cover" alt="Avatar">
+                <div>
+                    <p class="text-emerald-100 text-sm font-medium mb-1">Selamat datang kembali,</p>
+                    <h2 class="text-2xl sm:text-3xl font-bold">{{ auth()->user()->name }}</h2>
+                    <div class="flex flex-wrap gap-2 mt-3">
                         @foreach (auth()->user()->roles as $role)
-                            <span class="badge"
-                                style="background: rgba(255,255,255,0.25); font-size: 12px; padding: 6px 12px; border-radius: 20px;">
-                                <i class="ti ti-shield-check me-1"></i>{{ $role->name }}
+                            <span class="inline-flex items-center gap-x-1.5 py-1 px-3 rounded-full text-xs font-medium bg-white/20 text-white backdrop-blur-sm">
+                                <i class="ti ti-shield-check"></i>
+                                {{ $role->name }}
                             </span>
                         @endforeach
                     </div>
@@ -25,297 +20,272 @@
             </div>
         </div>
 
-        {{-- Live Clock --}}
-        <div class="col-12 col-md-4">
-            <div class="card h-100 mb-4">
-                <div class="card-body d-flex flex-column text-center align-items-center justify-content-center ">
-                    <p class="text-muted mb-1 fs-13 text-uppercase fw-semibold">Waktu Sekarang</p>
-                    <div id="live-clock" class="fw-bold mb-1"
-                        style="font-size: 4rem; font-variant-numeric: tabular-nums; letter-spacing: 2px; line-height: 1;">
-                        --:--:--</div>
-                    <p id="live-date" class="text-muted fs-15 mb-0">---</p>
-                </div>
+        <!-- Clock Card -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col items-center justify-center text-center">
+            <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Waktu Sekarang</p>
+            <div id="live-clock" class="text-4xl sm:text-5xl font-bold text-gray-800 tracking-wider tabular-nums mb-2">
+                --:--:--
             </div>
+            <p id="live-date" class="text-sm text-gray-500 font-medium">---</p>
         </div>
     </div>
 
-    {{-- Ringkasan Metrics --}}
+    <!-- Admin Metrics -->
     @if(auth()->user()->hasRole('admin') || auth()->user()->hasRole('super-admin'))
-    <div class="row g-3 mt-1">
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <h4 class="mb-1 text-primary">{{ $pengajarAktif }}</h4>
-                            <p class="text-muted mb-0 fs-13">Pengajar Aktif</p>
-                        </div>
-                        <div class="avatar-sm bg-primary-subtle text-primary rounded-circle d-flex align-items-center justify-content-center fs-20">
-                            <i class="ti ti-user-check"></i>
-                        </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+        
+        <!-- Card -->
+        <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
+            <div class="p-4 md:p-5 flex justify-between gap-x-3">
+                <div>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Pengajar Aktif</p>
+                    <div class="mt-1 flex items-center gap-x-2">
+                        <h3 class="text-xl sm:text-2xl font-medium text-emerald-600">{{ $pengajarAktif }}</h3>
                     </div>
+                </div>
+                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-emerald-100 text-emerald-600 rounded-full">
+                    <i class="ti ti-user-check text-xl"></i>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <h4 class="mb-1 text-info">{{ $santriAktif }}</h4>
-                            <p class="text-muted mb-0 fs-13">Santri Aktif</p>
-                        </div>
-                        <div class="avatar-sm bg-info-subtle text-info rounded-circle d-flex align-items-center justify-content-center fs-20">
-                            <i class="ti ti-users"></i>
-                        </div>
+        
+        <!-- Card -->
+        <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
+            <div class="p-4 md:p-5 flex justify-between gap-x-3">
+                <div>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Santri Aktif</p>
+                    <div class="mt-1 flex items-center gap-x-2">
+                        <h3 class="text-xl sm:text-2xl font-medium text-blue-600">{{ $santriAktif }}</h3>
                     </div>
+                </div>
+                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-blue-100 text-blue-600 rounded-full">
+                    <i class="ti ti-users text-xl"></i>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <h4 class="mb-1 text-primary">{{ $jadwalHariIni }}</h4>
-                            <p class="text-muted mb-0 fs-13">Jadwal Mengajar Hari Ini</p>
-                        </div>
-                        <div class="avatar-sm bg-primary-subtle text-primary rounded-circle d-flex align-items-center justify-content-center fs-20">
-                            <i class="ti ti-calendar"></i>
-                        </div>
+
+        <!-- Card -->
+        <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
+            <div class="p-4 md:p-5 flex justify-between gap-x-3">
+                <div>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Jadwal Mengajar</p>
+                    <div class="mt-1 flex items-center gap-x-2">
+                        <h3 class="text-xl sm:text-2xl font-medium text-purple-600">{{ $jadwalHariIni }}</h3>
                     </div>
+                </div>
+                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-purple-100 text-purple-600 rounded-full">
+                    <i class="ti ti-calendar text-xl"></i>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <h4 class="mb-1 text-secondary">{{ $presensiRatio }}</h4>
-                            <p class="text-muted mb-0 fs-13">Presensi Hari Ini</p>
-                        </div>
-                        <div class="avatar-sm bg-secondary-subtle text-secondary rounded-circle d-flex align-items-center justify-content-center fs-20">
-                            <i class="ti ti-checklist"></i>
-                        </div>
+
+        <!-- Card -->
+        <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
+            <div class="p-4 md:p-5 flex justify-between gap-x-3">
+                <div>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Presensi Hari Ini</p>
+                    <div class="mt-1 flex items-center gap-x-2">
+                        <h3 class="text-xl sm:text-2xl font-medium text-indigo-600">{{ $presensiRatio }}</h3>
                     </div>
+                </div>
+                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-indigo-100 text-indigo-600 rounded-full">
+                    <i class="ti ti-checklist text-xl"></i>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <h4 class="mb-1 text-primary">{{ $paketBerjalan }}</h4>
-                            <p class="text-muted mb-0 fs-13">Santri Sedang Berjalan</p>
-                        </div>
-                        <div class="avatar-sm bg-primary-subtle text-primary rounded-circle d-flex align-items-center justify-content-center fs-20">
-                            <i class="ti ti-run"></i>
-                        </div>
+
+        <!-- Card -->
+        <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
+            <div class="p-4 md:p-5 flex justify-between gap-x-3">
+                <div>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Paket Berjalan</p>
+                    <div class="mt-1 flex items-center gap-x-2">
+                        <h3 class="text-xl sm:text-2xl font-medium text-cyan-600">{{ $paketBerjalan }}</h3>
                     </div>
+                </div>
+                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-cyan-100 text-cyan-600 rounded-full">
+                    <i class="ti ti-run text-xl"></i>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <h4 class="mb-1 text-warning">{{ $evaluasiBelumDibuat }}</h4>
-                            <p class="text-muted mb-0 fs-13">Menunggu Evaluasi</p>
-                        </div>
-                        <div class="avatar-sm bg-warning-subtle text-warning rounded-circle d-flex align-items-center justify-content-center fs-20">
-                            <i class="ti ti-clock"></i>
-                        </div>
+
+        <!-- Card -->
+        <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
+            <div class="p-4 md:p-5 flex justify-between gap-x-3">
+                <div>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Menunggu Evaluasi</p>
+                    <div class="mt-1 flex items-center gap-x-2">
+                        <h3 class="text-xl sm:text-2xl font-medium text-orange-600">{{ $evaluasiBelumDibuat }}</h3>
                     </div>
+                </div>
+                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-orange-100 text-orange-600 rounded-full">
+                    <i class="ti ti-clock text-xl"></i>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <h4 class="mb-1 text-info">{{ $paketSelesai }}</h4>
-                            <p class="text-muted mb-0 fs-13">Selesai Evaluasi</p>
-                        </div>
-                        <div class="avatar-sm bg-info-subtle text-info rounded-circle d-flex align-items-center justify-content-center fs-20">
-                            <i class="ti ti-file-check"></i>
-                        </div>
+
+        <!-- Card -->
+        <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
+            <div class="p-4 md:p-5 flex justify-between gap-x-3">
+                <div>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Selesai Evaluasi</p>
+                    <div class="mt-1 flex items-center gap-x-2">
+                        <h3 class="text-xl sm:text-2xl font-medium text-emerald-600">{{ $paketSelesai }}</h3>
                     </div>
+                </div>
+                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-emerald-100 text-emerald-600 rounded-full">
+                    <i class="ti ti-file-check text-xl"></i>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <h4 class="mb-1 text-success">{{ $mukafaahSiap }}</h4>
-                            <p class="text-muted mb-0 fs-13">Mukafaah Siap Proses</p>
-                        </div>
-                        <div class="avatar-sm bg-success-subtle text-success rounded-circle d-flex align-items-center justify-content-center fs-20">
-                            <i class="ti ti-coin"></i>
-                        </div>
+
+        <!-- Card -->
+        <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
+            <div class="p-4 md:p-5 flex justify-between gap-x-3">
+                <div>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Mukafaah Siap</p>
+                    <div class="mt-1 flex items-center gap-x-2">
+                        <h3 class="text-xl sm:text-2xl font-medium text-rose-600">{{ $mukafaahSiap }}</h3>
                     </div>
+                </div>
+                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-rose-100 text-rose-600 rounded-full">
+                    <i class="ti ti-coin text-xl"></i>
                 </div>
             </div>
         </div>
+
     </div>
     @else
-    <div class="row g-3 mt-1">
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <h4 class="mb-1 text-primary">{{ $santriDiampu }}</h4>
-                            <p class="text-muted mb-0 fs-13">Santri Diampu</p>
-                        </div>
-                        <div class="avatar-sm bg-primary-subtle text-primary rounded-circle d-flex align-items-center justify-content-center fs-20">
-                            <i class="ti ti-users"></i>
-                        </div>
-                    </div>
+    
+    <!-- Pengajar Metrics -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+        
+        <!-- Card -->
+        <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
+            <div class="p-4 flex justify-between gap-x-3">
+                <div>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Santri Diampu</p>
+                    <h3 class="text-xl font-medium text-emerald-600 mt-1">{{ $santriDiampu }}</h3>
+                </div>
+                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-emerald-100 text-emerald-600 rounded-full">
+                    <i class="ti ti-users text-xl"></i>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <h4 class="mb-1 text-info">{{ $jadwalHariIni }}</h4>
-                            <p class="text-muted mb-0 fs-13">Jadwal Hari Ini</p>
-                        </div>
-                        <div class="avatar-sm bg-info-subtle text-info rounded-circle d-flex align-items-center justify-content-center fs-20">
-                            <i class="ti ti-calendar"></i>
-                        </div>
-                    </div>
+        
+        <!-- Card -->
+        <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
+            <div class="p-4 flex justify-between gap-x-3">
+                <div>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Jadwal Hari Ini</p>
+                    <h3 class="text-xl font-medium text-blue-600 mt-1">{{ $jadwalHariIni }}</h3>
+                </div>
+                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-blue-100 text-blue-600 rounded-full">
+                    <i class="ti ti-calendar text-xl"></i>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <h4 class="mb-1 text-warning">{{ $presensiBelumDiisi }}</h4>
-                            <p class="text-muted mb-0 fs-13">Presensi Belum Diisi</p>
-                        </div>
-                        <div class="avatar-sm bg-warning-subtle text-warning rounded-circle d-flex align-items-center justify-content-center fs-20">
-                            <i class="ti ti-clipboard-list"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <h4 class="mb-1 text-danger">{{ $evaluasiBelumDibuat }}</h4>
-                            <p class="text-muted mb-0 fs-13">Wajib Evaluasi</p>
-                        </div>
-                        <div class="avatar-sm bg-danger-subtle text-danger rounded-circle d-flex align-items-center justify-content-center fs-20">
-                            <i class="ti ti-file-text"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <div>
-                            <h4 class="mb-1 text-success">{{ $mukafaahDiproses }}</h4>
-                            <p class="text-muted mb-0 fs-13">Mukafaah Diproses</p>
-                        </div>
-                        <div class="avatar-sm bg-success-subtle text-success rounded-circle d-flex align-items-center justify-content-center fs-20">
-                            <i class="ti ti-coin"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endif
 
-    @unless(auth()->user()->hasRole('admin') || auth()->user()->hasRole('super-admin'))
-    {{-- Daftar Santri (Paket Belajar) --}}
-    <div class="row mt-4">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header border-bottom border-dashed d-flex justify-content-between align-items-center">
-                    <h5 class="header-title mb-0">Daftar Santri yang Diampu</h5>
+        <!-- Card -->
+        <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
+            <div class="p-4 flex justify-between gap-x-3">
+                <div>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Presensi Belum Diisi</p>
+                    <h3 class="text-xl font-medium text-orange-600 mt-1">{{ $presensiBelumDiisi }}</h3>
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover align-middle mb-0">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Nama Santri</th>
-                                    <th>Hari & Jam</th>
-                                    <th>Progress (Presensi)</th>
-                                    <th>Status</th>
-                                    <th class="text-end">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($daftarPaketAktif as $paket)
-                                    <tr>
-                                        <td>
-                                            <div class="fw-bold">{{ $paket->santri->nama }}</div>
-                                            @if($paket->santri->no_hp)
-                                                <div class="fs-12 text-muted">{{ $paket->santri->no_hp }}</div>
-                                            @endif
-                                        </td>
-                                        <td>{{ $paket->hari_jam }}</td>
-                                        <td>
-                                            <div class="d-flex align-items-center gap-2">
-                                                <div class="progress flex-grow-1" style="height: 6px;">
-                                                    <div class="progress-bar" role="progressbar" 
-                                                        style="width: {{ ($paket->presensis_count / $paket->jumlah_pertemuan) * 100 }}%;" 
-                                                        aria-valuenow="{{ $paket->presensis_count }}" aria-valuemin="0" aria-valuemax="{{ $paket->jumlah_pertemuan }}"></div>
-                                                </div>
-                                                <span class="fs-12">{{ $paket->presensis_count }}/{{ $paket->jumlah_pertemuan }}</span>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            @if ($paket->status == 'berjalan')
-                                                <span class="badge bg-primary-subtle text-primary">Sedang Berjalan</span>
-                                            @elseif ($paket->status == 'menunggu_evaluasi')
-                                                <span class="badge bg-warning-subtle text-warning">Menunggu Evaluasi</span>
-                                            @elseif ($paket->status == 'selesai')
-                                                <span class="badge bg-success-subtle text-success">Selesai</span>
-                                            @endif
-                                        </td>
-                                        <td class="text-end">
-                                            @if ($paket->status == 'berjalan' && $paket->presensis_count < $paket->jumlah_pertemuan)
-                                                <a href="{{ route('presensi.create', $paket->id) }}" class="btn btn-sm btn-primary">
-                                                    Isi Presensi
-                                                </a>
-                                            @elseif ($paket->status == 'menunggu_evaluasi' || ($paket->status == 'berjalan' && $paket->presensis_count >= $paket->jumlah_pertemuan))
-                                                <a href="{{ route('evaluasi.create', $paket->id) }}" class="btn btn-sm btn-warning">
-                                                    Isi Evaluasi
-                                                </a>
-                                            @elseif ($paket->status == 'selesai')
-                                                <button class="btn btn-sm btn-light" disabled>Selesai</button>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="5" class="text-center py-4 text-muted">
-                                            Tidak ada data santri yang diampu.
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-orange-100 text-orange-600 rounded-full">
+                    <i class="ti ti-clipboard-list text-xl"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card -->
+        <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
+            <div class="p-4 flex justify-between gap-x-3">
+                <div>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Wajib Evaluasi</p>
+                    <h3 class="text-xl font-medium text-red-600 mt-1">{{ $evaluasiBelumDibuat }}</h3>
+                </div>
+                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-red-100 text-red-600 rounded-full">
+                    <i class="ti ti-file-text text-xl"></i>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Data Santri Table -->
+    <div class="flex flex-col mb-8">
+        <div class="-m-1.5 overflow-x-auto">
+            <div class="p-1.5 min-w-full inline-block align-middle">
+                <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+                    
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h2 class="text-lg font-semibold text-gray-800">Daftar Santri yang Diampu</h2>
                     </div>
+
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Santri</th>
+                                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">Hari & Jam</th>
+                                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
+                                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            @forelse ($daftarPaketAktif as $paket)
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-800">{{ $paket->santri->nama }}</div>
+                                        @if($paket->santri->no_hp)
+                                            <div class="text-xs text-gray-500">{{ $paket->santri->no_hp }}</div>
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                        {{ $paket->hari_jam }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center gap-x-2">
+                                            <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                                                <div class="flex flex-col justify-center rounded-full overflow-hidden bg-emerald-500" role="progressbar" style="width: {{ ($paket->presensis_count / $paket->jumlah_pertemuan) * 100 }}%" aria-valuenow="{{ $paket->presensis_count }}" aria-valuemin="0" aria-valuemax="{{ $paket->jumlah_pertemuan }}"></div>
+                                            </div>
+                                            <span class="text-xs text-gray-600">{{ $paket->presensis_count }}/{{ $paket->jumlah_pertemuan }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        @if ($paket->status == 'berjalan')
+                                            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-blue-100 text-blue-800">Sedang Berjalan</span>
+                                        @elseif ($paket->status == 'menunggu_evaluasi')
+                                            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-orange-100 text-orange-800">Menunggu Evaluasi</span>
+                                        @elseif ($paket->status == 'selesai')
+                                            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-emerald-100 text-emerald-800">Selesai</span>
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                                        @if ($paket->status == 'berjalan' && $paket->presensis_count < $paket->jumlah_pertemuan)
+                                            <a href="{{ route('presensi.create', $paket->id) }}" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-emerald-600 hover:text-emerald-800 disabled:opacity-50 disabled:pointer-events-none">
+                                                Isi Presensi
+                                            </a>
+                                        @elseif ($paket->status == 'menunggu_evaluasi' || ($paket->status == 'berjalan' && $paket->presensis_count >= $paket->jumlah_pertemuan))
+                                            <a href="{{ route('evaluasi.create', $paket->id) }}" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-orange-600 hover:text-orange-800 disabled:opacity-50 disabled:pointer-events-none">
+                                                Isi Evaluasi
+                                            </a>
+                                        @elseif ($paket->status == 'selesai')
+                                            <span class="text-sm text-gray-400">Selesai</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="px-6 py-8 text-center text-gray-500">
+                                        Tidak ada data santri yang diampu.
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -325,9 +295,7 @@
     @push('scripts')
         <script>
             const DAYS = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-            const MONTHS = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober',
-                'November', 'Desember'
-            ];
+            const MONTHS = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
             function pad(n) {
                 return String(n).padStart(2, '0');
@@ -335,10 +303,10 @@
 
             function tick() {
                 const now = new Date();
-                document.getElementById('live-clock').textContent = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' +
-                    pad(now.getSeconds());
-                document.getElementById('live-date').textContent = DAYS[now.getDay()] + ', ' + now.getDate() + ' ' + MONTHS[now
-                    .getMonth()] + ' ' + now.getFullYear();
+                const clock = document.getElementById('live-clock');
+                const dateEl = document.getElementById('live-date');
+                if(clock) clock.textContent = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
+                if(dateEl) dateEl.textContent = DAYS[now.getDay()] + ', ' + now.getDate() + ' ' + MONTHS[now.getMonth()] + ' ' + now.getFullYear();
             }
             tick();
             setInterval(tick, 1000);

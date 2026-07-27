@@ -12,103 +12,57 @@
     <meta name="author" content="{{ config('seo.author') }}">
     <meta name="robots" content="{{ config('seo.robots.admin') }}">
 
-    {{-- OG for link previews (Slack, WA, etc.) --}}
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="{{ config('seo.site_name') }}">
-    <meta property="og:title" content="{{ $seoPageTitle }}">
-    <meta property="og:description" content="{{ config('seo.description') }}">
-    <meta property="og:image" content="{{ config('seo.url') . config('seo.og.image') }}">
-
-    <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
 
-    <!-- Theme Config Js -->
-    <script src="{{ asset('assets/js/config.js') }}"></script>
-
-    <!-- Vendor css -->
-    <link href="{{ asset('assets/css/vendor.min.css') }}" rel="stylesheet" type="text/css" />
-
-    <!-- App css -->
-    <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
-
-    <!-- Icons css -->
+    <!-- Icons css (Remix Icons, etc) -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @stack('styles')
 </head>
 
-<body>
-    <!-- Begin page -->
-    <div class="wrapper">
-        {{-- Sidebar --}}
-        <x-sidenav></x-sidenav>
-        {{-- Topbar --}}
-        <x-topbar></x-topbar>
+<body class="bg-gray-50 text-gray-800">
 
-        <!-- ============================================================== -->
-        <!-- Start Page Content here -->
-        <!-- ============================================================== -->
-        <div class="page-content">
-            <div class="page-container">
+    {{-- Sidebar --}}
+    <x-sidenav></x-sidenav>
 
-                {{-- Page Title --}}
-                <div class="row">
-                    <div class="col-12">
-                        <div class="page-title-head d-flex align-items-sm-center flex-sm-row flex-column">
-                            <div class="flex-grow-1">
-                                <h4 class="fs-18 text-uppercase fw-bold m-0">{{ $title ?? 'Dashboard' }}</h4>
-                            </div>
-                            @isset($actions)
-                                <div class="mt-2 mt-sm-0">
-                                    {{ $actions }}
-                                </div>
-                            @endisset
-                        </div>
-                    </div>
+    {{-- Topbar --}}
+    <x-topbar></x-topbar>
+
+    <!-- Content -->
+    <div class="w-full pt-4 px-4 sm:px-6 md:px-8 lg:ps-72 hs-overlay-minified:lg:ps-28 transition-all duration-300">
+        
+        {{-- Page Header --}}
+        <header class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <h1 class="text-2xl font-bold text-gray-900">{{ $title ?? 'Dashboard' }}</h1>
+            
+            @isset($actions)
+                <div class="flex items-center gap-2">
+                    {{ $actions }}
                 </div>
+            @endisset
+        </header>
 
-                {{-- Page Content --}}
-                {{ $slot }}
+        {{-- Page Content --}}
+        <main>
+            {{ $slot }}
+        </main>
 
-            </div> <!-- end page-container -->
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Page Content here -->
-        <!-- ============================================================== -->
-
-        <!-- Footer Start -->
-        <footer class="footer mt-4">
-            <div class="page-container">
-                <div class="row">
-                    <div class="col-md-12 text-end">
-                        <p>
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script> © {{ config('app.name') }} - By <span
-                                class="fw-bold text-decoration-underline text-uppercase text-reset fs-12">{{ config('app.owner') }}</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
+        <!-- Footer -->
+        <footer class="mt-12 py-6 border-t border-gray-200 text-end">
+            <p class="text-sm text-gray-500">
+                © {{ date('Y') }} {{ config('app.name') }} - By 
+                <span class="font-semibold uppercase">{{ config('app.owner') }}</span>
+            </p>
         </footer>
-        <!-- end Footer -->
     </div>
-    <!-- END wrapper -->
+    <!-- End Content -->
 
-    {{-- Alert - --}}
+    {{-- Alert --}}
     <x-alert></x-alert>
 
-    <!-- Theme Settings -->
-    <x-theme-setting></x-theme-setting>
-
-    <!-- Vendor js -->
-    <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
-
-    <!-- App js -->
-    <script src="{{ asset('assets/js/app.js') }}"></script>
-
     @stack('scripts')
-
 </body>
 
 </html>
