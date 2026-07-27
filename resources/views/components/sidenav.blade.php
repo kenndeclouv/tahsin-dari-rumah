@@ -78,7 +78,7 @@ bg-slate-900 border-e border-slate-800"
                     <li>
                         <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('dashboard') ? 'bg-primary-600 text-white font-medium' : '' }}"
                             href="{{ route('dashboard') }}">
-                            <i class="fa-solid fa-gauge text-lg hs-overlay-minified:mx-auto"></i>
+                            <i class="fa-solid fa-grid-2 text-lg hs-overlay-minified:mx-auto"></i>
                             <span class="hs-overlay-minified:hidden">Dashboard</span>
                         </a>
                     </li>

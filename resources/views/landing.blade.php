@@ -116,144 +116,32 @@
                 .bento-large { grid-column: span 2; }
             }
 
-            /* --- Pricing --- */
-            .price-card {
-                background: white;
-                border: 1px solid rgba(0,0,0,0.05);
-                border-radius: var(--radius-xl);
-                padding: 3rem 2rem;
-                height: 100%;
-                position: relative;
-                overflow: hidden;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-                transition: transform 0.3s ease;
-            }
-            .price-card:hover {
-                transform: translateY(-10px);
-            }
-            .price-card.featured {
-                background: var(--premium-primary);
-                color: white;
-                box-shadow: 0 20px 40px rgba(6,78,59,0.2);
-                border: none;
-            }
-            
-            /* --- Testimonial Marquee --- */
-            .marquee-wrapper {
-                overflow: hidden;
-                padding: 2rem 0;
-                width: 100vw;
-                position: relative;
-                left: 50%;
-                right: 50%;
-                margin-left: -50vw;
-                margin-right: -50vw;
-                background: rgba(255,255,255,0.5);
-            }
-            .marquee-track {
-                display: flex;
-                gap: 2rem;
-                width: max-content;
-                animation: scroll 40s linear infinite;
-            }
-            .marquee-track:hover {
-                animation-play-state: paused;
-            }
-            @keyframes scroll {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(calc(-50% - 1rem)); }
-            }
-            .testi-card {
-                width: 400px;
-                background: white;
-                border-radius: var(--radius-lg);
-                padding: 2rem;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-                border: 1px solid rgba(0,0,0,0.03);
-                white-space: normal;
-            }
 
-            /* --- Accordion FAQ --- */
-            .faq-accordion .accordion-item {
-                border: none;
-                background: white;
-                border-radius: var(--radius-md) !important;
-                margin-bottom: 1rem;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.02);
-                overflow: hidden;
-            }
-            .faq-accordion .accordion-button {
-                padding: 1.5rem;
-                font-weight: 700;
-                font-size: 1.1rem;
-                background: transparent;
-                box-shadow: none !important;
-                color: var(--premium-text);
-            }
-            .faq-accordion .accordion-button:not(.collapsed) {
-                color: var(--premium-primary);
-                background: rgba(16,185,129,0.05);
-            }
-
-            /* --- CTA Banner --- */
-            .cta-banner {
-                background: linear-gradient(135deg, var(--primary-800) 0%, var(--primary-600) 100%);
-                border-radius: var(--radius-xl);
-                padding: 5rem 3rem;
-                position: relative;
-                overflow: hidden;
-            }
-            .cta-circle {
-                position: absolute;
-                border-radius: 50%;
-                background: rgba(255,255,255,0.03);
-            }
         </style>
     </x-slot>
 
     {{-- ─── HERO ──────────────────────────────────────────────────────────── --}}
     <section class="hero-section text-center">
         <div class="hero-mesh"></div>
-        <div class="container-xl position-relative z-1">
-            {{-- <div class="hero-badge d-inline-flex align-items-center gap-2 px-4 py-2 glass-badge mb-4">
-                <div class="d-flex align-items-center justify-content-center bg-success text-white rounded-circle" style="width:24px; height:24px; font-size:12px;">
-                    <i class="fa-solid fa-star shrink-0 size-5"></i>
-                </div>
-                <span class="fw-semibold fs-14" style="color:var(--premium-primary)">1200+ Murid Belajar Bersama Kami</span>
-            </div> --}}
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             
-            <h1 class="mt-5 pt-2 hero-h1 display-3 fw-black mb-4 mx-auto" style="max-width: 900px; line-height: 1.15;">
+            <h1 class="mt-12 pt-2 hero-h1 text-4xl md:text-5xl lg:text-6xl font-bold mb-4 mx-auto leading-tight" style="max-width: 900px;">
                 Belajar Mengaji Online/Offline <br>
                 <span class="hero-gradient-text" id="typewriter"></span>
             </h1>
             
-            <p class="hero-subtitle fs-18 mb-5 mx-auto text-muted" style="max-width: 600px; line-height: 1.6;">
+            <p class="hero-subtitle text-lg mb-8 mx-auto text-gray-500 leading-relaxed" style="max-width: 600px;">
                 Kini belajar ngaji lebih mudah dan menyenangkan bersama asatidz {{ config('app.name') }} yang sabar dan profesional.
             </p>
             
-            <div class="hero-cta d-flex flex-column flex-sm-row justify-content-center gap-3 mb-5">
-                <a href="https://wa.me/628123456789" class="btn-premium text-decoration-none">
-                    <i class="fa-solid fa-play shrink-0 size-5"></i> Belajar Sekarang
+            <div class="hero-cta flex flex-col sm:flex-row justify-center items-center gap-3 mb-12">
+                <a href="https://wa.me/628123456789" class="py-3 px-6 inline-flex items-center justify-center gap-x-2 text-base font-semibold rounded-full border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none shadow-md shadow-primary-600/20 w-full sm:w-auto transition-all">
+                    <i class="fa-solid fa-play text-sm"></i> Belajar Sekarang
                 </a>
-                <a href="#biaya" class="btn-premium-outline text-decoration-none">
+                <a href="#biaya" class="py-3 px-6 inline-flex items-center justify-center gap-x-2 text-base font-semibold rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none w-full sm:w-auto transition-all">
                     Lihat Pilihan Paket
                 </a>
             </div>
-
-            {{-- <div class="hero-stats d-flex flex-wrap justify-content-center gap-4 pt-4 border-top" style="border-color: rgba(0,0,0,0.05)!important; max-width:800px; margin:0 auto;">
-                <div class="d-flex align-items-center gap-2">
-                    <i class="fa-solid fa-users fs-24 text-success"></i>
-                    <span class="fw-semibold text-muted"><span class="count-up" data-target="90">0</span>+ Guru Tersertifikasi</span>
-                </div>
-                <div class="d-flex align-items-center gap-2">
-                    <i class="fa-solid fa-certificate fs-24 text-primary"></i>
-                    <span class="fw-semibold text-muted"><span class="count-up" data-target="2500">0</span>+ Alumni</span>
-                </div>
-                <div class="d-flex align-items-center gap-2">
-                    <i class="fa-solid fa-thumbs-up fs-24 text-warning"></i>
-                    <span class="fw-semibold text-muted"><span class="count-up" data-target="99">0</span>% Kepuasan</span>
-                </div>
-            </div> --}}
         </div>
 
         <!-- Marquee Tape -->
@@ -269,54 +157,54 @@
     </section>
 
     {{-- ─── BENTO GRID: KEUNGGULAN ─────────────────────────────────────────── --}}
-    <section class="py-5" id="kenapa">
-        <div class="container-xl">
-            <div class="text-center mb-5 reveal-up">
-                <h6 class="fw-bold" style="color:var(--premium-secondary); text-transform:uppercase; letter-spacing:1px;">Mengapa {{ config('app.name') }}?</h6>
-                <h2 class="display-6 fw-black">Cocok buat kamu yang ingin lancar<br>baca Al-Quran, anak-anak maupun dewasa</h2>
-                <span class="line-draw"></span>
+    <section class="py-20" id="kenapa">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal-up">
+                <h6 class="font-bold uppercase tracking-wider" style="color:var(--premium-secondary);">Mengapa {{ config('app.name') }}?</h6>
+                <h2 class="text-3xl md:text-4xl font-bold mt-3">Cocok buat kamu yang ingin lancar<br>baca Al-Quran, anak-anak maupun dewasa</h2>
+                <span class="line-draw mx-auto"></span>
             </div>
 
             <div class="bento-grid">
                 
                 {{-- 1. Private --}}
-                <div class="bento-card bento-large position-relative overflow-hidden reveal-scale" style="background:var(--premium-primary); color:white;">
-                    <div style="position:absolute; right:-50px; bottom:-50px; font-size:200px; opacity:0.1; line-height:1;">👤</div>
+                <div class="bento-card bento-large relative overflow-hidden reveal-scale" style="background:var(--premium-primary); color:white;">
+                    <div class="absolute -right-12 -bottom-12 text-[200px] opacity-10 leading-none">👤</div>
                     <div class="bento-icon-wrapper" style="background:rgba(255,255,255,0.15); color:white;">
-                        <i class="fa-solid fa-user-check shrink-0 size-5"></i>
+                        <i class="fa-solid fa-user-check text-2xl"></i>
                     </div>
-                    <h3 class="fw-bold mb-3 text-white">Belajarnya Private 1 on 1</h3>
-                    <p class="fs-16 mb-0" style="opacity:0.9; max-width:400px;">Malu kalau belum bisa? Atau ingin lebih fokus? Private 1 on 1 aja di {{ config('app.name') }}. Anda mendapat perhatian penuh dari pengajar.</p>
+                    <h3 class="font-bold mb-3 text-white text-2xl">Belajarnya Private 1 on 1</h3>
+                    <p class="text-base mb-0 opacity-90 max-w-md">Malu kalau belum bisa? Atau ingin lebih fokus? Private 1 on 1 aja di {{ config('app.name') }}. Anda mendapat perhatian penuh dari pengajar.</p>
                 </div>
 
                 {{-- 2. Jadwal Fleksibel --}}
                 <div class="bento-card reveal-up" style="transition-delay:0.1s">
                     <div class="bento-icon-wrapper" style="background:color-mix(in srgb, var(--premium-secondary) 15%, transparent); color:var(--premium-secondary);">
-                        <i class="fa-solid fa-clock shrink-0 size-5"></i>
+                        <i class="fa-solid fa-clock text-2xl"></i>
                     </div>
-                    <h4 class="fw-bold mb-3">Jadwal Fleksibel</h4>
-                    <p class="text-muted mb-0">Pilih jadwal sendiri, dari pagi sampai malam, weekdays atau weekend bebas atur waktu luang Anda.</p>
+                    <h4 class="font-bold mb-3 text-xl">Jadwal Fleksibel</h4>
+                    <p class="text-gray-500 mb-0">Pilih jadwal sendiri, dari pagi sampai malam, weekdays atau weekend bebas atur waktu luang Anda.</p>
                 </div>
 
                 {{-- 3. Sabar & Profesional --}}
                 <div class="bento-card reveal-up" style="transition-delay:0.2s">
                     <div class="bento-icon-wrapper" style="background:color-mix(in srgb, var(--premium-primary) 12%, transparent); color:var(--premium-primary);">
-                        <i class="fa-solid fa-award shrink-0 size-5"></i>
+                        <i class="fa-solid fa-award text-2xl"></i>
                     </div>
-                    <h4 class="fw-bold mb-3">Sabar & Profesional</h4>
-                    <p class="text-muted mb-0">Alumni kampus/pesantren ternama & sudah tersertifikasi. Kami concern dengan kualitas pengajaran.</p>
+                    <h4 class="font-bold mb-3 text-xl">Sabar & Profesional</h4>
+                    <p class="text-gray-500 mb-0">Alumni kampus/pesantren ternama & sudah tersertifikasi. Kami concern dengan kualitas pengajaran.</p>
                 </div>
 
                 {{-- 4. Bisa Request Materi --}}
-                <div class="bento-card bento-large position-relative overflow-hidden reveal-scale" style="background:var(--premium-primary); color:white;">
-                    <div style="position:absolute; right:-50px; bottom:-50px; font-size:200px; opacity:0.1; line-height:1;">📚</div>
-                    <div class="row align-items-center h-100 position-relative z-1">
-                        <div class="col-md-7">
+                <div class="bento-card bento-large relative overflow-hidden reveal-scale" style="background:var(--premium-primary); color:white;">
+                    <div class="absolute -right-12 -bottom-12 text-[200px] opacity-10 leading-none">📚</div>
+                    <div class="grid grid-cols-1 md:grid-cols-12 items-center h-full relative z-10">
+                        <div class="md:col-span-8">
                             <div class="bento-icon-wrapper" style="background:rgba(255,255,255,0.15); color:white;">
-                                <i class="fa-solid fa-book shrink-0 size-5"></i>
+                                <i class="fa-solid fa-book text-2xl"></i>
                             </div>
-                            <h4 class="fw-bold mb-3 text-white">Bisa Request Materi Bebas</h4>
-                            <p class="mb-0" style="opacity:0.9;">Mulai dasar, makhraj, tajwid, hafalan, fiqih, sirah nabi, atau memahami makna ayat - semua bisa di {{ config('app.name') }} sesuai request.</p>
+                            <h4 class="font-bold mb-3 text-white text-xl">Bisa Request Materi Bebas</h4>
+                            <p class="mb-0 opacity-90">Mulai dasar, makhraj, tajwid, hafalan, fiqih, sirah nabi, atau memahami makna ayat - semua bisa di {{ config('app.name') }} sesuai request.</p>
                         </div>
                     </div>
                 </div>
@@ -324,10 +212,10 @@
                 {{-- 5. Laporan & Evaluasi --}}
                 <div class="bento-card">
                     <div class="bento-icon-wrapper" style="background:color-mix(in srgb, var(--premium-primary) 12%, transparent); color:var(--premium-primary);">
-                        <i class="fa-solid fa-chart-line shrink-0 size-5"></i>
+                        <i class="fa-solid fa-chart-line text-2xl"></i>
                     </div>
-                    <h4 class="fw-bold mb-3">Laporan per Pertemuan</h4>
-                    <p class="text-muted mb-0">Pantau progress belajarnya melalui aplikasi, jadi bahan evaluasi & sekaligus penyemangat diri.</p>
+                    <h4 class="font-bold mb-3 text-xl">Laporan per Pertemuan</h4>
+                    <p class="text-gray-500 mb-0">Pantau progress belajarnya melalui aplikasi, jadi bahan evaluasi & sekaligus penyemangat diri.</p>
                 </div>
 
             </div>
@@ -335,14 +223,15 @@
     </section>
 
     {{-- ─── HARGA PAKET ──────────────────────────────────────────────────────── --}}
-    <section class="py-5" id="biaya">
-        <div class="container-xl py-4">
-            <div class="text-center mb-5 reveal-up"><h6 class="fw-bold" style="color:var(--premium-secondary); text-transform:uppercase; letter-spacing:1px;">Biaya Fleksibel</h6>
-                <h2 class="display-6 fw-black">Harga paket investasi belajar Al-Quran</h2>
-                <p class="text-muted mt-3 mx-auto" style="max-width:520px;">Apapun paketnya, kualitas tetap yang utama dengan guru bersertifikat.</p>
+    <section class="py-20" id="biaya">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="text-center mb-16 reveal-up">
+                <h6 class="font-bold uppercase tracking-wider" style="color:var(--premium-secondary);">Biaya Fleksibel</h6>
+                <h2 class="text-3xl md:text-4xl font-bold mt-3">Harga paket investasi belajar Al-Quran</h2>
+                <p class="text-gray-500 mt-3 mx-auto max-w-lg">Apapun paketnya, kualitas tetap yang utama dengan guru bersertifikat.</p>
             </div>
 
-            <div class="row g-2 align-items-center justify-content-center stagger-parent">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-center justify-center stagger-parent">
                 @php
                     $pakets = [
                         ['Paket 1', '300.000', '4x', '1x', false],
@@ -353,29 +242,27 @@
                 @endphp
 
                 @foreach ($pakets as [$nama, $harga, $pertemuan, $jadwal, $isFeatured])
-                    <div class="col-md-6 col-lg-3">
-                        <div class="price-card {{ $isFeatured ? 'featured' : '' }}">
-                            @if($isFeatured)
-                                <span class="position-absolute badge bg-warning text-dark fw-bold px-3 py-1" style="top:20px; right:20px; border-radius:100px;">Terpopuler</span>
-                            @endif
-                            <h5 class="fw-bold mb-2 {{ $isFeatured ? 'text-white' : 'text-muted' }}">{{ $nama }}</h5>
-                            <div class="d-flex align-items-start mb-4">
-                                <span class="fs-20 fw-bold me-1 mt-1">Rp</span>
-                                <span class="fw-black" style="font-size: 2.5rem; line-height:1;">{{ $harga }}</span>
-                            </div>
-                            
-                            <ul class="list-unstyled mb-5">
-                                <li class="mb-3 d-flex"><i class="fa-solid fa-check fs-18 me-2 {{ $isFeatured ? 'text-warning' : 'text-success' }}"></i> <span><strong>{{ $pertemuan }} Pertemuan</strong> Mengaji</span></li>
-                                <li class="mb-3 d-flex"><i class="fa-solid fa-check fs-18 me-2 {{ $isFeatured ? 'text-warning' : 'text-success' }}"></i> <span>Jadwal <strong>{{ $jadwal }} Tiap Pekan</strong></span></li>
-                                <li class="mb-3 d-flex"><i class="fa-solid fa-check fs-18 me-2 {{ $isFeatured ? 'text-warning' : 'text-success' }}"></i> <span>60 Menit Per Sesi</span></li>
-                                <li class="mb-3 d-flex"><i class="fa-solid fa-check fs-18 me-2 {{ $isFeatured ? 'text-warning' : 'text-success' }}"></i> <span>Privat 1 Murid 1 Guru</span></li>
-                                <li class="mb-0 d-flex"><i class="fa-solid fa-check fs-18 me-2 {{ $isFeatured ? 'text-warning' : 'text-success' }}"></i> <span>Free Materi Mengaji</span></li>
-                            </ul>
-                            
-                            <a href="https://wa.me/628123456789" class="btn w-100 py-3 fw-bold {{ $isFeatured ? 'btn-light text-success' : 'btn-outline-dark' }}" style="border-radius:100px;">
-                                Pilih Paket Ini
-                            </a>
+                    <div class="bg-white border border-gray-100 rounded-[32px] p-8 lg:p-10 h-full relative overflow-hidden shadow-sm hover:-translate-y-2 hover:shadow-lg transition-all duration-300 {{ $isFeatured ? '!bg-primary-600 text-white shadow-primary-600/20 !border-transparent' : '' }}">
+                        @if($isFeatured)
+                            <span class="absolute top-5 right-5 badge bg-amber-400 text-gray-900 font-bold px-3 py-1 rounded-full">Terpopuler</span>
+                        @endif
+                        <h5 class="font-bold mb-2 text-lg {{ $isFeatured ? 'text-white' : 'text-gray-500' }}">{{ $nama }}</h5>
+                        <div class="flex items-start mb-6">
+                            <span class="text-xl font-bold mr-1 mt-1">Rp</span>
+                            <span class="font-bold text-[2.5rem] leading-none">{{ $harga }}</span>
                         </div>
+                        
+                        <ul class="list-none mb-8 space-y-4">
+                            <li class="flex"><i class="fa-solid fa-check text-lg mr-3 {{ $isFeatured ? 'text-amber-400' : 'text-green-500' }}"></i> <span><strong>{{ $pertemuan }} Pertemuan</strong> Mengaji</span></li>
+                            <li class="flex"><i class="fa-solid fa-check text-lg mr-3 {{ $isFeatured ? 'text-amber-400' : 'text-green-500' }}"></i> <span>Jadwal <strong>{{ $jadwal }} Tiap Pekan</strong></span></li>
+                            <li class="flex"><i class="fa-solid fa-check text-lg mr-3 {{ $isFeatured ? 'text-amber-400' : 'text-green-500' }}"></i> <span>60 Menit Per Sesi</span></li>
+                            <li class="flex"><i class="fa-solid fa-check text-lg mr-3 {{ $isFeatured ? 'text-amber-400' : 'text-green-500' }}"></i> <span>Privat 1 Murid 1 Guru</span></li>
+                            <li class="flex"><i class="fa-solid fa-check text-lg mr-3 {{ $isFeatured ? 'text-amber-400' : 'text-green-500' }}"></i> <span>Free Materi Mengaji</span></li>
+                        </ul>
+                        
+                        <a href="https://wa.me/628123456789" class="w-full py-3 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent {{ $isFeatured ? 'bg-white text-green-600 hover:bg-gray-50' : 'border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white' }} transition-all disabled:opacity-50 disabled:pointer-events-none">
+                            Pilih Paket Ini
+                        </a>
                     </div>
                 @endforeach
             </div>
@@ -383,28 +270,26 @@
     </section>
 
     {{-- ─── PENGAJAR & SERTIFIKASI ────────────────────────────────────────────── --}}
-    <section class="py-5 bg-white border-top border-bottom">
-        <div class="container-xl py-4">
-            <div class="row align-items-center g-5">
-                <div class="col-lg-5">
-                    <h6 class="fw-bold" style="color:var(--premium-secondary); text-transform:uppercase; letter-spacing:1px;">Kualitas Pengajar</h6>
-                    <h2 class="display-6 fw-black mb-4">Pengajar lulusan pesantren dan tersertifikasi</h2>
-                    <p class="text-muted fs-16 mb-4">Kami memastikan bahwa setiap guru yang mengajar di {{ config('app.name') }} memiliki kapabilitas dan standar mutu yang diakui oleh lembaga pendidikan nasional maupun yayasan metode baca Al-Quran ternama.</p>
+    <section class="py-20 bg-white border-t border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-12">
+                <div class="lg:col-span-5">
+                    <h6 class="font-bold uppercase tracking-wider" style="color:var(--premium-secondary);">Kualitas Pengajar</h6>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Pengajar lulusan pesantren dan tersertifikasi</h2>
+                    <p class="text-gray-500 text-lg mb-6">Kami memastikan bahwa setiap guru yang mengajar di {{ config('app.name') }} memiliki kapabilitas dan standar mutu yang diakui oleh lembaga pendidikan nasional maupun yayasan metode baca Al-Quran ternama.</p>
                 </div>
-                <div class="col-lg-7">
-                    <div class="row g-3">
+                <div class="lg:col-span-7">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         @foreach ([
-                            ['Iqro', 'Pelopor cara cepat membaca Al-Quran oleh KH. As\'ad Humam', 'ti-book-2'],
-                            ['BNSP', 'Lembaga resmi pemerintah untuk menjamin mutu dan kompetensi', 'ti-certificate'],
-                            ['Ummi Foundation', 'Pendidikan untuk peningkatan kualitas Guru Al-Qur\'an', 'ti-school'],
-                            ['Pondok Al Karomah', 'Fokus hafalan, tafsir dan pembelajaran Al-Qur\'an', 'ti-building-mosque']
+                            ['Iqro', 'Pelopor cara cepat membaca Al-Quran oleh KH. As\'ad Humam', 'fa-book-quran'],
+                            ['BNSP', 'Lembaga resmi pemerintah untuk menjamin mutu dan kompetensi', 'fa-certificate'],
+                            ['Ummi Foundation', 'Pendidikan untuk peningkatan kualitas Guru Al-Qur\'an', 'fa-school'],
+                            ['Pondok Al Karomah', 'Fokus hafalan, tafsir dan pembelajaran Al-Qur\'an', 'fa-mosque']
                         ] as [$title, $desc, $icon])
-                            <div class="col-md-6">
-                                <div class="p-4 rounded-4 border bg-light h-100" style="border-color: rgba(0,0,0,0.03)!important;">
-                                    <i class="ti {{ $icon }} fs-3 mb-3 d-block" style="color:var(--premium-primary)"></i>
-                                    <h5 class="fw-bold mb-2">{{ $title }}</h5>
-                                    <p class="text-muted fs-13 mb-0">{{ $desc }}</p>
-                                </div>
+                            <div class="p-6 rounded-2xl border border-gray-200 bg-gray-50 h-full hover:shadow-md transition-shadow">
+                                <i class="fa-solid {{ $icon }} text-3xl mb-4 block" style="color:var(--premium-primary)"></i>
+                                <h5 class="font-bold mb-2 text-lg">{{ $title }}</h5>
+                                <p class="text-gray-500 text-sm mb-0">{{ $desc }}</p>
                             </div>
                         @endforeach
                     </div>
@@ -413,11 +298,37 @@
         </div>
     </section>
 
+    <style>
+        .marquee-wrapper {
+            overflow: hidden;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            background: rgba(249, 250, 251, 0.5);
+            padding: 2rem 0;
+        }
+        .marquee-track {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+            animation: scroll 40s linear infinite;
+        }
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 1rem)); }
+        }
+    </style>
     {{-- ─── TESTIMONI MARQUEE ─────────────────────────────────────────────────── --}}
-    <section class="py-5 overflow-hidden" id="testimoni">
-        <div class="container-xl text-center mb-4">
-            <h6 class="fw-bold" style="color:var(--premium-secondary); text-transform:uppercase; letter-spacing:1px;">Ulasan Jujur</h6>
-            <h2 class="display-6 fw-black">Testimoni Murid {{ config('app.name') }}</h2>
+    <section class="py-20 overflow-hidden" id="testimoni">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
+            <h6 class="font-bold uppercase tracking-wider" style="color:var(--premium-secondary);">Ulasan Jujur</h6>
+            <h2 class="text-3xl md:text-4xl font-bold mt-3">Testimoni Murid {{ config('app.name') }}</h2>
         </div>
 
         <div class="marquee-wrapper">
@@ -433,19 +344,19 @@
                 @endphp
                 {{-- Double the array for seamless scrolling --}}
                 @foreach (array_merge($testis, $testis) as [$name, $title, $review])
-                    <div class="testi-card d-flex flex-column text-start">
-                        <div class="d-flex align-items-center gap-1 mb-3">
-                            @for ($i = 0; $i < 5; $i++) <i class="fa-solid fa-star text-warning fs-14"></i> @endfor
+                    <div class="w-[400px] bg-white rounded-2xl p-8 shadow-sm border border-gray-100 whitespace-normal flex flex-col text-left">
+                        <div class="flex items-center gap-1 mb-4">
+                            @for ($i = 0; $i < 5; $i++) <i class="fa-solid fa-star text-amber-400 text-sm"></i> @endfor
                         </div>
-                        <p class="fs-15 text-muted flex-grow-1 mb-4" style="line-height:1.6; font-style:italic;">{{ $review }}</p>
-                        <div class="d-flex align-items-center gap-3 mt-auto">
-                            <div class="rounded-circle d-flex align-items-center justify-content-center fw-bold text-white fs-16"
-                                style="width:48px;height:48px;background:var(--premium-primary);">
+                        <p class="text-[15px] text-gray-500 flex-grow mb-6 leading-relaxed italic">{{ $review }}</p>
+                        <div class="flex items-center gap-3 mt-auto">
+                            <div class="rounded-full flex items-center justify-center font-bold text-white text-base w-12 h-12"
+                                style="background:var(--premium-primary);">
                                 {{ mb_substr($name, 0, 1) }}
                             </div>
                             <div>
-                                <h6 class="fw-bold mb-0">{{ $name }}</h6>
-                                <p class="text-muted fs-12 mb-0">{{ $title }}</p>
+                                <h6 class="font-bold mb-0 text-gray-900">{{ $name }}</h6>
+                                <p class="text-gray-500 text-xs mb-0">{{ $title }}</p>
                             </div>
                         </div>
                     </div>
@@ -455,78 +366,80 @@
     </section>
 
     {{-- ─── FAQ ───────────────────────────────────────────────────────────── --}}
-    <section class="py-5" id="faq">
-        <div class="container-xl py-4 text-center">
-            <h6 class="fw-bold" style="color:var(--premium-secondary); text-transform:uppercase; letter-spacing:1px;">Tanya Jawab</h6>
-            <h2 class="display-6 fw-black mb-5">Pertanyaan Seputar {{ config('app.name') }}</h2>
+    <section class="py-20" id="faq">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h6 class="font-bold uppercase tracking-wider" style="color:var(--premium-secondary);">Tanya Jawab</h6>
+            <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-12">Pertanyaan Seputar {{ config('app.name') }}</h2>
             
-            <div class="row justify-content-center text-start reveal-up">
-                <div class="col-lg-8">
-                    <div class="accordion faq-accordion" id="faqAccordion">
-                        
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                                    Pakai metode apa saja disini ?
-                                </button>
-                            </h2>
-                            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted pt-0 px-4 pb-4">
+            <div class="max-w-3xl mx-auto text-left reveal-up">
+                <div class="hs-accordion-group">
+                    
+                    <div class="hs-accordion active bg-white border border-gray-200 mb-4 rounded-xl shadow-sm" id="faq1">
+                        <button class="hs-accordion-toggle hs-accordion-active:text-primary-600 hs-accordion-active:bg-primary-50 inline-flex items-center justify-between w-full font-bold text-start text-gray-800 py-5 px-6 hover:text-primary-600 rounded-xl transition-colors" aria-controls="faq1-content">
+                            Pakai metode apa saja disini ?
+                            <span class="hs-accordion-active:hidden block"><i class="fa-solid fa-plus"></i></span>
+                            <span class="hs-accordion-active:block hidden"><i class="fa-solid fa-minus"></i></span>
+                        </button>
+                        <div id="faq1-content" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300" aria-labelledby="faq1">
+                            <div class="pb-5 px-6">
+                                <p class="text-gray-600">
                                     Kami menggunakan beragam metode untuk pembelajaran Al-Quran: Ummi, Tilawati, Qiroati, Yanbua, dan Iqra. Anda bebas memilih yang paling nyaman.
-                                </div>
+                                </p>
                             </div>
                         </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                                    Perbedaan dari metode-metode yang ada apa ?
-                                </button>
-                            </h2>
-                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted pt-0 px-4 pb-4">
-                                    <p class="mb-2"><strong>1. Ummi:</strong> Menekankan bacaan tartil dengan tajwid sejak awal & standar jelas.</p>
-                                    <p class="mb-2"><strong>2. Tilawati:</strong> Menggunakan pola bacaan terstruktur (nada) agar panjang-pendek akurat.</p>
-                                    <p class="mb-2"><strong>3. Qiroati:</strong> Sangat fokus pada ketepatan bacaan; tidak naik tingkat sebelum benar sempurna.</p>
-                                    <p class="mb-2"><strong>4. Yanbu’a:</strong> Selain membaca, murid dilatih menulis Arab & makhraj huruf (khas Kudus).</p>
-                                    <p class="mb-0"><strong>5. Iqra:</strong> Paling umum, belajar bertahap dari pengenalan huruf tunggal hingga lancar.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                                    Durasi per pertemuan berapa lama?
-                                </button>
-                            </h2>
-                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted pt-0 px-4 pb-4">
-                                    Durasi belajarnya 60 menit per-sesi. Sudah mencakup penjelasan materi, latihan baca, koreksi bacaan dan tanya jawab dengan Ustadz/Ustadzah.
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
+
+                    <div class="hs-accordion bg-white border border-gray-200 mb-4 rounded-xl shadow-sm" id="faq2">
+                        <button class="hs-accordion-toggle hs-accordion-active:text-primary-600 hs-accordion-active:bg-primary-50 inline-flex items-center justify-between w-full font-bold text-start text-gray-800 py-5 px-6 hover:text-primary-600 rounded-xl transition-colors" aria-controls="faq2-content">
+                            Perbedaan dari metode-metode yang ada apa ?
+                            <span class="hs-accordion-active:hidden block"><i class="fa-solid fa-plus"></i></span>
+                            <span class="hs-accordion-active:block hidden"><i class="fa-solid fa-minus"></i></span>
+                        </button>
+                        <div id="faq2-content" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="faq2">
+                            <div class="pb-5 px-6 text-gray-600 space-y-2">
+                                <p><strong>1. Ummi:</strong> Menekankan bacaan tartil dengan tajwid sejak awal & standar jelas.</p>
+                                <p><strong>2. Tilawati:</strong> Menggunakan pola bacaan terstruktur (nada) agar panjang-pendek akurat.</p>
+                                <p><strong>3. Qiroati:</strong> Sangat fokus pada ketepatan bacaan; tidak naik tingkat sebelum benar sempurna.</p>
+                                <p><strong>4. Yanbu’a:</strong> Selain membaca, murid dilatih menulis Arab & makhraj huruf (khas Kudus).</p>
+                                <p><strong>5. Iqra:</strong> Paling umum, belajar bertahap dari pengenalan huruf tunggal hingga lancar.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hs-accordion bg-white border border-gray-200 mb-4 rounded-xl shadow-sm" id="faq3">
+                        <button class="hs-accordion-toggle hs-accordion-active:text-primary-600 hs-accordion-active:bg-primary-50 inline-flex items-center justify-between w-full font-bold text-start text-gray-800 py-5 px-6 hover:text-primary-600 rounded-xl transition-colors" aria-controls="faq3-content">
+                            Durasi per pertemuan berapa lama?
+                            <span class="hs-accordion-active:hidden block"><i class="fa-solid fa-plus"></i></span>
+                            <span class="hs-accordion-active:block hidden"><i class="fa-solid fa-minus"></i></span>
+                        </button>
+                        <div id="faq3-content" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="faq3">
+                            <div class="pb-5 px-6">
+                                <p class="text-gray-600">
+                                    Durasi belajarnya 60 menit per-sesi. Sudah mencakup penjelasan materi, latihan baca, koreksi bacaan dan tanya jawab dengan Ustadz/Ustadzah.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
 
     {{-- ─── CTA FOOTER ────────────────────────────────────────────────────────── --}}
-    <section class="py-5 mb-4">
-        <div class="container-xl">
-            <div class="cta-banner text-center text-white reveal-scale">
-                <div class="cta-circle" style="width:400px; height:400px; top:-200px; left:-100px;"></div>
-                <div class="cta-circle" style="width:300px; height:300px; bottom:-150px; right:-50px;"></div>
+    <section class="py-20 mb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-primary-800 to-primary-600 rounded-[32px] px-8 py-10 md:py-12 relative overflow-hidden text-center text-white ">
+                <div class="cta-circle" style="background-color: var(--primary-500); border-radius: 50%; position: absolute; width:400px; height:400px; top:-200px; left:-100px;"></div>
+                <div class="cta-circle" style="background-color: var(--primary-500); border-radius: 50%; position: absolute; width:300px; height:300px; bottom:-150px; right:-50px;"></div>
                 
-                <div class="position-relative z-1">
-                    <h2 class="display-4 fw-black mb-3 text-white">Mulai Langkah Berkahmu</h2>
-                    <p class="fs-18 mb-5 mx-auto text-white-50" style="max-width: 600px;">
+                <div class="relative z-10">
+                    <p class="text-4xl md:text-5xl font-bold text-white mb-6 ">Mulai Langkah Berkahmu</p>
+                    <p class="text-lg mb-8 mx-auto text-white/80 max-w-2xl">
                         Jangan tunda lagi. Mari belajar mengaji dan memahami Al-Quran bersama {{ config('app.name') }} sekarang juga!
                     </p>
-                    <a href="https://wa.me/628123456789" class="btn btn-light text-success btn-lg px-5 py-3 fw-bold shadow-lg d-inline-flex align-items-center justify-content-center gap-2" style="border-radius:100px; font-size:1.1rem; transition: background-color 0.2s;">
-                        <i class="fa-brands fa-whatsapp fs-4 shrink-0 size-5"></i> Konsultasi & Daftar Sekarang
+                    <a href="https://wa.me/628123456789" class="py-4 px-8 inline-flex justify-center items-center gap-x-3 text-lg font-bold rounded-full border border-transparent bg-white text-green-600 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none shadow-lg transition-all">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i> Konsultasi & Daftar Sekarang
                     </a>
                 </div>
             </div>

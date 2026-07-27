@@ -12,11 +12,10 @@
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/vendor.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
     <!-- FontAwesome 7.2.0 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kenndeclouv/font-awesome@main/v7.2.0/css/all.css" />
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
         :root {
@@ -118,84 +117,7 @@
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .landing-nav .btn-primary {
-            background-color: var(--premium-primary);
-            border: none;
-            border-radius: 100px;
-            padding: 0.5rem 1.5rem;
-            font-weight: 600;
-        }
 
-        .landing-nav .nav-link {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--premium-text);
-            padding: 0.45rem 1rem;
-            border-radius: 100px;
-            transition: background 0.2s;
-            text-decoration: none;
-        }
-
-        .landing-nav .nav-link:hover {
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        /* ─── Magnetic Button Effect ─── */
-        .btn-premium {
-            background: var(--premium-primary);
-            color: white;
-            border: none;
-            border-radius: 100px;
-            padding: 1rem 2.5rem;
-            font-weight: 700;
-            font-size: 1.05rem;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-            box-shadow: 0 10px 20px rgba(6, 78, 59, 0.2);
-            position: relative;
-            overflow: hidden;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .btn-premium::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 255, 255, 0.15), transparent 60%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .btn-premium:hover::after {
-            opacity: 1;
-        }
-
-        .btn-premium:hover {
-            box-shadow: 0 18px 28px rgba(6, 78, 59, 0.28);
-            color: white;
-        }
-
-        .btn-premium-outline {
-            background: transparent;
-            color: var(--premium-primary);
-            border: 2px solid rgba(6, 78, 59, 0.3);
-            border-radius: 100px;
-            padding: 0.9rem 2.5rem;
-            font-weight: 700;
-            font-size: 1.05rem;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-premium-outline:hover {
-            background: var(--premium-primary);
-            border-color: var(--premium-primary);
-            color: white;
-        }
 
         /* ─── GSAP Reveal Base States ─── */
         .reveal-up {
@@ -288,19 +210,20 @@
     {{-- <x-preloader /> --}}
 
     <!-- Navbar: OUTSIDE smooth-wrapper so it stays fixed independently of GSAP -->
-    <nav class="landing-nav d-flex align-items-center justify-content-between" id="landingNav">
-        <x-logo class="d-flex align-items-center gap-2" style="color:var(--premium-primary)!important;" />
+    <nav class="landing-nav flex items-center justify-between" id="landingNav">
+        <div class="text-primary-600">
+            <x-logo class="flex items-center gap-2" />
+        </div>
 
-        <div class="d-none d-md-flex align-items-center gap-1">
+        <div class="hidden md:flex items-center gap-1">
             <a href="#kenapa" class="nav-link">Keunggulan</a>
             <a href="#biaya" class="nav-link">Paket</a>
             <a href="#testimoni" class="nav-link">Testimoni</a>
             <a href="#faq" class="nav-link">FAQ</a>
             @auth
-                <a href="{{ route('dashboard') }}" class="btn btn-primary btn-sm">Dashboard</a>
+                <a href="{{ route('dashboard') }}" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">Dashboard</a>
             @else
-                <a href="{{ route('login') }}" class="btn btn-outline-secondary btn-sm"
-                    style="border-radius:100px; font-weight:600;">Log In</a>
+                <a href="{{ route('login') }}" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">Log In</a>
             @endauth
         </div>
     </nav>
@@ -312,24 +235,66 @@
                 {{ $slot }}
             </div>
 
-            <footer class="landing-footer">
-                <div class="container-xl">
-                    <div class="row align-items-center">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            <x-logo class="mb-2" />
-                            <p class="text-muted fs-14 mb-0">© {{ date('Y') }} {{ config('app.name') }}. Belajar
-                                mengaji lebih mudah dan terpercaya.</p>
+            <footer class="bg-gray-50 border-t border-gray-200 pt-16 pb-8">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-16">
+                        <div class="lg:col-span-2">
+                            <x-logo class="mb-6 inline-flex" />
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6 max-w-sm">
+                                Platform belajar mengaji online dan offline terpercaya. Membantu Anda dan anak-anak lancar membaca Al-Quran dengan guru bersertifikat.
+                            </p>
+                            <div class="flex gap-4">
+                                <a href="#" class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400 hover:text-primary-600 hover:border-primary-600 transition-colors">
+                                    <i class="fa-brands fa-instagram text-lg"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400 hover:text-primary-600 hover:border-primary-600 transition-colors">
+                                    <i class="fa-brands fa-facebook-f text-lg"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400 hover:text-primary-600 hover:border-primary-600 transition-colors">
+                                    <i class="fa-brands fa-youtube text-lg"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-md-6 text-center text-md-end">
+
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-6">Program</h4>
+                            <ul class="space-y-4">
+                                <li><a href="#" class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Ngaji Private</a></li>
+                                <li><a href="#" class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Ngaji Anak</a></li>
+                                <li><a href="#" class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Tahsin Dewasa</a></li>
+                                <li><a href="#" class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Bahasa Arab</a></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-6">Perusahaan</h4>
+                            <ul class="space-y-4">
+                                <li><a href="#" class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Tentang Kami</a></li>
+                                <li><a href="#" class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Tim Pengajar</a></li>
+                                <li><a href="#" class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Karir</a></li>
+                                <li><a href="#" class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Kontak</a></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-gray-900 mb-6">Legal</h4>
+                            <ul class="space-y-4">
+                                <li><a href="#" class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Syarat & Ketentuan</a></li>
+                                <li><a href="#" class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Kebijakan Privasi</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
+                        <p class="text-gray-400 text-sm mb-0">© {{ date('Y') }} {{ config('app.name') }}. Hak cipta dilindungi.</p>
+                        <div class="flex gap-4">
                             @auth
-                                <a href="{{ route('dashboard') }}" class="btn btn-primary btn-sm"
-                                    style="border-radius:100px;">
-                                    <i class="fa-solid fa-gauge me-1 shrink-0 size-5"></i> Ke Dashboard
+                                <a href="{{ route('dashboard') }}" class="py-2 px-6 inline-flex items-center gap-x-2 text-sm font-bold rounded-full border border-transparent bg-primary-600 text-white hover:bg-primary-700 transition-colors">
+                                    <i class="fa-solid fa-grid-2"></i> Ke Dashboard
                                 </a>
                             @else
-                                <a href="{{ route('login') }}" class="btn btn-light btn-sm"
-                                    style="border-radius:100px; font-weight:600; border:1px solid #e2e8f0;">
-                                    <i class="fa-solid fa-right-to-bracket me-1 shrink-0 size-5"></i> Masuk
+                                <a href="{{ route('login') }}" class="py-2 px-6 inline-flex items-center gap-x-2 text-sm font-bold rounded-full border border-gray-200 bg-white text-gray-800 hover:bg-gray-50 transition-colors shadow-sm">
+                                    <i class="fa-solid fa-right-to-bracket"></i> Masuk App
                                 </a>
                             @endauth
                         </div>
@@ -339,8 +304,7 @@
 
 
             <x-alert></x-alert>
-            <!-- We only need vendor.min.js for Bootstrap plugins if any. Removed app.js to prevent dashboard errors -->
-            <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
+            <!-- Scripts -->
 
 
 
