@@ -31,11 +31,11 @@
 
     <!-- Content -->
     <div class="w-full pt-4 px-4 sm:px-6 md:px-8 lg:ps-72 hs-overlay-minified:lg:ps-28 transition-all duration-300">
-        
+
         {{-- Page Header --}}
         <header class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <h1 class="text-2xl font-bold text-gray-900">{{ $title ?? 'Dashboard' }}</h1>
-            
+
             @isset($actions)
                 <div class="flex items-center gap-2">
                     {{ $actions }}
@@ -51,7 +51,7 @@
         <!-- Footer -->
         <footer class="mt-12 py-6 border-t border-gray-200 text-end">
             <p class="text-sm text-gray-500">
-                © {{ date('Y') }} {{ config('app.name') }} - By 
+                © {{ date('Y') }} {{ config('app.name') }} - By
                 <span class="font-semibold uppercase">{{ config('app.owner') }}</span>
             </p>
         </footer>
