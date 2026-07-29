@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <!-- Main Content (Riwayat Paket) -->
+        <!-- Main Content (Riwayat Kelas) -->
         <div class="lg:col-span-2">
             <div class="flex flex-col">
                 <div class="-m-1.5 overflow-x-auto">
@@ -52,7 +52,7 @@
                             
                             <!-- Header -->
                             <div class="px-6 py-4 border-b border-gray-200">
-                                <h2 class="text-lg font-semibold text-gray-800">Riwayat Paket Belajar</h2>
+                                <h2 class="text-lg font-semibold text-gray-800">Riwayat Kelas</h2>
                             </div>
                             
                             <!-- Table -->
@@ -63,7 +63,7 @@
                                         <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">Jadwal (Hari & Jam)</th>
                                         <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">Durasi</th>
                                         <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Mulai</th>
-                                        <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">Status Paket</th>
+                                        <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">Status Kelas</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200">
@@ -94,7 +94,7 @@
                                     @empty
                                         <tr>
                                             <td colspan="5" class="px-6 py-8 text-center text-gray-500">
-                                                Santri ini belum memiliki paket belajar.
+                                                Santri ini belum memiliki kelas.
                                             </td>
                                         </tr>
                                     @endforelse

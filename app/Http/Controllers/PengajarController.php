@@ -35,10 +35,6 @@ class PengajarController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
-            'jenis_kelamin' => 'required|in:L,P',
-            'alamat' => 'nullable|string',
-            'no_hp' => 'nullable|string|max:20',
-            'pendidikan_terakhir' => 'nullable|string|max:255',
             'additional_data' => 'nullable|array',
         ];
 
@@ -56,14 +52,16 @@ class PengajarController extends Controller
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => bcrypt($validated['password']),
-            'jenis_kelamin' => $validated['jenis_kelamin'],
-            'alamat' => $validated['alamat'] ?? null,
-            'no_hp' => $validated['no_hp'] ?? null,
-            'pendidikan_terakhir' => $validated['pendidikan_terakhir'] ?? null,
-            'additional_data' => $validated['additional_data'] ?? [],
         ]);
 
         $user->assignRole('pengajar');
+
+        \App\Models\Pengajar::create([
+            'user_id' => $user->id,
+            'nama' => $user->name,
+            'status' => 'aktif',
+            'additional_data' => $validated['additional_data'] ?? [],
+        ]);
 
         return redirect()->route('pengajars.index')->with('success', 'Data pengajar berhasil ditambahkan.');
     }
@@ -81,12 +79,7 @@ class PengajarController extends Controller
         $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $pengajar->id,
-            'jenis_kelamin' => 'required|in:L,P',
-            'alamat' => 'nullable|string',
-            'no_hp' => 'nullable|string|max:20',
-            'pendidikan_terakhir' => 'nullable|string|max:255',
             'status' => 'required|in:aktif,nonaktif',
-            'admin_notes' => 'nullable|string',
             'additional_data' => 'nullable|array',
         ];
 
@@ -107,19 +100,28 @@ class PengajarController extends Controller
 
         $pengajar->name = $validated['name'];
         $pengajar->email = $validated['email'];
-        $pengajar->jenis_kelamin = $validated['jenis_kelamin'];
-        $pengajar->alamat = $validated['alamat'] ?? null;
-        $pengajar->no_hp = $validated['no_hp'] ?? null;
-        $pengajar->pendidikan_terakhir = $validated['pendidikan_terakhir'] ?? null;
-        $pengajar->status = $validated['status'];
-        $pengajar->admin_notes = $validated['admin_notes'] ?? null;
-        $pengajar->additional_data = $validated['additional_data'] ?? [];
         
         if ($request->filled('password')) {
             $pengajar->password = bcrypt($validated['password']);
         }
         
         $pengajar->save();
+
+        if ($pengajar->pengajar) {
+            $pengajar->pengajar->update([
+                'nama' => $validated['name'],
+                'status' => $validated['status'],
+                'additional_data' => $validated['additional_data'] ?? [],
+            ]);
+        } else {
+            \App\Models\Pengajar::create([
+                'user_id' => $pengajar->id,
+                'nama' => $validated['name'],
+                'status' => $validated['status'],
+                'additional_data' => $validated['additional_data'] ?? [],
+            ]);
+        }
+
 
         return redirect()->route('pengajars.index')->with('success', 'Data pengajar berhasil diperbarui.');
     }

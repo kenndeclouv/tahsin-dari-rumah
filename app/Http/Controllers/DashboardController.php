@@ -19,7 +19,7 @@ class DashboardController extends Controller
 
         if ($user->hasRole('admin') || $user->hasRole('super-admin')) {
             // Admin stats
-            $pengajarAktif = User::role('pengajar')->where('status', 'aktif')->count();
+            $pengajarAktif = \App\Models\Pengajar::where('status', 'aktif')->count();
             $santriAktif = Santri::where('status', 'aktif')->count();
             
             // Jadwal Mengajar Hari Ini & Presensi Hari Ini
@@ -51,15 +51,17 @@ class DashboardController extends Controller
         }
 
         // Pengajar stats
-        $santriDiampu = PaketBelajar::where('pengajar_id', $user->id)
+        $pengajarId = $user->pengajar?->id;
+
+        $santriDiampu = $pengajarId ? PaketBelajar::where('pengajar_id', $pengajarId)
             ->whereIn('status', ['berjalan', 'menunggu_evaluasi'])
             ->distinct('santri_id')
-            ->count('santri_id');
+            ->count('santri_id') : 0;
 
-        $jadwalHariIniQuery = PaketBelajar::where('pengajar_id', $user->id)
+        $jadwalHariIniQuery = PaketBelajar::where('pengajar_id', $pengajarId)
             ->where('hari_jam', 'like', "%{$hariIni}%")
             ->where('status', 'berjalan');
-        $jadwalHariIni = $jadwalHariIniQuery->count();
+        $jadwalHariIni = $pengajarId ? $jadwalHariIniQuery->count() : 0;
 
         // Presensi belum diisi (kelas hari ini yang belum dipresensi)
         $paketIdsHariIni = $jadwalHariIniQuery->pluck('id');
@@ -68,17 +70,17 @@ class DashboardController extends Controller
             ->pluck('paket_belajar_id')->toArray();
         $presensiBelumDiisi = $jadwalHariIni - count($presensiHariIni);
 
-        $evaluasiBelumDibuat = PaketBelajar::where('pengajar_id', $user->id)
-            ->where('status', 'menunggu_evaluasi')->count();
+        $evaluasiBelumDibuat = $pengajarId ? PaketBelajar::where('pengajar_id', $pengajarId)
+            ->where('status', 'menunggu_evaluasi')->count() : 0;
 
-        $mukafaahDiproses = PaketBelajar::where('pengajar_id', $user->id)
-            ->where('payment_status', 'lunas')->count();
+        $mukafaahDiproses = $pengajarId ? PaketBelajar::where('pengajar_id', $pengajarId)
+            ->where('payment_status', 'lunas')->count() : 0;
             
         // Daftar Santri yang diajar beserta progress
-        $daftarPaketAktif = PaketBelajar::with('santri')->withCount('presensis')
-            ->where('pengajar_id', $user->id)
+        $daftarPaketAktif = $pengajarId ? PaketBelajar::with('santri')->withCount('presensis')
+            ->where('pengajar_id', $pengajarId)
             ->whereIn('status', ['berjalan', 'menunggu_evaluasi'])
-            ->get();
+            ->get() : collect();
 
         return view('dashboard', compact(
             'santriDiampu', 

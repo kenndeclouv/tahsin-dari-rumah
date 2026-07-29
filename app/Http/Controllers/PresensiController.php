@@ -18,7 +18,7 @@ class PresensiController extends Controller
         $paket = PaketBelajar::with('santri')->findOrFail($paketId);
         
         // Cek authorization
-        if (Auth::id() !== $paket->pengajar_id && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('super-admin')) {
+        if (Auth::user()->pengajar?->id !== $paket->pengajar_id && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('super-admin')) {
             abort(403);
         }
 
@@ -35,7 +35,7 @@ class PresensiController extends Controller
     {
         $paket = PaketBelajar::findOrFail($paketId);
         
-        if (Auth::id() !== $paket->pengajar_id && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('super-admin')) {
+        if (Auth::user()->pengajar?->id !== $paket->pengajar_id && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('super-admin')) {
             abort(403);
         }
 

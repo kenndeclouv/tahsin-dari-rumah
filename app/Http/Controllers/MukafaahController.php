@@ -17,10 +17,10 @@ class MukafaahController extends Controller
         // Ambil semua pengajar yang punya paket berstatus selesai
         $pengajars = \App\Models\User::role('pengajar')
             ->whereHas('paketBelajars', function ($query) {
-                $query->where('status', 'selesai');
+                $query->where('paket_belajars.status', 'selesai');
             })
             ->with(['paketBelajars' => function ($query) {
-                $query->where('status', 'selesai')->with(['santri', 'evaluasi', 'fee']);
+                $query->where('paket_belajars.status', 'selesai')->with(['santri', 'evaluasi', 'fee']);
             }])
             ->get();
             

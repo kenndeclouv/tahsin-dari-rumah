@@ -200,7 +200,8 @@
         /* ─── GSAP MOBILE ISLAND MENU ─── */
         .island {
             position: fixed;
-            top: 1.25rem; left: 50%;
+            top: 1.25rem;
+            left: 50%;
             transform: translateX(-50%);
             z-index: 1100;
             display: flex;
@@ -209,8 +210,8 @@
             padding: 0.5rem 1.25rem;
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(0,0,0,0.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             border-radius: 99px;
             white-space: nowrap;
             width: 90vw;
@@ -234,68 +235,96 @@
         }
 
         .menu-btn {
-            width: 34px; height: 34px;
-            margin: 0; padding: 0;
+            width: 34px;
+            height: 34px;
+            margin: 0;
+            padding: 0;
             background: transparent;
             border-radius: 50%;
-            border: none; cursor: pointer;
-            display: flex; align-items: center; justify-content: flex-end;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
             flex-shrink: 0;
         }
 
         .button-cont {
-            width: 34px; height: 34px;
-            display:flex;align-items:center;justify-content:center;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .menu-btn:focus-visible { outline: 2px solid var(--premium-primary); outline-offset: 3px; }
-        .menu-btn svg { overflow: visible; display: block; }
+        .menu-btn:focus-visible {
+            outline: 2px solid var(--premium-primary);
+            outline-offset: 3px;
+        }
+
+        .menu-btn svg {
+            overflow: visible;
+            display: block;
+        }
 
         .menu-overlay {
-            position: fixed; inset: 0;
+            position: fixed;
+            inset: 0;
             z-index: 1050;
             pointer-events: none;
         }
+
         .menu-backdrop {
-            position: absolute; inset: 0;
-            background: rgba(255,255,255,0.85);
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             opacity: 0;
         }
 
         .menu-panel {
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             position: absolute;
             visibility: hidden;
-            top: 4.5rem; 
+            top: 4.5rem;
             left: 50%;
             background: white;
             margin-top: 10px;
             border-radius: 24px;
             padding: 0.5rem;
-            width: 90vw; 
+            width: 90vw;
             max-width: 1200px;
             transform: translateX(-50%);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
         }
 
         .menu-link {
-            display: flex; align-items: center; justify-content: space-between;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             padding: 1rem 1.25rem;
             border-radius: 16px;
             text-decoration: none;
             color: var(--premium-text);
-            font-weight: 700; font-size: 1.1rem; line-height: 1;
+            font-weight: 700;
+            font-size: 1.1rem;
+            line-height: 1;
         }
 
-        .menu-link:hover { color: var(--premium-primary); background: rgba(16,185,129,0.05); }
+        .menu-link:hover {
+            color: var(--premium-primary);
+            background: rgba(16, 185, 129, 0.05);
+        }
 
         .link-num {
             font-size: 0.8rem;
             color: #9CA3AF;
         }
-        .menu-link:hover .link-num { color: var(--premium-primary); }
+
+        .menu-link:hover .link-num {
+            color: var(--premium-primary);
+        }
     </style>
 
     {{ $head ?? '' }}
@@ -315,12 +344,17 @@
             <div class="island-logo--cont">
                 <div class="island-logo"><x-logo class="scale-[0.8] origin-left" /></div>
             </div>
-            <button class="menu-btn" id="menuToggle" aria-expanded="false" aria-controls="menu-overlay" aria-label="Open navigation menu">
+            <button class="menu-btn" id="menuToggle" aria-expanded="false" aria-controls="menu-overlay"
+                aria-label="Open navigation menu">
                 <div class="button-cont">
-                    <svg id="menuIcon" width="22" height="22" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                        <line class="bar bar-top" x1="2" y1="5" x2="14" y2="5" stroke="#1f2937" stroke-width="1.8" stroke-linecap="round" />
-                        <line class="bar bar-mid" x1="2" y1="8" x2="14" y2="8" stroke="#1f2937" stroke-width="1.8" stroke-linecap="round" />
-                        <line class="bar bar-bot" x1="2" y1="11" x2="14" y2="11" stroke="#1f2937" stroke-width="1.8" stroke-linecap="round" />
+                    <svg id="menuIcon" width="22" height="22" viewBox="0 0 16 16" fill="none"
+                        aria-hidden="true">
+                        <line class="bar bar-top" x1="2" y1="5" x2="14" y2="5"
+                            stroke="#1f2937" stroke-width="1.8" stroke-linecap="round" />
+                        <line class="bar bar-mid" x1="2" y1="8" x2="14" y2="8"
+                            stroke="#1f2937" stroke-width="1.8" stroke-linecap="round" />
+                        <line class="bar bar-bot" x1="2" y1="11" x2="14" y2="11"
+                            stroke="#1f2937" stroke-width="1.8" stroke-linecap="round" />
                     </svg>
                 </div>
             </button>
@@ -330,14 +364,22 @@
             <div class="menu-backdrop"></div>
             <div class="menu-panel">
                 <nav>
-                    <a class="menu-link menu-link-item" href="#kenapa" tabindex="-1"><span>Keunggulan</span><span class="link-num">01</span></a>
-                    <a class="menu-link menu-link-item" href="#biaya" tabindex="-1"><span>Paket Belajar</span><span class="link-num">02</span></a>
-                    <a class="menu-link menu-link-item" href="#testimoni" tabindex="-1"><span>Testimoni</span><span class="link-num">03</span></a>
-                    <a class="menu-link menu-link-item" href="#faq" tabindex="-1"><span>FAQ</span><span class="link-num">04</span></a>
+                    <a class="menu-link menu-link-item" href="#kenapa" tabindex="-1"><span>Keunggulan</span><span
+                            class="link-num">01</span></a>
+                    <a class="menu-link menu-link-item" href="#biaya" tabindex="-1"><span>Paket Belajar</span><span
+                            class="link-num">02</span></a>
+                    <a class="menu-link menu-link-item" href="#testimoni" tabindex="-1"><span>Testimoni</span><span
+                            class="link-num">03</span></a>
+                    <a class="menu-link menu-link-item" href="#faq" tabindex="-1"><span>FAQ</span><span
+                            class="link-num">04</span></a>
                     @auth
-                        <a class="menu-link menu-link-item !text-primary-600" href="{{ route('dashboard') }}" tabindex="-1"><span>Dashboard</span><span class="link-num"><i class="fa-solid fa-grid-2"></i></span></a>
+                        <a class="menu-link menu-link-item !text-primary-600" href="{{ route('dashboard') }}"
+                            tabindex="-1"><span>Dashboard</span><span class="link-num"><i
+                                    class="fa-solid fa-grid-2"></i></span></a>
                     @else
-                        <a class="menu-link menu-link-item !text-primary-600" href="{{ route('login') }}" tabindex="-1"><span>Log In App</span><span class="link-num"><i class="fa-solid fa-right-to-bracket"></i></span></a>
+                        <a class="menu-link menu-link-item !text-primary-600" href="{{ route('login') }}"
+                            tabindex="-1"><span>Log In App</span><span class="link-num"><i
+                                    class="fa-solid fa-right-to-bracket"></i></span></a>
                     @endauth
                 </nav>
             </div>
@@ -357,16 +399,20 @@
                         <div class="lg:col-span-2">
                             <x-logo class="mb-6 inline-flex" />
                             <p class="text-gray-500 text-sm leading-relaxed mb-6 max-w-sm">
-                                Platform belajar mengaji online dan offline terpercaya. Membantu Anda dan anak-anak lancar membaca Al-Quran dengan guru bersertifikat.
+                                Platform belajar mengaji online dan offline terpercaya. Membantu Anda dan anak-anak
+                                lancar membaca Al-Quran dengan guru bersertifikat.
                             </p>
                             <div class="flex gap-4">
-                                <a href="#" class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400 hover:text-primary-600 hover:border-primary-600 transition-colors">
+                                <a href="#"
+                                    class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400 hover:text-primary-600 hover:border-primary-600 transition-colors">
                                     <i class="fa-brands fa-instagram text-lg"></i>
                                 </a>
-                                <a href="#" class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400 hover:text-primary-600 hover:border-primary-600 transition-colors">
+                                <a href="#"
+                                    class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400 hover:text-primary-600 hover:border-primary-600 transition-colors">
                                     <i class="fa-brands fa-facebook-f text-lg"></i>
                                 </a>
-                                <a href="#" class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400 hover:text-primary-600 hover:border-primary-600 transition-colors">
+                                <a href="#"
+                                    class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400 hover:text-primary-600 hover:border-primary-600 transition-colors">
                                     <i class="fa-brands fa-youtube text-lg"></i>
                                 </a>
                             </div>
@@ -375,10 +421,18 @@
                         <div>
                             <h4 class="font-bold text-gray-900 mb-6">Program</h4>
                             <ul class="space-y-4">
-                                <li><a href="#kenapa" class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Keunggulan</a></li>
-                                <li><a href="#biaya" class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Paket Belajar</a></li>
-                                <li><a href="#testimoni" class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Testimoni</a></li>
-                                <li><a href="#faq" class="text-gray-500 hover:text-primary-600 text-sm transition-colors">FAQ</a></li>
+                                <li><a href="#kenapa"
+                                        class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Keunggulan</a>
+                                </li>
+                                <li><a href="#biaya"
+                                        class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Paket
+                                        Belajar</a></li>
+                                <li><a href="#testimoni"
+                                        class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Testimoni</a>
+                                </li>
+                                <li><a href="#faq"
+                                        class="text-gray-500 hover:text-primary-600 text-sm transition-colors">FAQ</a>
+                                </li>
                             </ul>
                         </div>
 
@@ -395,21 +449,29 @@
                         <div>
                             <h4 class="font-bold text-gray-900 mb-6">Legal</h4>
                             <ul class="space-y-4">
-                                <li><a href="{{ route('syarat-ketentuan') }}" class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Syarat & Ketentuan</a></li>
-                                <li><a href="{{ route('kebijakan-privasi') }}" class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Kebijakan Privasi</a></li>
+                                <li><a href="{{ route('syarat-ketentuan') }}"
+                                        class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Syarat &
+                                        Ketentuan</a></li>
+                                <li><a href="{{ route('kebijakan-privasi') }}"
+                                        class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Kebijakan
+                                        Privasi</a></li>
                             </ul>
                         </div>
                     </div>
 
-                    <div class="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
-                        <p class="text-gray-400 text-sm mb-0">© {{ date('Y') }} {{ config('app.name') }}. Hak cipta dilindungi.</p>
+                    <div
+                        class="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
+                        <p class="text-gray-400 text-sm mb-0">© {{ date('Y') }} {{ config('app.name') }}. Hak cipta
+                            dilindungi.</p>
                         <div class="flex gap-4">
                             @auth
-                                <a href="{{ route('dashboard') }}" class="py-2 px-6 inline-flex items-center gap-x-2 text-sm font-bold rounded-full border border-transparent bg-primary-600 text-white hover:bg-primary-700 transition-colors">
+                                <a href="{{ route('dashboard') }}"
+                                    class="py-2 px-6 inline-flex items-center gap-x-2 text-sm font-bold rounded-full border border-transparent bg-primary-600 text-white hover:bg-primary-700 transition-colors">
                                     <i class="fa-solid fa-grid-2"></i> Ke Dashboard
                                 </a>
                             @else
-                                <a href="{{ route('login') }}" class="py-2 px-6 inline-flex items-center gap-x-2 text-sm font-bold rounded-full border border-gray-200 bg-white text-gray-800 hover:bg-gray-50 transition-colors shadow-sm">
+                                <a href="{{ route('login') }}"
+                                    class="py-2 px-6 inline-flex items-center gap-x-2 text-sm font-bold rounded-full border border-gray-200 bg-white text-gray-800 hover:bg-gray-50 transition-colors shadow-sm">
                                     <i class="fa-solid fa-right-to-bracket"></i> Masuk App
                                 </a>
                             @endauth
@@ -419,7 +481,7 @@
             </footer>
 
 
-            <x-alert></x-alert>
+            <x-toast></x-toast>
             <!-- Scripts -->
 
 
@@ -472,7 +534,7 @@
 
                     // Smooth scroll anchor links to avoid conflict with ScrollSmoother
                     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                        anchor.addEventListener('click', function (e) {
+                        anchor.addEventListener('click', function(e) {
                             const targetId = this.getAttribute('href');
                             if (targetId && targetId !== '#' && document.querySelector(targetId)) {
                                 e.preventDefault();
@@ -484,7 +546,8 @@
                     });
 
                     // Fallback if preloader is commented out or missing
-                    if (!document.getElementById('system-preloader') && typeof window.triggerHeroAnimations === 'function') {
+                    if (!document.getElementById('system-preloader') && typeof window.triggerHeroAnimations ===
+                        'function') {
                         setTimeout(() => {
                             window.triggerHeroAnimations();
                         }, 100);
@@ -610,15 +673,33 @@
                 document.addEventListener('DOMContentLoaded', () => {
                     const cursorDot = document.querySelector('.cursor-dot');
                     const cursorRing = document.querySelector('.cursor-ring');
-                    
-                    if(cursorDot && cursorRing) {
-                        gsap.set(cursorDot, { xPercent: -50, yPercent: -50 });
-                        gsap.set(cursorRing, { xPercent: -50, yPercent: -50 });
 
-                        let xTo = gsap.quickTo(cursorDot, "x", {duration: 0.1, ease: "power3"}),
-                            yTo = gsap.quickTo(cursorDot, "y", {duration: 0.1, ease: "power3"}),
-                            xToRing = gsap.quickTo(cursorRing, "x", {duration: 0.3, ease: "power3"}),
-                            yToRing = gsap.quickTo(cursorRing, "y", {duration: 0.3, ease: "power3"});
+                    if (cursorDot && cursorRing) {
+                        gsap.set(cursorDot, {
+                            xPercent: -50,
+                            yPercent: -50
+                        });
+                        gsap.set(cursorRing, {
+                            xPercent: -50,
+                            yPercent: -50
+                        });
+
+                        let xTo = gsap.quickTo(cursorDot, "x", {
+                                duration: 0.1,
+                                ease: "power3"
+                            }),
+                            yTo = gsap.quickTo(cursorDot, "y", {
+                                duration: 0.1,
+                                ease: "power3"
+                            }),
+                            xToRing = gsap.quickTo(cursorRing, "x", {
+                                duration: 0.3,
+                                ease: "power3"
+                            }),
+                            yToRing = gsap.quickTo(cursorRing, "y", {
+                                duration: 0.3,
+                                ease: "power3"
+                            });
 
                         window.addEventListener("mousemove", e => {
                             xTo(e.clientX);
@@ -626,22 +707,40 @@
                             xToRing(e.clientX);
                             yToRing(e.clientY);
                         });
-                        
+
                         // Hover effects on links/buttons
                         const interactables = document.querySelectorAll('a, button, .btn');
                         interactables.forEach(el => {
                             el.addEventListener('mouseenter', () => {
-                                gsap.to(cursorRing, { width: 56, height: 56, borderColor: 'var(--premium-primary)', backgroundColor: 'rgba(6, 78, 59, 0.1)', duration: 0.3 });
-                                gsap.to(cursorDot, { scale: 0, duration: 0.3 });
+                                gsap.to(cursorRing, {
+                                    width: 56,
+                                    height: 56,
+                                    borderColor: 'var(--premium-primary)',
+                                    backgroundColor: 'rgba(6, 78, 59, 0.1)',
+                                    duration: 0.3
+                                });
+                                gsap.to(cursorDot, {
+                                    scale: 0,
+                                    duration: 0.3
+                                });
                             });
                             el.addEventListener('mouseleave', () => {
-                                gsap.to(cursorRing, { width: 36, height: 36, borderColor: 'rgba(6, 78, 59, 0.4)', backgroundColor: 'transparent', duration: 0.3 });
-                                gsap.to(cursorDot, { scale: 1, duration: 0.3 });
+                                gsap.to(cursorRing, {
+                                    width: 36,
+                                    height: 36,
+                                    borderColor: 'rgba(6, 78, 59, 0.4)',
+                                    backgroundColor: 'transparent',
+                                    duration: 0.3
+                                });
+                                gsap.to(cursorDot, {
+                                    scale: 1,
+                                    duration: 0.3
+                                });
                             });
                         });
                     }
                 });
-                
+
                 // --- Mobile GSAP Island Menu Logic ---
                 document.addEventListener('DOMContentLoaded', () => {
                     let isMenuOpen = false;
@@ -651,21 +750,67 @@
                     let menuTl;
 
                     function initMenu() {
-                        if(menuTl) menuTl.revert();
+                        if (menuTl) menuTl.revert();
 
                         const expandedWidth = Math.min(window.innerWidth * 0.9, 400);
                         const er = true; // easeReverse support
 
-                        menuTl = gsap.timeline({ paused: true })
-                            .set('.menu-overlay', { pointerEvents: 'auto' })
-                            .to('.bar-mid', { opacity: 0, duration: 0.15, ease: 'power2.in', easeReverse: er }, 0)
-                            .to('.bar-top', { attr: { x1: 3, y1: 3, x2: 13, y2: 13 }, duration: 0.28, ease: 'power3.inOut' }, 0)
-                            .to('.bar-bot', { attr: { x1: 13, y1: 3, x2: 3, y2: 13 }, duration: 0.28, ease: 'power3.inOut' }, 0)
-                            .to('.menu-backdrop', { opacity: 1, duration: 0.3, ease: 'power2.out' }, 0)
-                            .from('.menu-panel', { autoAlpha: 0, yPercent: -10, scale: 0.6, duration: 0.8, transformOrigin: 'top center', ease: 'back.out(2)', easeReverse: er ? 'power3.out' : false }, 0.1)
-                            .from('.menu-link', { opacity: 0, y: 6, duration: 0.32, ease: 'power2.out', easeReverse: er, stagger: 0.05 }, 0.22);
+                        menuTl = gsap.timeline({
+                                paused: true
+                            })
+                            .set('.menu-overlay', {
+                                pointerEvents: 'auto'
+                            })
+                            .to('.bar-mid', {
+                                opacity: 0,
+                                duration: 0.15,
+                                ease: 'power2.in',
+                                easeReverse: er
+                            }, 0)
+                            .to('.bar-top', {
+                                attr: {
+                                    x1: 3,
+                                    y1: 3,
+                                    x2: 13,
+                                    y2: 13
+                                },
+                                duration: 0.28,
+                                ease: 'power3.inOut'
+                            }, 0)
+                            .to('.bar-bot', {
+                                attr: {
+                                    x1: 13,
+                                    y1: 3,
+                                    x2: 3,
+                                    y2: 13
+                                },
+                                duration: 0.28,
+                                ease: 'power3.inOut'
+                            }, 0)
+                            .to('.menu-backdrop', {
+                                opacity: 1,
+                                duration: 0.3,
+                                ease: 'power2.out'
+                            }, 0)
+                            .from('.menu-panel', {
+                                autoAlpha: 0,
+                                yPercent: -10,
+                                scale: 0.6,
+                                duration: 0.8,
+                                transformOrigin: 'top center',
+                                ease: 'back.out(2)',
+                                easeReverse: er ? 'power3.out' : false
+                            }, 0.1)
+                            .from('.menu-link', {
+                                opacity: 0,
+                                y: 6,
+                                duration: 0.32,
+                                ease: 'power2.out',
+                                easeReverse: er,
+                                stagger: 0.05
+                            }, 0.22);
                     }
-                    
+
                     initMenu();
                     window.addEventListener('resize', () => {
                         if (!isMenuOpen) initMenu();
@@ -674,20 +819,25 @@
                     function toggleMenu() {
                         isMenuOpen = !isMenuOpen;
                         islandToggleBtn.setAttribute('aria-expanded', isMenuOpen);
-                        islandToggleBtn.setAttribute('aria-label', isMenuOpen ? 'Close navigation menu' : 'Open navigation menu');
+                        islandToggleBtn.setAttribute('aria-label', isMenuOpen ? 'Close navigation menu' :
+                            'Open navigation menu');
                         islandLinks.forEach(l => l.setAttribute('tabindex', isMenuOpen ? '0' : '-1'));
-                        
+
                         if (isMenuOpen) {
                             menuTl.timeScale(1).play();
                         } else {
-                            menuTl.eventCallback('onReverseComplete', () => gsap.set('.menu-overlay', { pointerEvents: 'none' }));
+                            menuTl.eventCallback('onReverseComplete', () => gsap.set('.menu-overlay', {
+                                pointerEvents: 'none'
+                            }));
                             menuTl.timeScale(1.5).reverse();
                         }
                     }
 
-                    if(islandToggleBtn) islandToggleBtn.addEventListener('click', toggleMenu);
-                    if(islandBackdrop) islandBackdrop.addEventListener('click', () => { if (isMenuOpen) toggleMenu(); });
-                    
+                    if (islandToggleBtn) islandToggleBtn.addEventListener('click', toggleMenu);
+                    if (islandBackdrop) islandBackdrop.addEventListener('click', () => {
+                        if (isMenuOpen) toggleMenu();
+                    });
+
                     // Close menu when a link is clicked
                     islandLinks.forEach(link => {
                         link.addEventListener('click', () => {

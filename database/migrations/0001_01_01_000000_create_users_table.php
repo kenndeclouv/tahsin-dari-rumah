@@ -18,18 +18,6 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('photo')->nullable();
-            
-            // Profile fields
-            $table->enum('jenis_kelamin', ['L', 'P'])->nullable();
-            $table->text('alamat')->nullable();
-            $table->string('no_hp')->nullable();
-            $table->string('pendidikan_terakhir')->nullable();
-            
-            $table->enum('status', ['aktif', 'nonaktif'])->default('aktif');
-            $table->text('admin_notes')->nullable();
-            
-            $table->json('additional_data')->nullable();
-
             $table->rememberToken();
             $table->timestamps();
         });

@@ -27,11 +27,11 @@
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Status Santri <span class="text-red-500">*</span></label>
-                            <select name="status" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required>
+                            <x-searchable-select name="status" placeholder="" required="true">
                                 <option value="aktif" {{ old('status', $santri->status) == 'aktif' ? 'selected' : '' }}>Aktif</option>
                                 <option value="selesai" {{ old('status', $santri->status) == 'selesai' ? 'selected' : '' }}>Selesai</option>
                                 <option value="nonaktif" {{ old('status', $santri->status) == 'nonaktif' ? 'selected' : '' }}>Nonaktif</option>
-                            </select>
+                            </x-searchable-select>
                             @error('status') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
                         </div>
 
@@ -53,12 +53,11 @@
                                     <textarea name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" rows="3" {{ $field->is_required ? 'required' : '' }}>{{ $currentVal }}</textarea>
                                 
                                 @elseif ($field->type === 'select')
-                                    <select name="additional_data[{{ $field->name }}]" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" {{ $field->is_required ? 'required' : '' }}>
-                                        <option value="">-- Pilih --</option>
+                                    <x-searchable-select name="additional_data[{{ $field->name }}]" id="additional_data_{{ $field->name }}" placeholder="-- Pilih --" :required="$field->is_required">
                                         @foreach ($field->options as $option)
                                             <option value="{{ $option }}" {{ $currentVal == $option ? 'selected' : '' }}>{{ $option }}</option>
                                         @endforeach
-                                    </select>
+                                    </x-searchable-select>
                                 
                                 @else
                                     <input type="{{ $field->type }}" name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ $currentVal }}" {{ $field->is_required ? 'required' : '' }}>

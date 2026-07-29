@@ -27,13 +27,13 @@
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Tipe Input <span class="text-red-500">*</span></label>
-                            <select name="type" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required>
+                            <x-searchable-select name="type" placeholder="" required="true">
                                 <option value="text">Text (Teks Pendek)</option>
                                 <option value="number">Number (Angka)</option>
                                 <option value="textarea">Textarea (Teks Panjang)</option>
                                 <option value="select">Select (Dropdown)</option>
                                 <option value="date">Date (Tanggal)</option>
-                            </select>
+                            </x-searchable-select>
                         </div>
 
                         <div>

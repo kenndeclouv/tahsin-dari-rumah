@@ -1,4 +1,4 @@
-<x-layouts.app title="Pengaturan Form Paket Belajar">
+<x-layouts.app title="Pengaturan Form Kelas">
     
     <x-slot:actions>
         <a href="{{ route('paket_belajar_fields.create') }}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">
@@ -14,7 +14,7 @@
                     
                     {{-- Header --}}
                     <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
-                        <h2 class="text-xl font-semibold text-gray-800">Pengaturan Form Paket Belajar (Dynamic Fields)</h2>
+                        <h2 class="text-xl font-semibold text-gray-800">Pengaturan Form Kelas (Dynamic Fields)</h2>
                         <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
                             {{ $fields->count() }} Field
                         </span>
@@ -60,7 +60,7 @@
                                             <a href="{{ route('paket_belajar_fields.edit', $field->id) }}" class="inline-flex items-center justify-center size-8 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" title="Edit Field">
                                                 <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
                                             </a>
-                                            <form action="{{ route('paket_belajar_fields.destroy', $field->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus field ini? Data lama pada paket belajar tidak akan terhapus namun tidak akan muncul lagi di form.')">
+                                            <form action="{{ route('paket_belajar_fields.destroy', $field->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus field ini? Data lama pada kelas tidak akan terhapus namun tidak akan muncul lagi di form.')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="inline-flex items-center justify-center size-8 rounded-lg border border-red-200 bg-white text-red-600 shadow-sm hover:bg-red-50 hover:border-red-300 disabled:opacity-50 disabled:pointer-events-none" title="Hapus Field">

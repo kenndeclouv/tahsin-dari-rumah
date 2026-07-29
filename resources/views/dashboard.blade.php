@@ -98,7 +98,7 @@
         <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
             <div class="p-4 md:p-5 flex justify-between gap-x-3">
                 <div>
-                    <p class="text-xs uppercase tracking-wide text-gray-500">Paket Berjalan</p>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Kelas Berjalan</p>
                     <div class="mt-1 flex items-center gap-x-2">
                         <h3 class="text-xl sm:text-2xl font-medium text-cyan-600">{{ $paketBerjalan }}</h3>
                     </div>

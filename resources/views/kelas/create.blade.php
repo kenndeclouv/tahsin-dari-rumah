@@ -1,9 +1,9 @@
-<x-layouts.app title="Buat Paket Belajar">
+<x-layouts.app title="Buat Kelas">
     <div class="max-w-4xl">
         <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
             
             <div class="px-6 py-4 border-b border-gray-200">
-                <h2 class="text-xl font-semibold text-gray-800">Buat Paket Belajar Baru</h2>
+                <h2 class="text-xl font-semibold text-gray-800">Buat Kelas Baru</h2>
             </div>
             
             <div class="p-6">
@@ -25,7 +25,7 @@
                             <label class="block text-sm font-medium mb-2">Pilih Pengajar <span class="text-red-500">*</span></label>
                             <x-searchable-select name="pengajar_id" placeholder="Pilih Pengajar..." required="true" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500">
                                 @foreach ($pengajars as $pengajar)
-                                    <option value="{{ $pengajar->id }}">{{ $pengajar->name }}</option>
+                                    <option value="{{ $pengajar->id }}">{{ $pengajar->nama }}</option>
                                 @endforeach
                             </x-searchable-select>
                         </div>
@@ -45,19 +45,19 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium mb-2">Jumlah Pertemuan (Paket) <span class="text-red-500">*</span></label>
-                            <select name="jumlah_pertemuan" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required>
+                            <label class="block text-sm font-medium mb-2">Jumlah Pertemuan <span class="text-red-500">*</span></label>
+                            <x-searchable-select name="jumlah_pertemuan" placeholder="" required="true">
                                 <option value="4">4 Kali Pertemuan</option>
                                 <option value="8">8 Kali Pertemuan</option>
                                 <option value="12">12 Kali Pertemuan</option>
                                 <option value="16">16 Kali Pertemuan</option>
-                            </select>
+                            </x-searchable-select>
                         </div>
                     </div>
 
                     @if($dynamicFields->count() > 0)
                     <div class="mt-8 pt-6 border-t border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-6">Informasi Paket Kelas (Dynamic)</h3>
+                        <h3 class="text-lg font-semibold text-gray-800 mb-6">Informasi Kelas (Dynamic)</h3>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             @foreach ($dynamicFields as $field)
@@ -71,12 +71,11 @@
                                         <textarea name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" rows="3" {{ $field->is_required ? 'required' : '' }}>{{ old('additional_data.'.$field->name) }}</textarea>
                                     
                                     @elseif ($field->type === 'select')
-                                        <select name="additional_data[{{ $field->name }}]" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" {{ $field->is_required ? 'required' : '' }}>
-                                            <option value="">-- Pilih --</option>
+                                        <x-searchable-select name="additional_data[{{ $field->name }}]" id="additional_data_{{ $field->name }}" placeholder="-- Pilih --" :required="$field->is_required">
                                             @foreach ($field->options as $option)
                                                 <option value="{{ $option }}" {{ old('additional_data.'.$field->name) == $option ? 'selected' : '' }}>{{ $option }}</option>
                                             @endforeach
-                                        </select>
+                                        </x-searchable-select>
                                     
                                     @else
                                         <input type="{{ $field->type }}" name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ old('additional_data.'.$field->name) }}" {{ $field->is_required ? 'required' : '' }}>
@@ -96,7 +95,7 @@
                             Batal
                         </a>
                         <button type="submit" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">
-                            Simpan Paket
+                            Simpan Kelas
                         </button>
                     </div>
                 </form>

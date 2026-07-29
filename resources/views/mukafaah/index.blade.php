@@ -41,7 +41,7 @@
             </div>
             
             <div class="p-6">
-                <h6 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">Daftar Paket Selesai (Menunggu Pembayaran)</h6>
+                <h6 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">Daftar Kelas Selesai (Menunggu Pembayaran)</h6>
                 
                 <div class="-m-1.5 overflow-x-auto">
                     <div class="p-1.5 min-w-full inline-block align-middle">
@@ -51,7 +51,7 @@
                                     <tr>
                                         <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Santri</th>
                                         <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Jadwal & Pertemuan</th>
-                                        <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Fee Paket</th>
+                                        <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Fee Kelas</th>
                                         <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Status Pembayaran</th>
                                         @can('mukafaahs:edit')
                                         <th scope="col" class="px-4 py-3 text-end text-xs font-medium text-gray-500 uppercase">Aksi</th>
@@ -112,7 +112,7 @@
                                     <tr>
                                         <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Santri</th>
                                         <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Jadwal & Pertemuan</th>
-                                        <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Fee Paket</th>
+                                        <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Fee Kelas</th>
                                         <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Status Pembayaran</th>
                                         @can('mukafaahs:edit')
                                         <th scope="col" class="px-4 py-3 text-end text-xs font-medium text-gray-500 uppercase">Aksi</th>
@@ -157,8 +157,8 @@
     @empty
         <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-12 text-center">
             <svg class="size-16 text-primary-500 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            <h5 class="text-xl font-semibold text-gray-800 mb-2">Belum ada paket yang selesai</h5>
-            <p class="text-gray-500">Jika pengajar menyelesaikan evaluasi paket santri, data payroll akan muncul di sini.</p>
+            <h5 class="text-xl font-semibold text-gray-800 mb-2">Belum ada kelas yang selesai</h5>
+            <p class="text-gray-500">Jika pengajar menyelesaikan evaluasi kelas santri, data payroll akan muncul di sini.</p>
         </div>
     @endforelse
 </x-layouts.app>

@@ -1,10 +1,10 @@
-<x-layouts.app title="Kelola Paket Belajar">
+<x-layouts.app title="Kelola Kelas">
 
     <x-slot:actions>
         @can('paket_belajars:create')
             <a href="{{ route('paket_belajars.create') }}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">
                 <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
-                Buat Paket Baru
+                Buat Kelas Baru
             </a>
         @endcan
     </x-slot:actions>
@@ -16,9 +16,9 @@
                     
                     {{-- Header --}}
                     <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
-                        <h2 class="text-xl font-semibold text-gray-800">Daftar Paket Belajar</h2>
+                        <h2 class="text-xl font-semibold text-gray-800">Daftar Kelas</h2>
                         <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
-                            {{ $pakets->count() }} Paket
+                            {{ $pakets->count() }} Kelas
                         </span>
                     </div>
 
@@ -66,13 +66,13 @@
                                     @can('paket_belajars:delete')
                                         <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                                             <div class="flex items-center justify-end gap-x-2">
-                                                <a href="{{ route('paket_belajars.edit', $paket->id) }}" class="inline-flex items-center justify-center size-8 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" title="Edit Paket">
+                                                <a href="{{ route('paket_belajars.edit', $paket->id) }}" class="inline-flex items-center justify-center size-8 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" title="Edit Kelas">
                                                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
                                                 </a>
-                                                <form action="{{ route('paket_belajars.destroy', $paket->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin menghapus paket ini? Seluruh data presensi dan evaluasi di dalamnya akan ikut terhapus.')">
+                                                <form action="{{ route('paket_belajars.destroy', $paket->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin menghapus kelas ini? Seluruh data presensi dan evaluasi di dalamnya akan ikut terhapus.')">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="inline-flex items-center justify-center size-8 rounded-lg border border-red-200 bg-white text-red-600 shadow-sm hover:bg-red-50 hover:border-red-300 disabled:opacity-50 disabled:pointer-events-none" title="Hapus Paket">
+                                                    <button type="submit" class="inline-flex items-center justify-center size-8 rounded-lg border border-red-200 bg-white text-red-600 shadow-sm hover:bg-red-50 hover:border-red-300 disabled:opacity-50 disabled:pointer-events-none" title="Hapus Kelas">
                                                         <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
                                                     </button>
                                                 </form>
@@ -85,7 +85,7 @@
                                     <td colspan="6" class="px-6 py-12 text-center">
                                         <div class="flex flex-col justify-center items-center">
                                             <svg class="shrink-0 size-12 text-gray-400 mb-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                                            <p class="text-gray-500 mb-2">Belum ada paket belajar.</p>
+                                            <p class="text-gray-500 mb-2">Belum ada kelas.</p>
                                             @can('paket_belajars:create')
                                                 <a href="{{ route('paket_belajars.create') }}" class="text-primary-600 hover:text-primary-800 font-medium text-sm">Buat sekarang</a>
                                             @endcan

@@ -46,9 +46,9 @@
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $pengajar->email }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $pengajar->no_hp ?? '-' }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $pengajar->pengajar?->additional_data['no_hp'] ?? '-' }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        @if($pengajar->status == 'aktif')
+                                        @if($pengajar->pengajar?->status == 'aktif')
                                             <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-primary-100 text-primary-800">Aktif</span>
                                         @else
                                             <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-red-100 text-red-800">Nonaktif</span>
@@ -70,7 +70,7 @@
                                                     </a>
                                                 @endcan
                                                 @can('users:delete')
-                                                    <form action="{{ route('pengajars.destroy', $pengajar->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus pengajar ini? PERHATIAN: Semua Paket Belajar, Presensi, dan Evaluasi yang terkait dengan pengajar ini juga akan terhapus!')">
+                                                    <form action="{{ route('pengajars.destroy', $pengajar->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus pengajar ini? PERHATIAN: Semua Data Kelas, Presensi, dan Evaluasi yang terkait dengan pengajar ini juga akan terhapus!')">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="inline-flex items-center justify-center size-8 rounded-lg border border-red-200 bg-white text-red-600 shadow-sm hover:bg-red-50 hover:border-red-300 disabled:opacity-50 disabled:pointer-events-none" title="Hapus Pengajar">

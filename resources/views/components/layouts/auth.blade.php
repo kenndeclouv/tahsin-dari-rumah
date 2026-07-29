@@ -15,7 +15,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap"
+        rel="stylesheet">
 
     <!-- FontAwesome 7.2.0 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kenndeclouv/font-awesome@main/v7.2.0/css/all.css" />
@@ -30,7 +32,7 @@
             color: #0f172a;
             overflow-x: hidden;
         }
-        
+
         /* Auth Background */
         .auth-wrapper {
             min-height: 100vh;
@@ -39,7 +41,7 @@
             justify-content: center;
             position: relative;
             background: radial-gradient(circle at top right, rgba(52, 211, 153, 0.1), transparent 40%),
-                        radial-gradient(circle at bottom left, rgba(6, 78, 59, 0.05), transparent 40%);
+                radial-gradient(circle at bottom left, rgba(6, 78, 59, 0.05), transparent 40%);
             padding: 2rem 1rem;
         }
 
@@ -65,7 +67,7 @@
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 28px;
-            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255,255,255,1);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 1);
             width: 100%;
             max-width: 440px;
             padding: 3rem 2.5rem;
@@ -94,7 +96,7 @@
     </div>
 
     {{-- Alert --}}
-    <x-alert></x-alert>
+    <x-toast></x-toast>
 
 </body>
 

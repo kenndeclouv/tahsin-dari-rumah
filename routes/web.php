@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('paket/{paket}/evaluasi', [EvaluasiController::class, 'store'])->name('evaluasi.store');
 
     // ─── Admin Only ──────────────────────────────────────────────────────────
-    Route::resource('santris', SantriController::class)->except(['show']);
+    Route::resource('santris', SantriController::class);
     Route::resource('pengajars', PengajarController::class);
     Route::resource('fees', FeeController::class)->except(['show']);
     Route::resource('santri_fields', App\Http\Controllers\SantriFieldController::class)->except(['show']);

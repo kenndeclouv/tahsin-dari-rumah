@@ -28,13 +28,13 @@
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Tipe Input <span class="text-red-500">*</span></label>
-                            <select name="type" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required>
+                            <x-searchable-select name="type" placeholder="" required="true">
                                 <option value="text" {{ old('type', $santriField->type) == 'text' ? 'selected' : '' }}>Text (Teks Pendek)</option>
                                 <option value="number" {{ old('type', $santriField->type) == 'number' ? 'selected' : '' }}>Number (Angka)</option>
                                 <option value="textarea" {{ old('type', $santriField->type) == 'textarea' ? 'selected' : '' }}>Textarea (Teks Panjang)</option>
                                 <option value="select" {{ old('type', $santriField->type) == 'select' ? 'selected' : '' }}>Select (Dropdown)</option>
                                 <option value="date" {{ old('type', $santriField->type) == 'date' ? 'selected' : '' }}>Date (Tanggal)</option>
-                            </select>
+                            </x-searchable-select>
                         </div>
 
                         <div>

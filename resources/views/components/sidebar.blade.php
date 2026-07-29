@@ -62,8 +62,8 @@ bg-slate-900 border-e border-slate-800"
         <!-- Body -->
         <nav
             class="h-full overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-track]:bg-slate-800 [&::-webkit-scrollbar-thumb]:bg-slate-600">
-            <div class="pb-0 px-2 w-full flex flex-col flex-wrap">
-                <ul class="space-y-1">
+            <div class="hs-accordion-group pb-0 px-2 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
+                <ul class="space-y-1 hs-accordion-group" data-hs-accordion-always-open>
                     <!-- MAIN -->
                     <li class="px-2 pt-2 pb-1 hs-overlay-minified:hidden">
                         <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Main</span>
@@ -72,12 +72,12 @@ bg-slate-900 border-e border-slate-800"
                     <li>
                         <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('dashboard') ? 'bg-primary-600 text-white font-medium' : '' }}"
                             href="{{ route('dashboard') }}">
-                            <i class="fa-solid fa-grid-2 text-lg hs-overlay-minified:mx-auto"></i>
+                            <i class="fa-regular fa-grid-2 hs-overlay-minified:mx-auto"></i>
                             <span class="hs-overlay-minified:hidden">Dashboard</span>
                         </a>
                     </li>
 
-                    @canany(['santris:view', 'paket_belajars:view'])
+                    @canany(['santris:view', 'users:view', 'fees:view', 'paket_belajars:view', 'mukafaahs:view'])
                         <li class="px-2 pt-4 pb-1 hs-overlay-minified:hidden">
                             <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Akademik</span>
                         </li>
@@ -87,45 +87,117 @@ bg-slate-900 border-e border-slate-800"
                         <li>
                             <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('santris.*') ? 'bg-primary-600 text-white font-medium' : '' }}"
                                 href="{{ route('santris.index') }}">
-                                <i class="fa-solid fa-users text-lg hs-overlay-minified:mx-auto"></i>
+                                <i class="fa-regular fa-users hs-overlay-minified:mx-auto"></i>
                                 <span class="hs-overlay-minified:hidden">Data Santri</span>
                             </a>
                         </li>
+                    @endcan
 
+                    @can('users:view')
                         <li>
                             <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('pengajars.*') ? 'bg-primary-600 text-white font-medium' : '' }}"
                                 href="{{ route('pengajars.index') }}">
-                                <i class="fa-solid fa-user-check text-lg hs-overlay-minified:mx-auto"></i>
+                                <i class="fa-regular fa-chalkboard-user hs-overlay-minified:mx-auto"></i>
                                 <span class="hs-overlay-minified:hidden">Data Pengajar</span>
                             </a>
                         </li>
-
-                        <li>
-                            <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('fees.*') ? 'bg-primary-600 text-white font-medium' : '' }}"
-                                href="{{ route('fees.index') }}">
-                                <i class="fa-solid fa-money-bill text-lg hs-overlay-minified:mx-auto"></i>
-                                <span class="hs-overlay-minified:hidden">Master Fee</span>
-                            </a>
-                        </li>
                     @endcan
+
+
 
                     @can('paket_belajars:view')
                         <li>
                             <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('paket_belajars.*') ? 'bg-primary-600 text-white font-medium' : '' }}"
                                 href="{{ route('paket_belajars.index') }}">
-                                <i class="fa-solid fa-book-open text-lg hs-overlay-minified:mx-auto"></i>
-                                <span class="hs-overlay-minified:hidden">Paket Belajar</span>
+                                <i class="fa-regular fa-book-open hs-overlay-minified:mx-auto"></i>
+                                <span class="hs-overlay-minified:hidden">Data Kelas</span>
                             </a>
                         </li>
+                    @endcan
 
+                    @can('mukafaahs:view')
                         <li>
                             <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('mukafaah.*') ? 'bg-primary-600 text-white font-medium' : '' }}"
                                 href="{{ route('mukafaah.index') }}">
-                                <i class="fa-solid fa-coins text-lg hs-overlay-minified:mx-auto"></i>
+                                <i class="fa-regular fa-file-lines hs-overlay-minified:mx-auto"></i>
                                 <span class="hs-overlay-minified:hidden">Rekap Mukafaah</span>
                             </a>
                         </li>
                     @endcan
+
+                    @can('fees:view')
+                        <li>
+                            <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('fees.*') ? 'bg-primary-600 text-white font-medium' : '' }}"
+                                href="{{ route('fees.index') }}">
+                                <i class="fa-regular fa-money-bill hs-overlay-minified:mx-auto"></i>
+                                <span class="hs-overlay-minified:hidden">Master Fee</span>
+                            </a>
+                        </li>
+                    @endcan
+
+                    @canany(['santri_fields:view', 'paket_belajar_fields:view', 'pengajar_fields:view'])
+                        @php
+                            $isAdvancedActive =
+                                request()->routeIs('santri_fields.*') ||
+                                request()->routeIs('pengajar_fields.*') ||
+                                request()->routeIs('paket_belajar_fields.*');
+                        @endphp
+                        <li class="hs-accordion" id="advanced-accordion">
+                            <button type="button"
+                                class="hs-accordion-toggle min-h-[36px] w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white focus:outline-none focus:bg-slate-800 {{ $isAdvancedActive ? 'bg-slate-800' : '' }}"
+                                aria-expanded="{{ $isAdvancedActive ? 'true' : 'false' }}"
+                                aria-controls="advanced-accordion-collapse">
+                                <i class="fa-regular fa-sliders hs-overlay-minified:mx-auto"></i>
+                                <span class="hs-overlay-minified:hidden">Advanced</span>
+
+                                <svg class="hs-accordion-active:block ms-auto hidden size-4"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="m18 15-6-6-6 6" />
+                                </svg>
+                                <svg class="hs-accordion-active:hidden ms-auto block size-4"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="m6 9 6 6 6-6" />
+                                </svg>
+                            </button>
+
+                            <div id="advanced-accordion-collapse"
+                                class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 {{ $isAdvancedActive ? 'block' : 'hidden' }}"
+                                role="region" aria-labelledby="advanced-accordion">
+                                <ul class="pt-2 ps-7 space-y-1">
+                                    @can('santri_fields:view')
+                                        <li>
+                                            <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('santri_fields.*') ? 'bg-primary-600 text-white font-medium' : '' }}"
+                                                href="{{ route('santri_fields.index') }}">
+                                                Custom Field Santri
+                                            </a>
+                                        </li>
+                                    @endcan
+
+                                    @can('pengajar_fields:view')
+                                        <li>
+                                            <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('pengajar_fields.*') ? 'bg-primary-600 text-white font-medium' : '' }}"
+                                                href="{{ route('pengajar_fields.index') }}">
+                                                Custom Field Pengajar
+                                            </a>
+                                        </li>
+                                    @endcan
+
+                                    @can('paket_belajar_fields:view')
+                                        <li>
+                                            <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('paket_belajar_fields.*') ? 'bg-primary-600 text-white font-medium' : '' }}"
+                                                href="{{ route('paket_belajar_fields.index') }}">
+                                                Custom Field Kelas
+                                            </a>
+                                        </li>
+                                    @endcan
+                                </ul>
+                            </div>
+                        </li>
+                    @endcanany
 
                     @canany(['roles:view', 'users:view'])
                         <li class="px-2 pt-4 pb-1 hs-overlay-minified:hidden">
@@ -138,7 +210,7 @@ bg-slate-900 border-e border-slate-800"
                         <li>
                             <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('roles.*') ? 'bg-primary-600 text-white font-medium' : '' }}"
                                 href="{{ route('roles.index') }}">
-                                <i class="fa-solid fa-shield-halved text-lg hs-overlay-minified:mx-auto"></i>
+                                <i class="fa-regular fa-shield-halved hs-overlay-minified:mx-auto"></i>
                                 <span class="hs-overlay-minified:hidden">Roles</span>
                             </a>
                         </li>
@@ -148,47 +220,13 @@ bg-slate-900 border-e border-slate-800"
                         <li>
                             <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('users.*') ? 'bg-primary-600 text-white font-medium' : '' }}"
                                 href="{{ route('users.index') }}">
-                                <i class="fa-solid fa-people-group text-lg hs-overlay-minified:mx-auto"></i>
+                                <i class="fa-regular fa-people-group hs-overlay-minified:mx-auto"></i>
                                 <span class="hs-overlay-minified:hidden">Users</span>
                             </a>
                         </li>
                     @endcan
 
-                    @canany(['santri_fields:view', 'paket_belajar_fields:view', 'pengajar_fields:view'])
-                        <li class="px-2 pt-4 pb-1 hs-overlay-minified:hidden">
-                            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Advanced</span>
-                        </li>
 
-                        @can('santri_fields:view')
-                            <li>
-                                <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('santri_fields.*') ? 'bg-primary-600 text-white font-medium' : '' }}"
-                                    href="{{ route('santri_fields.index') }}">
-                                    <i class="fa-solid fa-sliders text-lg hs-overlay-minified:mx-auto"></i>
-                                    <span class="hs-overlay-minified:hidden">Custom Field Santri</span>
-                                </a>
-                            </li>
-                        @endcan
-
-                        @can('pengajar_fields:view')
-                            <li>
-                                <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('pengajar_fields.*') ? 'bg-primary-600 text-white font-medium' : '' }}"
-                                    href="{{ route('pengajar_fields.index') }}">
-                                    <i class="fa-solid fa-sliders text-lg hs-overlay-minified:mx-auto"></i>
-                                    <span class="hs-overlay-minified:hidden">Custom Field Pengajar</span>
-                                </a>
-                            </li>
-                        @endcan
-
-                        @can('paket_belajar_fields:view')
-                            <li>
-                                <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('paket_belajar_fields.*') ? 'bg-primary-600 text-white font-medium' : '' }}"
-                                    href="{{ route('paket_belajar_fields.index') }}">
-                                    <i class="fa-solid fa-sliders text-lg hs-overlay-minified:mx-auto"></i>
-                                    <span class="hs-overlay-minified:hidden">Custom Field Paket</span>
-                                </a>
-                            </li>
-                        @endcan
-                    @endcanany
 
                 </ul>
             </div>

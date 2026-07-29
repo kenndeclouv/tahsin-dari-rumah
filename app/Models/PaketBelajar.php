@@ -31,7 +31,7 @@ class PaketBelajar extends Model
 
     public function pengajar()
     {
-        return $this->belongsTo(User::class, 'pengajar_id');
+        return $this->belongsTo(Pengajar::class, 'pengajar_id');
     }
 
     public function fee()

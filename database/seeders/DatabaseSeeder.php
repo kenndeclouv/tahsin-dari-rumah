@@ -28,7 +28,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'Kenndeclouv',
             'email' => 'kenndeclouv@gmail.com',
             'password' => bcrypt("kenndeclouv"),
-            'jenis_kelamin' => 'L',
         ]);
 
         $superadminUser->assignRole('super-admin');
@@ -38,9 +37,18 @@ class DatabaseSeeder extends Seeder
             'name' => 'Pengajar Tahsin',
             'email' => 'pengajar@gmail.com',
             'password' => bcrypt("password"),
-            'jenis_kelamin' => 'L',
         ]);
 
         $pengajarUser->assignRole('pengajar');
+
+        \App\Models\Pengajar::create([
+            'user_id' => $pengajarUser->id,
+            'nama' => $pengajarUser->name,
+            'status' => 'aktif',
+            'additional_data' => [
+                'jenis_kelamin' => 'L',
+                'no_hp' => '081234567890',
+            ]
+        ]);
     }
 }

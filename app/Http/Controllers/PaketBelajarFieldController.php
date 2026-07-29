@@ -18,12 +18,12 @@ class PaketBelajarFieldController extends Controller
     public function index()
     {
         $fields = PaketBelajarField::orderBy('order')->get();
-        return view('paket_belajar_fields.index', compact('fields'));
+        return view('kelas_fields.index', compact('fields'));
     }
 
     public function create()
     {
-        return view('paket_belajar_fields.create');
+        return view('kelas_fields.create');
     }
 
     public function store(Request $request)
@@ -53,7 +53,7 @@ class PaketBelajarFieldController extends Controller
 
     public function edit(PaketBelajarField $paketBelajarField)
     {
-        return view('paket_belajar_fields.edit', compact('paketBelajarField'));
+        return view('kelas_fields.edit', compact('paketBelajarField'));
     }
 
     public function update(Request $request, PaketBelajarField $paketBelajarField)

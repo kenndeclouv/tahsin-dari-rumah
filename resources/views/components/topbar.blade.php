@@ -1,6 +1,6 @@
 <!-- ========== HEADER ========== -->
 <header
-    class="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-[48] w-full bg-white border-b border-gray-200 text-sm py-2.5 sm:py-4 lg:ps-64 hs-overlay-minified:lg:ps-20 transition-all duration-300">
+    class="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-[48] w-full bg-white border-b border-gray-200 text-sm py-2 lg:ps-64 hs-overlay-minified:lg:ps-20 transition-all duration-300">
     <nav class="flex basis-full items-center w-full mx-auto px-4 sm:px-6 md:px-8" aria-label="Global">
 
         {{-- <div class="me-5 lg:me-0 lg:hidden">

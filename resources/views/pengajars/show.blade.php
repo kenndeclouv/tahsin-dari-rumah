@@ -5,7 +5,7 @@
             <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6 text-center">
                 <div class="relative inline-block mb-4">
                     <img src="{{ $pengajar->photo_url }}" class="inline-block size-32 rounded-full ring-4 ring-primary-100 object-cover" alt="Profile Image">
-                    <span class="absolute bottom-1 right-1 block size-4 rounded-full ring-2 ring-white {{ $pengajar->status == 'aktif' ? 'bg-primary-500' : 'bg-red-500' }}"></span>
+                    <span class="absolute bottom-1 right-1 block size-4 rounded-full ring-2 ring-white {{ $pengajar->pengajar?->status == 'aktif' ? 'bg-primary-500' : 'bg-red-500' }}"></span>
                 </div>
                 
                 <h4 class="text-xl font-bold text-gray-800 mb-1">{{ $pengajar->name }}</h4>
@@ -16,22 +16,22 @@
                 <div class="text-start space-y-3 text-sm">
                     <div class="flex justify-between items-center">
                         <strong class="text-gray-800">No HP:</strong> 
-                        <span class="text-gray-600">{{ $pengajar->no_hp ?? '-' }}</span>
+                        <span class="text-gray-600">{{ $pengajar->pengajar?->additional_data['no_hp'] ?? '-' }}</span>
                     </div>
                     
                     <div class="flex justify-between items-center">
                         <strong class="text-gray-800">Jenis Kelamin:</strong> 
-                        <span class="text-gray-600">{{ $pengajar->jenis_kelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}</span>
+                        <span class="text-gray-600">{{ ($pengajar->pengajar?->additional_data['jenis_kelamin'] ?? '') == 'L' ? 'Laki-laki' : 'Perempuan' }}</span>
                     </div>
                     
                     <div class="flex justify-between items-start">
                         <strong class="text-gray-800 min-w-max mr-4">Alamat:</strong> 
-                        <span class="text-gray-600 text-right">{{ $pengajar->alamat ?? '-' }}</span>
+                        <span class="text-gray-600 text-right">{{ $pengajar->pengajar?->additional_data['alamat'] ?? '-' }}</span>
                     </div>
                     
                     <div class="flex justify-between items-center">
                         <strong class="text-gray-800">Status:</strong> 
-                        @if($pengajar->status == 'aktif')
+                        @if($pengajar->pengajar?->status == 'aktif')
                             <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-primary-100 text-primary-800">Aktif</span>
                         @else
                             <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-red-100 text-red-800">Nonaktif</span>
@@ -43,13 +43,7 @@
                         <span class="text-gray-600">{{ $pengajar->created_at->format('d M Y') }}</span>
                     </div>
 
-                    @if($pengajar->admin_notes)
-                        <hr class="border-gray-200 my-3">
-                        <div>
-                            <strong class="block text-gray-800 mb-1">Catatan Admin:</strong>
-                            <p class="text-gray-500 italic">{{ $pengajar->admin_notes }}</p>
-                        </div>
-                    @endif
+
                     
                     @if($customFields->count() > 0)
                         <hr class="border-gray-200 my-4">
@@ -57,7 +51,7 @@
                         <div class="space-y-3">
                             @foreach ($customFields as $field)
                                 @php
-                                    $val = $pengajar->additional_data[$field->name] ?? '-';
+                                    $val = $pengajar->pengajar?->additional_data[$field->name] ?? '-';
                                 @endphp
                                 <div>
                                     <span class="block text-xs text-gray-500 uppercase tracking-wide">{{ $field->label }}</span>
@@ -81,7 +75,7 @@
                             <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                                 <h2 class="text-lg font-semibold text-gray-800">Daftar Santri yang Diampu</h2>
                                 <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                    {{ $paketBelajars->count() }} Paket
+                                    {{ $paketBelajars->count() }} Kelas
                                 </span>
                             </div>
                             
@@ -91,7 +85,7 @@
                                     <tr>
                                         <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Santri</th>
                                         <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">Hari & Jam</th>
-                                        <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">Paket</th>
+                                        <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">Durasi</th>
                                         <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">Progress</th>
                                         <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                                     </tr>

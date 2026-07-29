@@ -21,16 +21,16 @@ class PaketBelajarController extends Controller
     public function index()
     {
         $pakets = PaketBelajar::with(['santri', 'pengajar', 'fee'])->latest()->get();
-        return view('paket_belajar.index', compact('pakets'));
+        return view('kelas.index', compact('pakets'));
     }
 
     public function create()
     {
         $santris = Santri::all();
-        $pengajars = User::role('pengajar')->get();
+        $pengajars = \App\Models\Pengajar::all();
         $fees = \App\Models\Fee::all();
         $dynamicFields = PaketBelajarField::orderBy('order')->get();
-        return view('paket_belajar.create', compact('santris', 'pengajars', 'fees', 'dynamicFields'));
+        return view('kelas.create', compact('santris', 'pengajars', 'fees', 'dynamicFields'));
     }
 
     public function store(Request $request)
@@ -51,7 +51,7 @@ class PaketBelajarController extends Controller
 
         $validated = $request->validate([
             'santri_id' => 'required|exists:santris,id',
-            'pengajar_id' => 'required|exists:users,id',
+            'pengajar_id' => 'required|exists:pengajars,id',
             'fee_id' => 'nullable|exists:fees,id',
             'hari_jam' => 'required|string|max:255',
             'jumlah_pertemuan' => 'required|integer|min:1',
@@ -66,10 +66,10 @@ class PaketBelajarController extends Controller
     public function edit(PaketBelajar $paketBelajar)
     {
         $santris = Santri::all();
-        $pengajars = User::role('pengajar')->get();
+        $pengajars = \App\Models\Pengajar::all();
         $fees = \App\Models\Fee::all();
         $dynamicFields = PaketBelajarField::orderBy('order')->get();
-        return view('paket_belajar.edit', compact('paketBelajar', 'santris', 'pengajars', 'fees', 'dynamicFields'));
+        return view('kelas.edit', compact('paketBelajar', 'santris', 'pengajars', 'fees', 'dynamicFields'));
     }
 
     public function update(Request $request, PaketBelajar $paketBelajar)
@@ -90,7 +90,7 @@ class PaketBelajarController extends Controller
 
         $validated = $request->validate([
             'santri_id' => 'required|exists:santris,id',
-            'pengajar_id' => 'required|exists:users,id',
+            'pengajar_id' => 'required|exists:pengajars,id',
             'fee_id' => 'nullable|exists:fees,id',
             'hari_jam' => 'required|string|max:255',
             'jumlah_pertemuan' => 'required|integer|min:1',

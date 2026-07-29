@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('paket_belajars', function (Blueprint $table) {
             $table->id();
             $table->foreignId('santri_id')->constrained('santris')->cascadeOnDelete();
-            $table->foreignId('pengajar_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('pengajar_id')->constrained('pengajars')->cascadeOnDelete();
             $table->foreignId('fee_id')->nullable()->constrained('fees')->nullOnDelete();
             $table->string('hari_jam'); // Contoh: "Senin, 16:00"
             $table->integer('jumlah_pertemuan'); // Target paket misal 4x, 8x

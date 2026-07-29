@@ -1,4 +1,4 @@
-<x-layouts.app title="Edit Field Paket Belajar">
+<x-layouts.app title="Edit Field Kelas">
     <div class="max-w-4xl">
         <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
             <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
@@ -28,13 +28,13 @@
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Tipe Input <span class="text-red-500">*</span></label>
-                            <select name="type" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required>
+                            <x-searchable-select name="type" placeholder="" required="true">
                                 <option value="text" {{ old('type', $PaketBelajarField->type) == 'text' ? 'selected' : '' }}>Text (Teks Pendek)</option>
                                 <option value="number" {{ old('type', $PaketBelajarField->type) == 'number' ? 'selected' : '' }}>Number (Angka)</option>
                                 <option value="textarea" {{ old('type', $PaketBelajarField->type) == 'textarea' ? 'selected' : '' }}>Textarea (Teks Panjang)</option>
                                 <option value="select" {{ old('type', $PaketBelajarField->type) == 'select' ? 'selected' : '' }}>Select (Dropdown)</option>
                                 <option value="date" {{ old('type', $PaketBelajarField->type) == 'date' ? 'selected' : '' }}>Date (Tanggal)</option>
-                            </select>
+                            </x-searchable-select>
                         </div>
 
                         <div>

@@ -24,13 +24,6 @@ class User extends Authenticatable
         'email',
         'password',
         'photo',
-        'jenis_kelamin',
-        'alamat',
-        'no_hp',
-        'pendidikan_terakhir',
-        'status',
-        'admin_notes',
-        'additional_data',
     ];
 
     /**
@@ -66,13 +59,17 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
-            'additional_data' => 'array',
         ];
+    }
+
+    public function pengajar()
+    {
+        return $this->hasOne(Pengajar::class);
     }
 
     public function paketBelajars()
     {
-        return $this->hasMany(PaketBelajar::class, 'pengajar_id');
+        return $this->hasManyThrough(PaketBelajar::class, Pengajar::class, 'user_id', 'pengajar_id');
     }
 
     /**

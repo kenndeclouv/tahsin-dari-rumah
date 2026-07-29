@@ -24,7 +24,7 @@
 <body class="bg-gray-50 text-gray-800">
 
     {{-- Sidebar --}}
-    <x-sidenav></x-sidenav>
+    <x-sidebar></x-sidebar>
 
     {{-- Topbar --}}
     <x-topbar></x-topbar>
@@ -50,7 +50,7 @@
 
         <!-- Footer -->
         <footer class="mt-12 py-6 border-t border-gray-200 text-end">
-            <p class="text-sm text-gray-500">
+            <p class="text-xs text-gray-500">
                 © {{ date('Y') }} {{ config('app.name') }} - By
                 <span class="font-semibold uppercase">{{ config('app.owner') }}</span>
             </p>
@@ -59,7 +59,7 @@
     <!-- End Content -->
 
     {{-- Alert --}}
-    <x-alert></x-alert>
+    <x-toast></x-toast>
 
     @stack('scripts')
 </body>

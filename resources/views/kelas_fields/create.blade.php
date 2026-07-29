@@ -1,8 +1,8 @@
-<x-layouts.app title="Tambah Field Paket Belajar">
+<x-layouts.app title="Tambah Field Kelas">
     <div class="max-w-4xl">
         <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
             <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-                <h2 class="text-xl font-semibold text-gray-800">Tambah Field Baru (Paket Belajar)</h2>
+                <h2 class="text-xl font-semibold text-gray-800">Tambah Field Baru (Kelas)</h2>
                 <a href="{{ route('paket_belajar_fields.index') }}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                     Kembali
@@ -27,13 +27,13 @@
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Tipe Input <span class="text-red-500">*</span></label>
-                            <select name="type" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required>
+                            <x-searchable-select name="type" placeholder="" required="true">
                                 <option value="text">Text (Teks Pendek)</option>
                                 <option value="number">Number (Angka)</option>
                                 <option value="textarea">Textarea (Teks Panjang)</option>
                                 <option value="select">Select (Dropdown)</option>
                                 <option value="date">Date (Tanggal)</option>
-                            </select>
+                            </x-searchable-select>
                         </div>
 
                         <div>

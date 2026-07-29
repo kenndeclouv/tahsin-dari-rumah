@@ -40,38 +40,7 @@
                             </div>
                         </div>
 
-                        <!-- Kolom Kanan: Data Diri -->
-                        <div class="space-y-6">
-                            <h3 class="text-lg font-semibold text-gray-800 border-b border-gray-200 pb-2">Data Diri (Opsional)</h3>
-                            
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Jenis Kelamin <span class="text-red-500">*</span></label>
-                                <select name="jenis_kelamin" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required>
-                                    <option value="">-- Pilih --</option>
-                                    <option value="L" {{ old('jenis_kelamin') == 'L' ? 'selected' : '' }}>Laki-laki</option>
-                                    <option value="P" {{ old('jenis_kelamin') == 'P' ? 'selected' : '' }}>Perempuan</option>
-                                </select>
-                                @error('jenis_kelamin') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
-                            </div>
 
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Nomor WhatsApp (HP)</label>
-                                <input type="text" name="no_hp" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ old('no_hp') }}" placeholder="Contoh: 08123456789">
-                                @error('no_hp') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Pendidikan Terakhir</label>
-                                <input type="text" name="pendidikan_terakhir" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ old('pendidikan_terakhir') }}" placeholder="Contoh: S1 Pendidikan Agama Islam">
-                                @error('pendidikan_terakhir') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
-                            </div>
-
-                            <div>
-                                <label class="block text-sm font-medium mb-2">Alamat Lengkap</label>
-                                <textarea name="alamat" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" rows="3">{{ old('alamat') }}</textarea>
-                                @error('alamat') <p class="text-sm text-red-600 mt-2">{{ $message }}</p> @enderror
-                            </div>
-                        </div>
 
                     </div>
 
@@ -104,14 +73,13 @@
                                             {{ $field->is_required ? 'required' : '' }}>{{ old('additional_data.' . $field->name) }}</textarea>
                                             
                                     @elseif($field->type == 'select')
-                                        <select name="additional_data[{{ $field->name }}]" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" {{ $field->is_required ? 'required' : '' }}>
-                                            <option value="">-- Pilih --</option>
+                                        <x-searchable-select name="additional_data[{{ $field->name }}]" id="additional_data_{{ $field->name }}" placeholder="-- Pilih --" :required="$field->is_required">
                                             @foreach($field->options as $opt)
                                                 <option value="{{ $opt }}" {{ old('additional_data.' . $field->name) == $opt ? 'selected' : '' }}>
                                                     {{ $opt }}
                                                 </option>
                                             @endforeach
-                                        </select>
+                                        </x-searchable-select>
                                         
                                     @elseif($field->type == 'radio')
                                         <div class="flex flex-wrap gap-4 mt-2">

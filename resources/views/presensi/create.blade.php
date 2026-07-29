@@ -32,11 +32,11 @@
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Kehadiran <span class="text-red-500">*</span></label>
-                            <select name="kehadiran" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required>
+                            <x-searchable-select name="kehadiran" placeholder="" required="true">
                                 <option value="hadir">Hadir</option>
                                 <option value="reschedule">Reschedule</option>
                                 <option value="libur">Libur</option>
-                            </select>
+                            </x-searchable-select>
                         </div>
 
                         <div>
