@@ -25,8 +25,8 @@ class Pengajar extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function paketBelajars()
+    public function kelas()
     {
-        return $this->hasMany(PaketBelajar::class, 'pengajar_id');
+        return $this->hasMany(Kelas::class, 'pengajar_id');
     }
 }

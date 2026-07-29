@@ -235,44 +235,44 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
-                            @forelse ($daftarPaketAktif as $paket)
+                            @forelse ($daftarKelasAktif as $kelasItem)
                                 <tr class="hover:bg-gray-50">
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-800">{{ $paket->santri->nama }}</div>
-                                        @if($paket->santri->no_hp)
-                                            <div class="text-xs text-gray-500">{{ $paket->santri->no_hp }}</div>
+                                        <div class="text-sm font-medium text-gray-800">{{ $kelasItem->santri->nama }}</div>
+                                        @if($kelasItem->santri->no_hp)
+                                            <div class="text-xs text-gray-500">{{ $kelasItem->santri->no_hp }}</div>
                                         @endif
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                        {{ $paket->hari_jam }}
+                                        {{ $kelasItem->hari_jam }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center gap-x-2">
                                             <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                                                <div class="flex flex-col justify-center rounded-full overflow-hidden bg-primary-500" role="progressbar" style="width: {{ ($paket->presensis_count / $paket->jumlah_pertemuan) * 100 }}%" aria-valuenow="{{ $paket->presensis_count }}" aria-valuemin="0" aria-valuemax="{{ $paket->jumlah_pertemuan }}"></div>
+                                                <div class="flex flex-col justify-center rounded-full overflow-hidden bg-primary-500" role="progressbar" style="width: {{ ($kelasItem->presensis_count / $kelasItem->jumlah_pertemuan) * 100 }}%" aria-valuenow="{{ $kelasItem->presensis_count }}" aria-valuemin="0" aria-valuemax="{{ $kelasItem->jumlah_pertemuan }}"></div>
                                             </div>
-                                            <span class="text-xs text-gray-600">{{ $paket->presensis_count }}/{{ $paket->jumlah_pertemuan }}</span>
+                                            <span class="text-xs text-gray-600">{{ $kelasItem->presensis_count }}/{{ $kelasItem->jumlah_pertemuan }}</span>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        @if ($paket->status == 'berjalan')
+                                        @if ($kelasItem->status == 'berjalan')
                                             <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-blue-100 text-blue-800">Sedang Berjalan</span>
-                                        @elseif ($paket->status == 'menunggu_evaluasi')
+                                        @elseif ($kelasItem->status == 'menunggu_evaluasi')
                                             <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-orange-100 text-orange-800">Menunggu Evaluasi</span>
-                                        @elseif ($paket->status == 'selesai')
+                                        @elseif ($kelasItem->status == 'selesai')
                                             <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-primary-100 text-primary-800">Selesai</span>
                                         @endif
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                                        @if ($paket->status == 'berjalan' && $paket->presensis_count < $paket->jumlah_pertemuan)
-                                            <a href="{{ route('presensi.create', $paket->id) }}" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-primary-600 hover:text-primary-800 disabled:opacity-50 disabled:pointer-events-none">
+                                        @if ($kelasItem->status == 'berjalan' && $kelasItem->presensis_count < $kelasItem->jumlah_pertemuan)
+                                            <a href="{{ route('presensi.create', $kelasItem->id) }}" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-primary-600 hover:text-primary-800 disabled:opacity-50 disabled:pointer-events-none">
                                                 Isi Presensi
                                             </a>
-                                        @elseif ($paket->status == 'menunggu_evaluasi' || ($paket->status == 'berjalan' && $paket->presensis_count >= $paket->jumlah_pertemuan))
-                                            <a href="{{ route('evaluasi.create', $paket->id) }}" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-orange-600 hover:text-orange-800 disabled:opacity-50 disabled:pointer-events-none">
+                                        @elseif ($kelasItem->status == 'menunggu_evaluasi' || ($kelasItem->status == 'berjalan' && $kelasItem->presensis_count >= $kelasItem->jumlah_pertemuan))
+                                            <a href="{{ route('evaluasi.create', $kelasItem->id) }}" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-orange-600 hover:text-orange-800 disabled:opacity-50 disabled:pointer-events-none">
                                                 Isi Evaluasi
                                             </a>
-                                        @elseif ($paket->status == 'selesai')
+                                        @elseif ($kelasItem->status == 'selesai')
                                             <span class="text-sm text-gray-400">Selesai</span>
                                         @endif
                                     </td>

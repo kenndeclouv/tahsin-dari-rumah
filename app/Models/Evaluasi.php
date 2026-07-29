@@ -11,8 +11,8 @@ class Evaluasi extends Model
 
     protected $guarded = [];
 
-    public function paketBelajar()
+    public function kelas()
     {
-        return $this->belongsTo(PaketBelajar::class);
+        return $this->belongsTo(Kelas::class);
     }
 }

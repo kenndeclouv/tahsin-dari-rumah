@@ -67,26 +67,26 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200">
-                                    @forelse ($paketBelajars as $paket)
+                                    @forelse ($kelasList as $kelasItem)
                                         <tr class="hover:bg-gray-50">
                                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                                                {{ $paket->pengajar->name ?? '-' }}
+                                                {{ $kelasItem->pengajar->name ?? '-' }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                                {{ $paket->hari_jam }}
+                                                {{ $kelasItem->hari_jam }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                                {{ $paket->jumlah_pertemuan }}x Pertemuan
+                                                {{ $kelasItem->jumlah_pertemuan }}x Pertemuan
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                                {{ $paket->created_at->format('d M Y') }}
+                                                {{ $kelasItem->created_at->format('d M Y') }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                @if ($paket->status == 'berjalan')
+                                                @if ($kelasItem->status == 'berjalan')
                                                     <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-blue-100 text-blue-800">Berjalan</span>
-                                                @elseif ($paket->status == 'menunggu_evaluasi')
+                                                @elseif ($kelasItem->status == 'menunggu_evaluasi')
                                                     <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-orange-100 text-orange-800">Menunggu Evaluasi</span>
-                                                @elseif ($paket->status == 'selesai')
+                                                @elseif ($kelasItem->status == 'selesai')
                                                     <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-primary-100 text-primary-800">Selesai</span>
                                                 @endif
                                             </td>

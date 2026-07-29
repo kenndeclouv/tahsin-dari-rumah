@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PaketBelajar;
+use App\Models\Kelas;
 use App\Models\Evaluasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,37 +13,38 @@ class EvaluasiController extends Controller
     {
         $this->middleware('permission:evaluasis:create')->only('create', 'store');
     }
-    public function create($paketId)
+    
+    public function create($kelasId)
     {
-        $paket = PaketBelajar::with('santri')->findOrFail($paketId);
+        $kelas = Kelas::with('santri')->findOrFail($kelasId);
 
         // Cek authorization
-        if (Auth::user()->pengajar?->id !== $paket->pengajar_id && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('super-admin')) {
+        if (Auth::user()->pengajar?->id !== $kelas->pengajar_id && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('super-admin')) {
             abort(403);
         }
 
-        if ($paket->status === 'selesai' || $paket->evaluasi()->exists()) {
-            return redirect()->route('dashboard')->with('error', 'Evaluasi untuk paket ini sudah diisi.');
+        if ($kelas->status === 'selesai' || $kelas->evaluasi()->exists()) {
+            return redirect()->route('dashboard')->with('error', 'Evaluasi untuk kelas ini sudah diisi.');
         }
         
         // Boleh diisi jika status menunggu_evaluasi (presensi penuh) atau bisa diakali sesuai rules,
         // tapi di sini kita wajibkan sudah menunggu_evaluasi.
-        if ($paket->status === 'berjalan') {
-            return redirect()->route('dashboard')->with('error', 'Paket masih berjalan, belum bisa dievaluasi.');
+        if ($kelas->status === 'berjalan') {
+            return redirect()->route('dashboard')->with('error', 'Kelas masih berjalan, belum bisa dievaluasi.');
         }
 
-        return view('evaluasi.create', compact('paket'));
+        return view('evaluasi.create', compact('kelas'));
     }
 
-    public function store(Request $request, $paketId)
+    public function store(Request $request, $kelasId)
     {
-        $paket = PaketBelajar::findOrFail($paketId);
+        $kelas = Kelas::findOrFail($kelasId);
 
-        if (Auth::user()->pengajar?->id !== $paket->pengajar_id && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('super-admin')) {
+        if (Auth::user()->pengajar?->id !== $kelas->pengajar_id && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('super-admin')) {
             abort(403);
         }
 
-        if ($paket->status === 'selesai') {
+        if ($kelas->status === 'selesai') {
             return redirect()->route('dashboard')->with('error', 'Evaluasi sudah ada.');
         }
 
@@ -56,7 +57,7 @@ class EvaluasiController extends Controller
         ]);
 
         Evaluasi::create([
-            'paket_belajar_id' => $paket->id,
+            'kelas_id' => $kelas->id,
             'perkembangan_bacaan' => $request->perkembangan_bacaan,
             'makhraj' => $request->makhraj,
             'tajwid' => $request->tajwid,
@@ -65,8 +66,8 @@ class EvaluasiController extends Controller
         ]);
 
         // Ubah status ke selesai
-        $paket->update(['status' => 'selesai']);
+        $kelas->update(['status' => 'selesai']);
 
-        return redirect()->route('dashboard')->with('success', 'Evaluasi berhasil disimpan. Status paket sekarang Selesai.');
+        return redirect()->route('dashboard')->with('success', 'Evaluasi berhasil disimpan. Status kelas sekarang Selesai.');
     }
 }

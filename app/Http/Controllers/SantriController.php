@@ -64,11 +64,11 @@ class SantriController extends Controller
 
     public function show(Santri $santri)
     {
-        $paketBelajars = \App\Models\PaketBelajar::with(['pengajar'])
+        $kelasList = \App\Models\Kelas::with(['pengajar'])
             ->where('santri_id', $santri->id)
             ->latest()
             ->get();
-        return view('santris.show', compact('santri', 'paketBelajars'));
+        return view('santris.show', compact('santri', 'kelasList'));
     }
 
     public function update(Request $request, Santri $santri)

@@ -1,8 +1,8 @@
 <x-layouts.app title="Kelola Kelas">
 
     <x-slot:actions>
-        @can('paket_belajars:create')
-            <a href="{{ route('paket_belajars.create') }}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">
+        @can('kelas:create')
+            <a href="{{ route('kelas.create') }}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">
                 <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                 Buat Kelas Baru
             </a>
@@ -18,7 +18,7 @@
                     <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
                         <h2 class="text-xl font-semibold text-gray-800">Daftar Kelas</h2>
                         <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
-                            {{ $pakets->count() }} Kelas
+                            {{ $kelasList->count() }} Kelas
                         </span>
                     </div>
 
@@ -31,45 +31,45 @@
                                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Jadwal</th>
                                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Target Pertemuan</th>
                                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Status</th>
-                                @can('paket_belajars:delete')
+                                @can('kelas:delete')
                                     <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">Aksi</th>
                                 @endcan
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
-                            @forelse ($pakets as $paket)
+                            @forelse ($kelasList as $kelasItem)
                                 <tr class="hover:bg-gray-50 transition-colors">
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="block text-sm font-semibold text-gray-800">{{ $paket->santri->nama }}</span>
-                                        @if(isset($paket->additional_data['nama_paket']))
-                                            <span class="block text-xs text-gray-500 mt-1">{{ $paket->additional_data['nama_paket'] }}</span>
+                                        <span class="block text-sm font-semibold text-gray-800">{{ $kelasItem->santri->nama }}</span>
+                                        @if(isset($kelasItem->additional_data['nama_paket']))
+                                            <span class="block text-xs text-gray-500 mt-1">{{ $kelasItem->additional_data['nama_paket'] }}</span>
                                         @endif
-                                        @if(isset($paket->additional_data['tipe_kelas']) || isset($paket->additional_data['metode_belajar']))
+                                        @if(isset($kelasItem->additional_data['tipe_kelas']) || isset($kelasItem->additional_data['metode_belajar']))
                                             <span class="block text-xs text-gray-500 mt-1">
-                                                {{ $paket->additional_data['tipe_kelas'] ?? '' }} 
-                                                {{ isset($paket->additional_data['metode_belajar']) ? ' - ' . $paket->additional_data['metode_belajar'] : '' }}
+                                                {{ $kelasItem->additional_data['tipe_kelas'] ?? '' }} 
+                                                {{ isset($kelasItem->additional_data['metode_belajar']) ? ' - ' . $kelasItem->additional_data['metode_belajar'] : '' }}
                                             </span>
                                         @endif
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $paket->pengajar->name }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $paket->hari_jam }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $paket->jumlah_pertemuan }}x</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $kelasItem->pengajar->name }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $kelasItem->hari_jam }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $kelasItem->jumlah_pertemuan }}x</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        @if ($paket->status == 'berjalan')
+                                        @if ($kelasItem->status == 'berjalan')
                                             <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-blue-100 text-blue-800">Berjalan</span>
-                                        @elseif ($paket->status == 'menunggu_evaluasi')
+                                        @elseif ($kelasItem->status == 'menunggu_evaluasi')
                                             <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-amber-100 text-amber-800">Menunggu Evaluasi</span>
-                                        @elseif ($paket->status == 'selesai')
+                                        @elseif ($kelasItem->status == 'selesai')
                                             <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-primary-100 text-primary-800">Selesai</span>
                                         @endif
                                     </td>
-                                    @can('paket_belajars:delete')
+                                    @can('kelas:delete')
                                         <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                                             <div class="flex items-center justify-end gap-x-2">
-                                                <a href="{{ route('paket_belajars.edit', $paket->id) }}" class="inline-flex items-center justify-center size-8 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" title="Edit Kelas">
+                                                <a href="{{ route('kelas.edit', $kelasItem->id) }}" class="inline-flex items-center justify-center size-8 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" title="Edit Kelas">
                                                     <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
                                                 </a>
-                                                <form action="{{ route('paket_belajars.destroy', $paket->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin menghapus kelas ini? Seluruh data presensi dan evaluasi di dalamnya akan ikut terhapus.')">
+                                                <form action="{{ route('kelas.destroy', $kelasItem->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin menghapus kelas ini? Seluruh data presensi dan evaluasi di dalamnya akan ikut terhapus.')">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="inline-flex items-center justify-center size-8 rounded-lg border border-red-200 bg-white text-red-600 shadow-sm hover:bg-red-50 hover:border-red-300 disabled:opacity-50 disabled:pointer-events-none" title="Hapus Kelas">
@@ -86,8 +86,8 @@
                                         <div class="flex flex-col justify-center items-center">
                                             <svg class="shrink-0 size-12 text-gray-400 mb-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
                                             <p class="text-gray-500 mb-2">Belum ada kelas.</p>
-                                            @can('paket_belajars:create')
-                                                <a href="{{ route('paket_belajars.create') }}" class="text-primary-600 hover:text-primary-800 font-medium text-sm">Buat sekarang</a>
+                                            @can('kelas:create')
+                                                <a href="{{ route('kelas.create') }}" class="text-primary-600 hover:text-primary-800 font-medium text-sm">Buat sekarang</a>
                                             @endcan
                                         </div>
                                     </td>

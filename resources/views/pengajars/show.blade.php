@@ -75,7 +75,7 @@
                             <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
                                 <h2 class="text-lg font-semibold text-gray-800">Daftar Santri yang Diampu</h2>
                                 <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                    {{ $paketBelajars->count() }} Kelas
+                                    {{ $kelasList->count() }} Kelas
                                 </span>
                             </div>
                             
@@ -91,37 +91,37 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200">
-                                    @forelse ($paketBelajars as $paket)
+                                    @forelse ($kelasList as $kelasItem)
                                         <tr class="hover:bg-gray-50">
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm font-semibold text-gray-800">{{ $paket->santri->nama }}</div>
-                                                @if($paket->santri->no_hp)
-                                                    <div class="text-xs text-gray-500">{{ $paket->santri->no_hp }}</div>
+                                                <div class="text-sm font-semibold text-gray-800">{{ $kelasItem->santri->nama }}</div>
+                                                @if($kelasItem->santri->no_hp)
+                                                    <div class="text-xs text-gray-500">{{ $kelasItem->santri->no_hp }}</div>
                                                 @endif
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                                {{ $paket->hari_jam }}
+                                                {{ $kelasItem->hari_jam }}
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                                {{ $paket->jumlah_pertemuan }}x Pertemuan
+                                                {{ $kelasItem->jumlah_pertemuan }}x Pertemuan
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 @php
-                                                    $percent = $paket->jumlah_pertemuan > 0 ? ($paket->presensis_count / $paket->jumlah_pertemuan) * 100 : 0;
+                                                    $percent = $kelasItem->jumlah_pertemuan > 0 ? ($kelasItem->presensis_count / $kelasItem->jumlah_pertemuan) * 100 : 0;
                                                 @endphp
                                                 <div class="flex items-center gap-x-3">
                                                     <div class="flex w-full h-1.5 bg-gray-200 rounded-full overflow-hidden">
-                                                        <div class="flex flex-col justify-center overflow-hidden bg-primary-500" role="progressbar" style="width: {{ $percent }}%" aria-valuenow="{{ $paket->presensis_count }}" aria-valuemin="0" aria-valuemax="{{ $paket->jumlah_pertemuan }}"></div>
+                                                        <div class="flex flex-col justify-center overflow-hidden bg-primary-500" role="progressbar" style="width: {{ $percent }}%" aria-valuenow="{{ $kelasItem->presensis_count }}" aria-valuemin="0" aria-valuemax="{{ $kelasItem->jumlah_pertemuan }}"></div>
                                                     </div>
-                                                    <span class="text-xs font-medium text-gray-800">{{ $paket->presensis_count }}/{{ $paket->jumlah_pertemuan }}</span>
+                                                    <span class="text-xs font-medium text-gray-800">{{ $kelasItem->presensis_count }}/{{ $kelasItem->jumlah_pertemuan }}</span>
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                @if ($paket->status == 'berjalan')
+                                                @if ($kelasItem->status == 'berjalan')
                                                     <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-blue-100 text-blue-800">Berjalan</span>
-                                                @elseif ($paket->status == 'menunggu_evaluasi')
+                                                @elseif ($kelasItem->status == 'menunggu_evaluasi')
                                                     <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-orange-100 text-orange-800">Menunggu Evaluasi</span>
-                                                @elseif ($paket->status == 'selesai')
+                                                @elseif ($kelasItem->status == 'selesai')
                                                     <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-primary-100 text-primary-800">Selesai</span>
                                                 @endif
                                             </td>

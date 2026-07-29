@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fees', function (Blueprint $table) {
+        Schema::create('paket_belajars', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->enum('jenis', ['online', 'offline'])->default('online');
             $table->integer('nominal');
             $table->timestamps();
         });
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fees');
+        Schema::dropIfExists('paket_belajars');
     }
 };

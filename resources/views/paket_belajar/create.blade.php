@@ -1,13 +1,13 @@
-<x-layouts.app title="Tambah Master Data Fee">
+<x-layouts.app title="Tambah Master Data Paket Belajar">
     <div class="max-w-4xl">
         <div class="bg-white border border-gray-200 rounded-xl shadow-sm">
             
             <div class="px-6 py-4 border-b border-gray-200">
-                <h2 class="text-xl font-semibold text-gray-800">Tambah Master Data Fee Baru</h2>
+                <h2 class="text-xl font-semibold text-gray-800">Tambah Master Data Paket Belajar Baru</h2>
             </div>
             
             <div class="p-6">
-                <form action="{{ route('fees.store') }}" method="POST">
+                <form action="{{ route('paket_belajars.store') }}" method="POST">
                     @csrf
                     
                     <div class="space-y-6">
@@ -23,11 +23,11 @@
                     </div>
                     
                     <div class="mt-8 pt-6 border-t border-gray-200 flex justify-end gap-x-3">
-                        <a href="{{ route('fees.index') }}" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                        <a href="{{ route('paket_belajars.index') }}" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
                             Batal
                         </a>
                         <button type="submit" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">
-                            Simpan Fee
+                            Simpan Paket Belajar
                         </button>
                     </div>
                 </form>

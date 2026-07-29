@@ -129,14 +129,13 @@ class PengajarController extends Controller
     public function show(User $pengajar)
     {
         $customFields = \App\Models\PengajarField::orderBy('order')->get();
-        // Load paket belajars for this pengajar
-        $paketBelajars = \App\Models\PaketBelajar::with(['santri'])
+        $kelasList = \App\Models\Kelas::with(['santri'])
             ->withCount('presensis')
-            ->where('pengajar_id', $pengajar->id)
+            ->where('pengajar_id', $pengajar->pengajar->id ?? 0)
             ->latest()
             ->get();
             
-        return view('pengajars.show', compact('pengajar', 'paketBelajars', 'customFields'));
+        return view('pengajars.show', compact('pengajar', 'kelasList', 'customFields'));
     }
 
     public function destroy(User $pengajar)

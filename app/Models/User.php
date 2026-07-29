@@ -67,9 +67,9 @@ class User extends Authenticatable
         return $this->hasOne(Pengajar::class);
     }
 
-    public function paketBelajars()
+    public function kelas()
     {
-        return $this->hasManyThrough(PaketBelajar::class, Pengajar::class, 'user_id', 'pengajar_id');
+        return $this->hasManyThrough(Kelas::class, Pengajar::class, 'user_id', 'pengajar_id');
     }
 
     /**

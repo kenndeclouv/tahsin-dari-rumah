@@ -20,8 +20,8 @@ class Santri extends Model
         'additional_data' => 'array',
     ];
 
-    public function paketBelajars()
+    public function kelas()
     {
-        return $this->hasMany(PaketBelajar::class);
+        return $this->hasMany(Kelas::class);
     }
 }

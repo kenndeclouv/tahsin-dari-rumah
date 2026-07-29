@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PaketBelajar;
+use App\Models\Kelas;
 use App\Models\Presensi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,35 +13,36 @@ class PresensiController extends Controller
     {
         $this->middleware('permission:presensis:create')->only('create', 'store');
     }
-    public function create($paketId)
+    
+    public function create($kelasId)
     {
-        $paket = PaketBelajar::with('santri')->findOrFail($paketId);
+        $kelas = Kelas::with('santri')->findOrFail($kelasId);
         
         // Cek authorization
-        if (Auth::user()->pengajar?->id !== $paket->pengajar_id && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('super-admin')) {
+        if (Auth::user()->pengajar?->id !== $kelas->pengajar_id && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('super-admin')) {
             abort(403);
         }
 
         // Cek jika sudah penuh
-        $count = $paket->presensis()->count();
-        if ($count >= $paket->jumlah_pertemuan) {
-            return redirect()->route('dashboard')->with('error', 'Paket ini sudah mencapai batas maksimum pertemuan. Silakan isi evaluasi.');
+        $count = $kelas->presensis()->count();
+        if ($count >= $kelas->jumlah_pertemuan) {
+            return redirect()->route('dashboard')->with('error', 'Kelas ini sudah mencapai batas maksimum pertemuan. Silakan isi evaluasi.');
         }
 
-        return view('presensi.create', compact('paket', 'count'));
+        return view('presensi.create', compact('kelas', 'count'));
     }
 
-    public function store(Request $request, $paketId)
+    public function store(Request $request, $kelasId)
     {
-        $paket = PaketBelajar::findOrFail($paketId);
+        $kelas = Kelas::findOrFail($kelasId);
         
-        if (Auth::user()->pengajar?->id !== $paket->pengajar_id && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('super-admin')) {
+        if (Auth::user()->pengajar?->id !== $kelas->pengajar_id && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('super-admin')) {
             abort(403);
         }
 
-        $count = $paket->presensis()->count();
-        if ($count >= $paket->jumlah_pertemuan) {
-            return redirect()->route('dashboard')->with('error', 'Paket ini sudah penuh.');
+        $count = $kelas->presensis()->count();
+        if ($count >= $kelas->jumlah_pertemuan) {
+            return redirect()->route('dashboard')->with('error', 'Kelas ini sudah penuh.');
         }
 
         $request->validate([
@@ -57,7 +58,7 @@ class PresensiController extends Controller
         }
 
         Presensi::create([
-            'paket_belajar_id' => $paket->id,
+            'kelas_id' => $kelas->id,
             'tanggal' => $request->tanggal,
             'kehadiran' => $request->kehadiran,
             'foto' => $fotoPath,
@@ -65,9 +66,9 @@ class PresensiController extends Controller
         ]);
 
         // Jika ini pertemuan terakhir, ubah status ke menunggu_evaluasi
-        if ($count + 1 >= $paket->jumlah_pertemuan) {
-            $paket->update(['status' => 'menunggu_evaluasi']);
-            return redirect()->route('dashboard')->with('success', 'Presensi terakhir berhasil diisi. Silakan isi evaluasi paket ini.');
+        if ($count + 1 >= $kelas->jumlah_pertemuan) {
+            $kelas->update(['status' => 'menunggu_evaluasi']);
+            return redirect()->route('dashboard')->with('success', 'Presensi terakhir berhasil diisi. Silakan isi evaluasi kelas ini.');
         }
 
         return redirect()->route('dashboard')->with('success', 'Presensi berhasil diisi.');

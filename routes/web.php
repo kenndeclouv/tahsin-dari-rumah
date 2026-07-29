@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EvaluasiController;
-use App\Http\Controllers\FeeController;
+use App\Http\Controllers\KelasController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\MukafaahController;
 use App\Http\Controllers\PaketBelajarController;
@@ -26,24 +26,23 @@ Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Presensi
-    Route::get('paket/{paket}/presensi/create', [PresensiController::class, 'create'])->name('presensi.create');
-    Route::post('paket/{paket}/presensi', [PresensiController::class, 'store'])->name('presensi.store');
+    Route::get('kelas/{kelas}/presensi/create', [PresensiController::class, 'create'])->name('presensi.create');
+    Route::post('kelas/{kelas}/presensi', [PresensiController::class, 'store'])->name('presensi.store');
 
     // Evaluasi
-    Route::get('paket/{paket}/evaluasi/create', [EvaluasiController::class, 'create'])->name('evaluasi.create');
-    Route::post('paket/{paket}/evaluasi', [EvaluasiController::class, 'store'])->name('evaluasi.store');
+    Route::get('kelas/{kelas}/evaluasi/create', [EvaluasiController::class, 'create'])->name('evaluasi.create');
+    Route::post('kelas/{kelas}/evaluasi', [EvaluasiController::class, 'store'])->name('evaluasi.store');
 
     // ─── Admin Only ──────────────────────────────────────────────────────────
     Route::resource('santris', SantriController::class);
     Route::resource('pengajars', PengajarController::class);
-    Route::resource('fees', FeeController::class)->except(['show']);
+    Route::resource('paket_belajars', PaketBelajarController::class)->except(['show']);
     Route::resource('santri_fields', App\Http\Controllers\SantriFieldController::class)->except(['show']);
-    Route::resource('paket_belajar_fields', App\Http\Controllers\PaketBelajarFieldController::class)->except(['show']);
     Route::resource('pengajar_fields', App\Http\Controllers\PengajarFieldController::class)->except(['show']);
 
-    Route::resource('paket_belajars', PaketBelajarController::class)->except(['show']);
+    Route::resource('kelas', KelasController::class)->parameters(['kelas' => 'kelas'])->except(['show']);
     Route::get('mukafaah', [MukafaahController::class, 'index'])->name('mukafaah.index');
-    Route::post('mukafaah/{paket}/pay', [MukafaahController::class, 'pay'])->name('mukafaah.pay');
+    Route::post('mukafaah/{kelas}/pay', [MukafaahController::class, 'pay'])->name('mukafaah.pay');
 
     // ─── Super-admin only: users & roles ──────────────────────────────────────
     Route::middleware(['permission:users:view|users:create|users:update|users:delete'])->group(function () {

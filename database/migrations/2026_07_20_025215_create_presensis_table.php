@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('presensis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('paket_belajar_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('kelas_id')->constrained('kelas')->cascadeOnDelete();
             $table->date('tanggal');
             $table->enum('kehadiran', ['hadir', 'reschedule', 'libur'])->default('hadir');
             $table->string('foto')->nullable();

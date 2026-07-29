@@ -10,7 +10,7 @@ class Presensi extends Model
     use HasFactory;
 
     protected $fillable = [
-        'paket_belajar_id',
+        'kelas_id',
         'tanggal',
         'kehadiran',
         'foto',
@@ -21,8 +21,8 @@ class Presensi extends Model
         'tanggal' => 'date',
     ];
 
-    public function paketBelajar()
+    public function kelas()
     {
-        return $this->belongsTo(PaketBelajar::class);
+        return $this->belongsTo(Kelas::class);
     }
 }

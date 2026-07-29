@@ -7,7 +7,7 @@
             </div>
             
             <div class="p-6">
-                <form action="{{ route('paket_belajars.store') }}" method="POST">
+                <form action="{{ route('kelas.store') }}" method="POST">
                     @csrf
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -37,9 +37,9 @@
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Fee Paket (Opsional)</label>
-                            <x-searchable-select name="fee_id" placeholder="Tidak Menggunakan Fee Master" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500">
-                                @foreach ($fees as $fee)
-                                    <option value="{{ $fee->id }}">{{ $fee->nama }} - Rp {{ number_format($fee->nominal, 0, ',', '.') }}</option>
+                            <x-searchable-select name="paket_belajar_id" placeholder="Tidak Menggunakan Fee Master" class="py-3 px-4 pe-9 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500">
+                                @foreach ($paketBelajars as $paketBelajar)
+                                    <option value="{{ $paketBelajar->id }}">{{ $paketBelajar->nama }} - Rp {{ number_format($paketBelajar->nominal, 0, ',', '.') }}</option>
                                 @endforeach
                             </x-searchable-select>
                         </div>
@@ -91,7 +91,7 @@
                     @endif
                     
                     <div class="mt-8 pt-6 border-t border-gray-200 flex justify-end gap-x-3">
-                        <a href="{{ route('paket_belajars.index') }}" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
+                        <a href="{{ route('kelas.index') }}" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
                             Batal
                         </a>
                         <button type="submit" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">

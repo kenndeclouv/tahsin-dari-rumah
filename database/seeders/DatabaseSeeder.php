@@ -18,9 +18,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             PermissionSeeder::class,
-            FeeSeeder::class,
+            PaketBelajarSeeder::class,
             SantriFieldSeeder::class,
-            PaketBelajarFieldSeeder::class,
             PengajarFieldSeeder::class,
         ]);
 
