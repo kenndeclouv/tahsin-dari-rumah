@@ -12,22 +12,29 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <p class="text-sm font-medium text-gray-500 mb-1">Nama Santri</p>
-                            <h3 class="text-base font-semibold text-gray-800">{{ $paket->santri->nama }}</h3>
+                            <h3 class="text-base font-semibold text-gray-800">{{ $kelas->santri->nama }}</h3>
                         </div>
                         <div>
-                            <p class="text-sm font-medium text-gray-500 mb-1">Pertemuan Ke</p>
-                            <h3 class="text-base font-semibold text-gray-800">{{ $count + 1 }} <span class="text-gray-500 font-normal">dari {{ $paket->jumlah_pertemuan }}</span></h3>
+                            <div class="flex justify-between items-center mb-1.5">
+                                <p class="text-sm font-medium text-gray-500">Progres Pertemuan</p>
+                                <span class="inline-flex items-center gap-1.5 py-1 px-2.5 rounded-full text-xs font-bold bg-primary-100 text-primary-800">
+                                    {{ $count + 1 }} / {{ $kelas->jumlah_pertemuan }}
+                                </span>
+                            </div>
+                            <div class="flex w-full h-2.5 bg-gray-200 rounded-full overflow-hidden" role="progressbar" aria-valuenow="{{ (($count + 1) / $kelas->jumlah_pertemuan) * 100 }}" aria-valuemin="0" aria-valuemax="100">
+                                <div class="flex flex-col justify-center rounded-full overflow-hidden bg-primary-600 text-xs text-white text-center whitespace-nowrap transition-all duration-500" style="width: {{ (($count + 1) / $kelas->jumlah_pertemuan) * 100 }}%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <form action="{{ route('presensi.store', $paket->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('presensi.store', $kelas->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     
                     <div class="space-y-6">
                         <div>
                             <label class="block text-sm font-medium mb-2">Tanggal Pertemuan <span class="text-red-500">*</span></label>
-                            <input type="date" name="tanggal" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ date('Y-m-d') }}" required>
+                            <input type="date" name="tanggal" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ date('Y-m-d') }}" max="{{ date('Y-m-d') }}" required>
                         </div>
 
                         <div>

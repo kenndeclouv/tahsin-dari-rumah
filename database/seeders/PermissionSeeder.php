@@ -28,6 +28,12 @@ class PermissionSeeder extends Seeder
             'santris:edit',
             'santris:delete',
         ],
+        'kelas' => [
+            'kelas:view',
+            'kelas:create',
+            'kelas:edit',
+            'kelas:delete',
+        ],
         'paket_belajars' => [
             'paket_belajars:view',
             'paket_belajars:create',
@@ -97,6 +103,7 @@ class PermissionSeeder extends Seeder
         // Admin
         $admin = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
         $admin->syncPermissions([
+            'kelas:view', 'kelas:create', 'kelas:edit', 'kelas:delete',
             'santris:view', 'santris:create', 'santris:edit', 'santris:delete',
             'paket_belajars:view', 'paket_belajars:create', 'paket_belajars:edit', 'paket_belajars:delete',
             'presensis:view',
@@ -111,6 +118,7 @@ class PermissionSeeder extends Seeder
         // Pengajar
         $pengajar = Role::firstOrCreate(['name' => 'pengajar', 'guard_name' => 'web']);
         $pengajar->syncPermissions([
+            'kelas:view',
             'paket_belajars:view',
             'presensis:view', 'presensis:create',
             'evaluasis:view', 'evaluasis:create',

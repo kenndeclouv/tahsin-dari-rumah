@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->enum('jenis', ['online', 'offline'])->default('online');
+            $table->integer('jumlah_pertemuan')->default(1);
             $table->integer('nominal');
             $table->timestamps();
         });

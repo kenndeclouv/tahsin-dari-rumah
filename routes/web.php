@@ -25,6 +25,10 @@ Route::middleware(['auth'])->group(function () {
     // Dashboard (all logged-in users)
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    // Rekap
+    Route::get('rekap/pengajar', [\App\Http\Controllers\RekapController::class, 'pengajar'])->name('rekap.pengajar');
+    Route::get('rekap/santri', [\App\Http\Controllers\RekapController::class, 'santri'])->name('rekap.santri');
+
     // Presensi
     Route::get('kelas/{kelas}/presensi/create', [PresensiController::class, 'create'])->name('presensi.create');
     Route::post('kelas/{kelas}/presensi', [PresensiController::class, 'store'])->name('presensi.store');

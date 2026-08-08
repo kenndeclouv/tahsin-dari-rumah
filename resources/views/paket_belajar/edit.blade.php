@@ -17,6 +17,21 @@
                             <input type="text" name="nama" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('nama', $paketBelajar->nama) }}" placeholder="Contoh: Paket 1 (4x Pertemuan) Offline" autofocus>
                         </div>
 
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Jenis Paket <span class="text-red-500">*</span></label>
+                                <select name="jenis" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required>
+                                    <option value="online" {{ old('jenis', $paketBelajar->jenis) == 'online' ? 'selected' : '' }}>Online</option>
+                                    <option value="offline" {{ old('jenis', $paketBelajar->jenis) == 'offline' ? 'selected' : '' }}>Offline</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Jumlah Pertemuan <span class="text-red-500">*</span></label>
+                                <input type="number" name="jumlah_pertemuan" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('jumlah_pertemuan', $paketBelajar->jumlah_pertemuan) }}" min="1">
+                            </div>
+                        </div>
+
                         <div>
                             <label class="block text-sm font-medium mb-2">Nominal (Rp) <span class="text-red-500">*</span></label>
                             <input type="number" name="nominal" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('nominal', $paketBelajar->nominal) }}" placeholder="Contoh: 150000">

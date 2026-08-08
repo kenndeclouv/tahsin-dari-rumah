@@ -31,9 +31,9 @@
                                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Jadwal</th>
                                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Target Pertemuan</th>
                                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Status</th>
-                                @can('kelas:delete')
+                                @canany(['kelas:edit', 'kelas:delete', 'presensis:create'])
                                     <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">Aksi</th>
-                                @endcan
+                                @endcanany
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
@@ -63,22 +63,33 @@
                                             <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-primary-100 text-primary-800">Selesai</span>
                                         @endif
                                     </td>
-                                    @can('kelas:delete')
+                                    @canany(['kelas:edit', 'kelas:delete', 'presensis:create'])
                                         <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                                             <div class="flex items-center justify-end gap-x-2">
-                                                <a href="{{ route('kelas.edit', $kelasItem->id) }}" class="inline-flex items-center justify-center size-8 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" title="Edit Kelas">
-                                                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
-                                                </a>
-                                                <form action="{{ route('kelas.destroy', $kelasItem->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin menghapus kelas ini? Seluruh data presensi dan evaluasi di dalamnya akan ikut terhapus.')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="inline-flex items-center justify-center size-8 rounded-lg border border-red-200 bg-white text-red-600 shadow-sm hover:bg-red-50 hover:border-red-300 disabled:opacity-50 disabled:pointer-events-none" title="Hapus Kelas">
-                                                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
-                                                    </button>
-                                                </form>
+                                                @can('presensis:create')
+                                                    @if ($kelasItem->status == 'berjalan')
+                                                        <a href="{{ route('presensi.create', $kelasItem->id) }}" class="inline-flex items-center justify-center py-1.5 px-3 rounded-lg border border-transparent bg-primary-600 text-white shadow-sm hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none text-xs font-medium" title="Isi Presensi">
+                                                            Isi Presensi
+                                                        </a>
+                                                    @endif
+                                                @endcan
+                                                @can('kelas:edit')
+                                                    <a href="{{ route('kelas.edit', $kelasItem->id) }}" class="inline-flex items-center justify-center size-8 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" title="Edit Kelas">
+                                                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+                                                    </a>
+                                                @endcan
+                                                @can('kelas:delete')
+                                                    <form action="{{ route('kelas.destroy', $kelasItem->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin menghapus kelas ini? Seluruh data presensi dan evaluasi di dalamnya akan ikut terhapus.')">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="inline-flex items-center justify-center size-8 rounded-lg border border-red-200 bg-white text-red-600 shadow-sm hover:bg-red-50 hover:border-red-300 disabled:opacity-50 disabled:pointer-events-none" title="Hapus Kelas">
+                                                            <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
+                                                        </button>
+                                                    </form>
+                                                @endcan
                                             </div>
                                         </td>
-                                    @endcan
+                                    @endcanany
                                 </tr>
                             @empty
                                 <tr>

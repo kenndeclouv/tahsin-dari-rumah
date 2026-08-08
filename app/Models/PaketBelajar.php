@@ -12,6 +12,7 @@ class PaketBelajar extends Model
     protected $fillable = [
         'nama',
         'jenis',
+        'jumlah_pertemuan',
         'nominal',
     ];
 }

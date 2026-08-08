@@ -15,6 +15,7 @@ class Presensi extends Model
         'kehadiran',
         'foto',
         'catatan',
+        'nominal_fee',
     ];
 
     protected $casts = [

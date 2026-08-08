@@ -16,12 +16,14 @@ class PaketBelajarSeeder extends Seeder
         PaketBelajar::create([
             'nama' => 'Tahsin Privat 4x Pertemuan',
             'jenis' => 'online',
+            'jumlah_pertemuan' => 4,
             'nominal' => 400000,
         ]);
 
         PaketBelajar::create([
             'nama' => 'Tahsin Privat 8x Pertemuan',
             'jenis' => 'online',
+            'jumlah_pertemuan' => 8,
             'nominal' => 800000,
         ]);
     }

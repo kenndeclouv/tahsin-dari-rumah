@@ -103,8 +103,6 @@ bg-slate-900 border-e border-slate-800"
                         </li>
                     @endcan
 
-
-
                     @can('kelas:view')
                         <li>
                             <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('kelas.*') ? 'bg-primary-600 text-white font-medium' : '' }}"
@@ -117,10 +115,20 @@ bg-slate-900 border-e border-slate-800"
 
                     @can('mukafaahs:view')
                         <li>
-                            <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('mukafaah.*') ? 'bg-primary-600 text-white font-medium' : '' }}"
-                                href="{{ route('mukafaah.index') }}">
-                                <i class="fa-regular fa-file-lines hs-overlay-minified:mx-auto"></i>
-                                <span class="hs-overlay-minified:hidden">Rekap Mukafaah</span>
+                            <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('rekap.pengajar') ? 'bg-primary-600 text-white font-medium' : '' }}"
+                                href="{{ route('rekap.pengajar') }}">
+                                <i class="fa-regular fa-money-check-dollar hs-overlay-minified:mx-auto"></i>
+                                <span class="hs-overlay-minified:hidden">Rekap Pengajar</span>
+                            </a>
+                        </li>
+                    @endcan
+
+                    @can('presensis:view')
+                        <li>
+                            <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('rekap.santri') ? 'bg-primary-600 text-white font-medium' : '' }}"
+                                href="{{ route('rekap.santri') }}">
+                                <i class="fa-regular fa-file-invoice hs-overlay-minified:mx-auto"></i>
+                                <span class="hs-overlay-minified:hidden">Rekap Santri</span>
                             </a>
                         </li>
                     @endcan
@@ -129,7 +137,7 @@ bg-slate-900 border-e border-slate-800"
                         <li>
                             <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('paket_belajars.*') ? 'bg-primary-600 text-white font-medium' : '' }}"
                                 href="{{ route('paket_belajars.index') }}">
-                                <i class="fa-regular fa-money-bill hs-overlay-minified:mx-auto"></i>
+                                <i class="fa-regular fa-box-archive hs-overlay-minified:mx-auto"></i>
                                 <span class="hs-overlay-minified:hidden">Paket Belajar</span>
                             </a>
                         </li>

@@ -31,6 +31,7 @@ class PaketBelajarController extends Controller
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'jenis' => 'required|in:online,offline',
+            'jumlah_pertemuan' => 'required|integer|min:1',
             'nominal' => 'required|integer|min:0',
         ]);
 
@@ -48,6 +49,7 @@ class PaketBelajarController extends Controller
         $validated = $request->validate([
             'nama' => 'required|string|max:255',
             'jenis' => 'required|in:online,offline',
+            'jumlah_pertemuan' => 'required|integer|min:1',
             'nominal' => 'required|integer|min:0',
         ]);
 

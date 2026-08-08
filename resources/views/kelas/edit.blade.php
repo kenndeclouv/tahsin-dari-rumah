@@ -65,43 +65,7 @@
                         </div>
                     </div>
 
-                    @if($customFields->count() > 0)
-                    <div class="mt-8 pt-6 border-t border-gray-200">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-6">Informasi Kelas (Dynamic)</h3>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            @foreach ($customFields as $field)
-                                @php
-                                    $val = old('additional_data.'.$field->name, $kelasItem->additional_data[$field->name] ?? '');
-                                @endphp
-                                <div>
-                                    <label class="block text-sm font-medium mb-2">
-                                        {{ $field->label }} 
-                                        @if($field->is_required) <span class="text-red-500">*</span> @endif
-                                    </label>
 
-                                    @if ($field->type === 'textarea')
-                                        <textarea name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" rows="3" {{ $field->is_required ? 'required' : '' }}>{{ $val }}</textarea>
-                                    
-                                    @elseif ($field->type === 'select')
-                                        <x-searchable-select name="additional_data[{{ $field->name }}]" id="additional_data_{{ $field->name }}" placeholder="-- Pilih --" :required="$field->is_required">
-                                            @foreach ($field->options as $option)
-                                                <option value="{{ $option }}" {{ $val == $option ? 'selected' : '' }}>{{ $option }}</option>
-                                            @endforeach
-                                        </x-searchable-select>
-                                    
-                                    @else
-                                        <input type="{{ $field->type }}" name="additional_data[{{ $field->name }}]" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" value="{{ $val }}" {{ $field->is_required ? 'required' : '' }}>
-                                    @endif
-
-                                    @error('additional_data.'.$field->name)
-                                        <p class="text-sm text-red-600 mt-2">{{ $message }}</p>
-                                    @enderror
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    @endif
                     
                     <div class="mt-8 pt-6 border-t border-gray-200 flex justify-end gap-x-3">
                         <a href="{{ route('kelas.index') }}" class="py-2.5 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">

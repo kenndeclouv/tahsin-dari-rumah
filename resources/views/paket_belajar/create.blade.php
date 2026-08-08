@@ -16,6 +16,21 @@
                             <input type="text" name="nama" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('nama') }}" placeholder="Contoh: Paket 1 (4x Pertemuan) Offline" autofocus>
                         </div>
 
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Jenis Paket <span class="text-red-500">*</span></label>
+                                <select name="jenis" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required>
+                                    <option value="online" {{ old('jenis') == 'online' ? 'selected' : '' }}>Online</option>
+                                    <option value="offline" {{ old('jenis') == 'offline' ? 'selected' : '' }}>Offline</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Jumlah Pertemuan <span class="text-red-500">*</span></label>
+                                <input type="number" name="jumlah_pertemuan" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('jumlah_pertemuan', 1) }}" min="1">
+                            </div>
+                        </div>
+
                         <div>
                             <label class="block text-sm font-medium mb-2">Nominal (Rp) <span class="text-red-500">*</span></label>
                             <input type="number" name="nominal" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" required value="{{ old('nominal') }}" placeholder="Contoh: 150000">
