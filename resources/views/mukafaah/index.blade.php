@@ -79,12 +79,16 @@
                                         </td>
                                         @can('mukafaahs:edit')
                                         <td class="px-4 py-3 whitespace-nowrap text-end text-sm font-medium">
-                                            <form action="{{ route('mukafaah.pay', $paket->id) }}" method="POST">
-                                                @csrf
-                                                <button type="submit" class="py-1.5 px-3 inline-flex items-center gap-x-2 text-xs font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">
-                                                    Tandai Lunas
-                                                </button>
-                                            </form>
+                                            <div class="flex items-center justify-end">
+                                                <x-action-dropdown>
+                                                    <form action="{{ route('mukafaah.pay', $paket->id) }}" method="POST" class="w-full">
+                                                        @csrf
+                                                        <button type="submit" class="w-full flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-primary-600 hover:bg-primary-50 focus:outline-none focus:bg-primary-50">
+                                                            <i class="fa-solid fa-check-circle text-primary-400"></i> Tandai Lunas
+                                                        </button>
+                                                    </form>
+                                                </x-action-dropdown>
+                                            </div>
                                         </td>
                                         @endcan
                                     </tr>
@@ -136,12 +140,16 @@
                                         </td>
                                         @can('mukafaahs:edit')
                                         <td class="px-4 py-3 whitespace-nowrap text-end text-sm font-medium">
-                                            <form action="{{ route('mukafaah.pay', $paket->id) }}" method="POST">
-                                                @csrf
-                                                <button type="submit" class="py-1.5 px-3 inline-flex items-center gap-x-2 text-xs font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" onclick="return confirm('Yakin ingin membatalkan status lunas?')">
-                                                    Batal Lunas
-                                                </button>
-                                            </form>
+                                            <div class="flex items-center justify-end">
+                                                <x-action-dropdown>
+                                                    <form action="{{ route('mukafaah.pay', $paket->id) }}" method="POST" class="w-full">
+                                                        @csrf
+                                                        <button type="submit" class="w-full flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" onclick="event.preventDefault(); confirmDelete(this, 'Yakin ingin membatalkan status lunas?')">
+                                                            <i class="fa-solid fa-rotate-left text-gray-400"></i> Batal Lunas
+                                                        </button>
+                                                    </form>
+                                                </x-action-dropdown>
+                                            </div>
                                         </td>
                                         @endcan
                                     </tr>

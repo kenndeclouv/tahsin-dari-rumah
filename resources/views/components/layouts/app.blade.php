@@ -61,6 +61,12 @@
     {{-- Alert --}}
     <x-toast></x-toast>
 
+    {{-- Delete Modal --}}
+    <x-delete-modal></x-delete-modal>
+
+    {{-- Image Modal --}}
+    <x-image-modal></x-image-modal>
+
     @stack('scripts')
 </body>
 

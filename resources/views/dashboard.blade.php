@@ -264,19 +264,26 @@
                                         @endif
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                                        @if ($kelasItem->status == 'berjalan' && $kelasItem->presensis_count < $kelasItem->jumlah_pertemuan)
-                                            <a href="{{ route('presensi.create', $kelasItem->id) }}" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-primary-600 hover:text-primary-800 disabled:opacity-50 disabled:pointer-events-none">
-                                                Isi Presensi
-                                            </a>
-                                        @elseif ($kelasItem->status == 'menunggu_evaluasi' || ($kelasItem->status == 'berjalan' && $kelasItem->presensis_count >= $kelasItem->jumlah_pertemuan))
-                                            <a href="{{ route('evaluasi.create', $kelasItem->id) }}" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-orange-600 hover:text-orange-800 disabled:opacity-50 disabled:pointer-events-none">
-                                                Isi Evaluasi
-                                            </a>
-                                        @elseif ($kelasItem->status == 'selesai')
-                                            <a href="{{ route('evaluasi.show', $kelasItem->id) }}" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-primary-600 hover:text-primary-800 disabled:opacity-50 disabled:pointer-events-none" title="Lihat Hasil Evaluasi">
-                                                Lihat Evaluasi
-                                            </a>
-                                        @endif
+                                        <div class="flex items-center justify-end">
+                                            <x-action-dropdown>
+                                                <a href="{{ route('kelas.show', $kelasItem->id) }}" class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100">
+                                                    <i class="fa-solid fa-eye text-gray-400"></i> Detail
+                                                </a>
+                                                @if ($kelasItem->status == 'berjalan' && $kelasItem->presensis_count < $kelasItem->jumlah_pertemuan)
+                                                    <a href="{{ route('presensi.create', $kelasItem->id) }}" class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-primary-600 hover:bg-primary-50 focus:outline-none focus:bg-primary-50">
+                                                        <i class="fa-solid fa-clipboard-check text-primary-400"></i> Isi Presensi
+                                                    </a>
+                                                @elseif ($kelasItem->status == 'menunggu_evaluasi' || ($kelasItem->status == 'berjalan' && $kelasItem->presensis_count >= $kelasItem->jumlah_pertemuan))
+                                                    <a href="{{ route('evaluasi.create', $kelasItem->id) }}" class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-orange-600 hover:bg-orange-50 focus:outline-none focus:bg-orange-50">
+                                                        <i class="fa-solid fa-file-pen text-orange-400"></i> Isi Evaluasi
+                                                    </a>
+                                                @elseif ($kelasItem->status == 'selesai')
+                                                    <a href="{{ route('evaluasi.show', $kelasItem->id) }}" class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-primary-600 hover:bg-primary-50 focus:outline-none focus:bg-primary-50">
+                                                        <i class="fa-solid fa-file-contract text-primary-400"></i> Lihat Evaluasi
+                                                    </a>
+                                                @endif
+                                            </x-action-dropdown>
+                                        </div>
                                     </td>
                                 </tr>
                             @empty

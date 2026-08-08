@@ -63,23 +63,25 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $user->created_at->format('d M Y') }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                                        <div class="flex items-center justify-end gap-x-2">
-                                            @can('users:edit')
-                                                <a href="{{ route('users.edit', $user) }}" class="inline-flex items-center justify-center size-8 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" title="Edit User">
-                                                    <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
-                                                </a>
-                                            @endcan
-                                            @can('users:delete')
-                                                @if ($user->id !== auth()->id())
-                                                    <button type="button" class="inline-flex items-center justify-center size-8 rounded-lg border border-red-200 bg-white text-red-600 shadow-sm hover:bg-red-50 hover:border-red-300 disabled:opacity-50 disabled:pointer-events-none" title="Hapus User" data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}" onclick="confirmDelete(this)">
-                                                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
-                                                    </button>
-                                                    <form id="delete-user-{{ $user->id }}" action="{{ route('users.destroy', $user) }}" method="POST" class="hidden">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                    </form>
-                                                @endif
-                                            @endcan
+                                        <div class="flex items-center justify-end">
+                                            <x-action-dropdown>
+                                                @can('users:edit')
+                                                    <a href="{{ route('users.edit', $user) }}" class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100">
+                                                        <i class="fa-solid fa-pen-to-square text-gray-400"></i> Edit
+                                                    </a>
+                                                @endcan
+                                                @can('users:delete')
+                                                    @if ($user->id !== auth()->id())
+                                                        <button type="button" class="w-full flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-red-600 hover:bg-red-50 focus:outline-none focus:bg-red-50" data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}" onclick="confirmDelete(this)">
+                                                            <i class="fa-solid fa-trash-can text-red-400"></i> Hapus
+                                                        </button>
+                                                        <form id="delete-user-{{ $user->id }}" action="{{ route('users.destroy', $user) }}" method="POST" class="hidden">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                    @endif
+                                                @endcan
+                                            </x-action-dropdown>
                                         </div>
                                     </td>
                                 </tr>

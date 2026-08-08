@@ -53,15 +53,24 @@ class KelasController extends Controller
         return redirect()->route('kelas.index')->with('success', 'Data Kelas berhasil ditambahkan.');
     }
 
-    public function edit(Kelas $kelasItem)
+    public function show(Kelas $kelas)
+    {
+        $kelas->load(['santri', 'pengajar', 'paketBelajar', 'evaluasi', 'presensis' => function ($query) {
+            $query->orderBy('tanggal', 'asc');
+        }]);
+
+        return view('kelas.show', compact('kelas'));
+    }
+
+    public function edit(Kelas $kelas)
     {
         $santris = Santri::all();
         $pengajars = Pengajar::all();
         $paketBelajars = PaketBelajar::all();
-        return view('kelas.edit', compact('kelasItem', 'santris', 'pengajars', 'paketBelajars'));
+        return view('kelas.edit', compact('kelas', 'santris', 'pengajars', 'paketBelajars'));
     }
 
-    public function update(Request $request, Kelas $kelasItem)
+    public function update(Request $request, Kelas $kelas)
     {
         $validated = $request->validate([
             'santri_id' => 'required|exists:santris,id',
@@ -72,13 +81,13 @@ class KelasController extends Controller
             'status' => 'required|in:berjalan,menunggu_evaluasi,selesai',
         ]);
 
-        $kelasItem->update($validated);
+        $kelas->update($validated);
         return redirect()->route('kelas.index')->with('success', 'Data Kelas berhasil diperbarui.');
     }
 
-    public function destroy(Kelas $kelasItem)
+    public function destroy(Kelas $kelas)
     {
-        $kelasItem->delete();
+        $kelas->delete();
         return redirect()->route('kelas.index')->with('success', 'Data Kelas berhasil dihapus.');
     }
 }

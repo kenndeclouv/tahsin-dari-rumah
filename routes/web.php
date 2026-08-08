@@ -46,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('santri_fields', App\Http\Controllers\SantriFieldController::class)->except(['show']);
     Route::resource('pengajar_fields', App\Http\Controllers\PengajarFieldController::class)->except(['show']);
 
-    Route::resource('kelas', KelasController::class)->parameters(['kelas' => 'kelas'])->except(['show']);
+    Route::resource('kelas', KelasController::class)->parameters(['kelas' => 'kelas']);
     Route::get('mukafaah', [MukafaahController::class, 'index'])->name('mukafaah.index');
     Route::post('mukafaah/{kelas}/pay', [MukafaahController::class, 'pay'])->name('mukafaah.pay');
 
