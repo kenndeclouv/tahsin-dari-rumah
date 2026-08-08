@@ -43,4 +43,48 @@ class Kelas extends Model
     {
         return $this->hasOne(Evaluasi::class);
     }
+
+    // --- Scopes ---
+
+    public function scopeBerjalan($query)
+    {
+        return $query->where('status', 'berjalan');
+    }
+
+    public function scopeMenungguEvaluasi($query)
+    {
+        return $query->where('status', 'menunggu_evaluasi');
+    }
+
+    public function scopeSelesai($query)
+    {
+        return $query->where('status', 'selesai');
+    }
+
+    public function scopeFilterByMonthYear($query, $dateColumn, $bulan, $tahun)
+    {
+        if ($bulan !== 'all') {
+            $query->whereMonth($dateColumn, $bulan);
+        }
+        if ($tahun !== 'all') {
+            $query->whereYear($dateColumn, $tahun);
+        }
+        return $query;
+    }
+
+    // --- Methods ---
+
+    public function isFull(): bool
+    {
+        return $this->presensis()->count() >= $this->jumlah_pertemuan;
+    }
+
+    public function canBeManagedBy(User $user): bool
+    {
+        if ($user->isAdminOrSuperAdmin()) {
+            return true;
+        }
+
+        return $user->pengajar?->id === $this->pengajar_id;
+    }
 }

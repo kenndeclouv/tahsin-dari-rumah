@@ -18,17 +18,15 @@ class PresensiController extends Controller
     {
         $kelas = Kelas::with('santri')->findOrFail($kelasId);
 
-        // Cek authorization
-        if (Auth::user()->pengajar?->id !== $kelas->pengajar_id && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('super-admin')) {
+        if (!Auth::user()->canManageKelas($kelas)) {
             abort(403);
         }
 
-        // Cek jika sudah penuh
-        $count = $kelas->presensis()->count();
-        if ($count >= $kelas->jumlah_pertemuan) {
+        if ($kelas->isFull()) {
             return redirect()->route('dashboard')->with('error', 'Kelas ini sudah mencapai batas maksimum pertemuan. Silakan isi evaluasi.');
         }
 
+        $count = $kelas->presensis()->count();
         return view('presensi.create', compact('kelas', 'count'));
     }
 
@@ -36,12 +34,11 @@ class PresensiController extends Controller
     {
         $kelas = Kelas::findOrFail($kelasId);
 
-        if (Auth::user()->pengajar?->id !== $kelas->pengajar_id && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('super-admin')) {
+        if (!Auth::user()->canManageKelas($kelas)) {
             abort(403);
         }
 
-        $count = $kelas->presensis()->count();
-        if ($count >= $kelas->jumlah_pertemuan) {
+        if ($kelas->isFull()) {
             return redirect()->route('dashboard')->with('error', 'Kelas ini sudah penuh.');
         }
 

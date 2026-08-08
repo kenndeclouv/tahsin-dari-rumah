@@ -273,7 +273,9 @@
                                                 Isi Evaluasi
                                             </a>
                                         @elseif ($kelasItem->status == 'selesai')
-                                            <span class="text-sm text-gray-400">Selesai</span>
+                                            <a href="{{ route('evaluasi.show', $kelasItem->id) }}" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-primary-600 hover:text-primary-800 disabled:opacity-50 disabled:pointer-events-none" title="Lihat Hasil Evaluasi">
+                                                Lihat Evaluasi
+                                            </a>
                                         @endif
                                     </td>
                                 </tr>

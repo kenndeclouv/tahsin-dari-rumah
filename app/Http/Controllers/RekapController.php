@@ -18,9 +18,8 @@ class RekapController extends Controller
         $tahun = $request->input('tahun', date('Y'));
 
         $rekap = \App\Models\Kelas::with(['pengajar', 'paketBelajar'])
-            ->where('status', 'selesai')
-            ->whereMonth('updated_at', $bulan)
-            ->whereYear('updated_at', $tahun)
+            ->selesai()
+            ->filterByMonthYear('updated_at', $bulan, $tahun)
             ->latest('updated_at')
             ->get();
 
@@ -33,9 +32,8 @@ class RekapController extends Controller
         $tahun = $request->input('tahun', date('Y'));
 
         $rekap = \App\Models\Kelas::with(['santri', 'paketBelajar'])
-            ->where('status', 'selesai')
-            ->whereMonth('updated_at', $bulan)
-            ->whereYear('updated_at', $tahun)
+            ->selesai()
+            ->filterByMonthYear('updated_at', $bulan, $tahun)
             ->latest('updated_at')
             ->get();
 

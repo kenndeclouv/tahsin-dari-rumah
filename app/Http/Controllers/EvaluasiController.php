@@ -18,8 +18,7 @@ class EvaluasiController extends Controller
     {
         $kelas = Kelas::with('santri')->findOrFail($kelasId);
 
-        // Cek authorization
-        if (Auth::user()->pengajar?->id !== $kelas->pengajar_id && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('super-admin')) {
+        if (!Auth::user()->canManageKelas($kelas)) {
             abort(403);
         }
 
@@ -27,8 +26,6 @@ class EvaluasiController extends Controller
             return redirect()->route('dashboard')->with('error', 'Evaluasi untuk kelas ini sudah diisi.');
         }
         
-        // Boleh diisi jika status menunggu_evaluasi (presensi penuh) atau bisa diakali sesuai rules,
-        // tapi di sini kita wajibkan sudah menunggu_evaluasi.
         if ($kelas->status === 'berjalan') {
             return redirect()->route('dashboard')->with('error', 'Kelas masih berjalan, belum bisa dievaluasi.');
         }
@@ -40,7 +37,7 @@ class EvaluasiController extends Controller
     {
         $kelas = Kelas::findOrFail($kelasId);
 
-        if (Auth::user()->pengajar?->id !== $kelas->pengajar_id && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('super-admin')) {
+        if (!Auth::user()->canManageKelas($kelas)) {
             abort(403);
         }
 
@@ -69,5 +66,27 @@ class EvaluasiController extends Controller
         $kelas->update(['status' => 'selesai']);
 
         return redirect()->route('dashboard')->with('success', 'Evaluasi berhasil disimpan. Status kelas sekarang Selesai.');
+    }
+
+    public function show($kelasId)
+    {
+        $kelas = Kelas::with(['santri', 'evaluasi', 'pengajar'])->findOrFail($kelasId);
+
+        if (!$kelas->evaluasi) {
+            return redirect()->back()->with('error', 'Evaluasi belum tersedia.');
+        }
+
+        return view('evaluasi.show', compact('kelas'));
+    }
+
+    public function publicRapor($kelasId)
+    {
+        $kelas = Kelas::with(['santri', 'evaluasi', 'pengajar'])->findOrFail($kelasId);
+
+        if (!$kelas->evaluasi) {
+            abort(404, 'Evaluasi belum tersedia.');
+        }
+
+        return view('evaluasi.public', compact('kelas'));
     }
 }

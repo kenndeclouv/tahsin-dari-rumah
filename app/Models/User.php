@@ -79,4 +79,14 @@ class User extends Authenticatable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+
+    public function isAdminOrSuperAdmin(): bool
+    {
+        return $this->hasRole(['admin', 'super-admin']);
+    }
+
+    public function canManageKelas(Kelas $kelas): bool
+    {
+        return $kelas->canBeManagedBy($this);
+    }
 }

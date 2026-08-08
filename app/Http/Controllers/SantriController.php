@@ -36,14 +36,7 @@ class SantriController extends Controller
             'status' => 'required|in:aktif,selesai,nonaktif',
         ];
 
-        foreach ($fields as $field) {
-            $rule = $field->is_required ? 'required' : 'nullable';
-            if ($field->type === 'number') {
-                $rule .= '|numeric';
-            }
-            $rules['additional_data.' . $field->name] = $rule;
-        }
-
+        $rules = \App\Helpers\ValidationHelper::buildCustomFieldRules($fields, $rules);
         $validated = $request->validate($rules);
 
         $santri = Santri::create([
@@ -80,14 +73,7 @@ class SantriController extends Controller
             'status' => 'required|in:aktif,selesai,nonaktif',
         ];
 
-        foreach ($fields as $field) {
-            $rule = $field->is_required ? 'required' : 'nullable';
-            if ($field->type === 'number') {
-                $rule .= '|numeric';
-            }
-            $rules['additional_data.' . $field->name] = $rule;
-        }
-
+        $rules = \App\Helpers\ValidationHelper::buildCustomFieldRules($fields, $rules);
         $validated = $request->validate($rules);
 
         $santri->update([

@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::view('/syarat-ketentuan', 'syarat-ketentuan')->name('syarat-ketentuan');
 Route::view('/kebijakan-privasi', 'kebijakan-privasi')->name('kebijakan-privasi');
+Route::get('/rapor/{kelas}', [EvaluasiController::class, 'publicRapor'])->name('evaluasi.public');
 
 // ─── Authenticated Routes ─────────────────────────────────────────────────────
 Route::middleware(['auth'])->group(function () {
@@ -36,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
     // Evaluasi
     Route::get('kelas/{kelas}/evaluasi/create', [EvaluasiController::class, 'create'])->name('evaluasi.create');
     Route::post('kelas/{kelas}/evaluasi', [EvaluasiController::class, 'store'])->name('evaluasi.store');
+    Route::get('kelas/{kelas}/evaluasi', [EvaluasiController::class, 'show'])->name('evaluasi.show');
 
     // ─── Admin Only ──────────────────────────────────────────────────────────
     Route::resource('santris', SantriController::class);

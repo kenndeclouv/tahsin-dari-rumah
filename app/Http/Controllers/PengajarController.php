@@ -38,14 +38,7 @@ class PengajarController extends Controller
             'additional_data' => 'nullable|array',
         ];
 
-        foreach ($customFields as $field) {
-            if ($field->is_required) {
-                $rules['additional_data.' . $field->name] = 'required';
-            } else {
-                $rules['additional_data.' . $field->name] = 'nullable';
-            }
-        }
-
+        $rules = \App\Helpers\ValidationHelper::buildCustomFieldRules($customFields, $rules);
         $validated = $request->validate($rules);
 
         $user = User::create([
@@ -83,19 +76,12 @@ class PengajarController extends Controller
             'additional_data' => 'nullable|array',
         ];
 
-        foreach ($customFields as $field) {
-            if ($field->is_required) {
-                $rules['additional_data.' . $field->name] = 'required';
-            } else {
-                $rules['additional_data.' . $field->name] = 'nullable';
-            }
-        }
-
         // Jika password diisi, maka update password
         if ($request->filled('password')) {
             $rules['password'] = 'required|string|min:8|confirmed';
         }
 
+        $rules = \App\Helpers\ValidationHelper::buildCustomFieldRules($customFields, $rules);
         $validated = $request->validate($rules);
 
         $pengajar->name = $validated['name'];

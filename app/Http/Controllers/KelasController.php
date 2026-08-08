@@ -23,16 +23,11 @@ class KelasController extends Controller
         $bulan = $request->input('bulan', date('m'));
         $tahun = $request->input('tahun', date('Y'));
 
-        $query = Kelas::with(['santri', 'pengajar', 'paketBelajar'])->latest();
+        $kelasList = Kelas::with(['santri', 'pengajar', 'paketBelajar'])
+            ->filterByMonthYear('created_at', $bulan, $tahun)
+            ->latest()
+            ->get();
 
-        if ($bulan !== 'all') {
-            $query->whereMonth('created_at', $bulan);
-        }
-        if ($tahun !== 'all') {
-            $query->whereYear('created_at', $tahun);
-        }
-
-        $kelasList = $query->get();
         return view('kelas.index', compact('kelasList', 'bulan', 'tahun'));
     }
 
