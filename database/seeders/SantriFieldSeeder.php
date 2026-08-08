@@ -60,23 +60,7 @@ class SantriFieldSeeder extends Seeder
                 'options' => null,
                 'is_required' => true,
                 'order' => 5,
-            ],
-            [
-                'label' => 'Jadwal Opsi 2 (Hari & Jam)',
-                'name' => 'jadwal_opsi_2',
-                'type' => 'text',
-                'options' => null,
-                'is_required' => false,
-                'order' => 6,
-            ],
-            [
-                'label' => 'Jadwal Opsi 3 (Hari & Jam)',
-                'name' => 'jadwal_opsi_3',
-                'type' => 'text',
-                'options' => null,
-                'is_required' => false,
-                'order' => 7,
-            ],
+            ]
         ];
 
         foreach ($fields as $field) {

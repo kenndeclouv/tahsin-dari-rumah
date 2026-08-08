@@ -133,6 +133,11 @@ bg-slate-900 border-e border-slate-800"
                         </li>
                     @endcan
 
+                    <!-- Setting -->
+                    <li class="px-2 pt-2 pb-1 hs-overlay-minified:hidden">
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Setting</span>
+                    </li>
+
                     @can('paket_belajars:view')
                         <li>
                             <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('paket_belajars.*') ? 'bg-primary-600 text-white font-medium' : '' }}"

@@ -15,11 +15,40 @@
                 <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
                     
                     {{-- Header --}}
-                    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
-                        <h2 class="text-xl font-semibold text-gray-800">Daftar Kelas</h2>
-                        <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
-                            {{ $kelasList->count() }} Kelas
-                        </span>
+                    <div class="px-6 py-4 border-b border-gray-200 flex flex-wrap justify-between items-center gap-4 bg-gray-50">
+                        <div class="flex items-center gap-3">
+                            <h2 class="text-xl font-semibold text-gray-800">Daftar Kelas</h2>
+                            <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
+                                {{ $kelasList->count() }} Kelas
+                            </span>
+                        </div>
+
+                        <form action="{{ route('kelas.index') }}" method="GET" class="flex gap-3 items-center">
+                            <select name="bulan" class="py-2 px-3 border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500">
+                                <option value="all" {{ $bulan === 'all' ? 'selected' : '' }}>Semua Bulan</option>
+                                @for($i = 1; $i <= 12; $i++)
+                                    <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}" {{ $bulan == str_pad($i, 2, '0', STR_PAD_LEFT) ? 'selected' : '' }}>
+                                        {{ date('F', mktime(0, 0, 0, $i, 1)) }}
+                                    </option>
+                                @endfor
+                            </select>
+                            
+                            <select name="tahun" class="py-2 px-3 border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500">
+                                <option value="all" {{ $tahun === 'all' ? 'selected' : '' }}>Semua Tahun</option>
+                                @php
+                                    $firstKelas = \App\Models\Kelas::orderBy('created_at', 'asc')->first();
+                                    $startYear = $firstKelas ? $firstKelas->created_at->format('Y') : date('Y');
+                                    $endYear = date('Y') + 5;
+                                @endphp
+                                @for($i = $startYear; $i <= $endYear; $i++)
+                                    <option value="{{ $i }}" {{ $tahun == $i ? 'selected' : '' }}>{{ $i }}</option>
+                                @endfor
+                            </select>
+                            
+                            <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700">
+                                Filter
+                            </button>
+                        </form>
                     </div>
 
                     {{-- Table --}}

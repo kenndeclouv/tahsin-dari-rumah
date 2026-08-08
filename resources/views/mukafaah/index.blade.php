@@ -20,11 +20,11 @@
 
     @forelse ($pengajars as $pengajar)
         @php
-            $paketBelumLunas = $pengajar->paketBelajars->where('payment_status', 'belum');
-            $paketLunas = $pengajar->paketBelajars->where('payment_status', 'lunas');
+            $paketBelumLunas = $pengajar->kelas->where('payment_status', 'belum');
+            $paketLunas = $pengajar->kelas->where('payment_status', 'lunas');
             
             $totalUangBelumLunas = $paketBelumLunas->sum(function($paket) {
-                return $paket->fee ? $paket->fee->nominal : 0;
+                return $paket->paketBelajar ? $paket->paketBelajar->nominal : 0;
             });
         @endphp
 
@@ -68,8 +68,8 @@
                                             {{ $paket->hari_jam }} ({{ $paket->jumlah_pertemuan }}x)
                                         </td>
                                         <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-800">
-                                            @if($paket->fee)
-                                                Rp {{ number_format($paket->fee->nominal, 0, ',', '.') }}
+                                            @if($paket->paketBelajar)
+                                                Rp {{ number_format($paket->paketBelajar->nominal, 0, ',', '.') }}
                                             @else
                                                 <span class="text-gray-400 italic">Tanpa Fee</span>
                                             @endif
@@ -125,8 +125,8 @@
                                         <td class="px-4 py-3 whitespace-nowrap text-sm">{{ $paket->santri->nama }}</td>
                                         <td class="px-4 py-3 whitespace-nowrap text-sm">{{ $paket->hari_jam }} ({{ $paket->jumlah_pertemuan }}x)</td>
                                         <td class="px-4 py-3 whitespace-nowrap text-sm">
-                                            @if($paket->fee)
-                                                Rp {{ number_format($paket->fee->nominal, 0, ',', '.') }}
+                                            @if($paket->paketBelajar)
+                                                Rp {{ number_format($paket->paketBelajar->nominal, 0, ',', '.') }}
                                             @else
                                                 <span class="italic">Tanpa Fee</span>
                                             @endif

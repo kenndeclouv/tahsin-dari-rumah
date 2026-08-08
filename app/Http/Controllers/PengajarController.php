@@ -17,7 +17,7 @@ class PengajarController extends Controller
     }
     public function index()
     {
-        $pengajars = User::role('pengajar')->latest()->get();
+        $pengajars = User::role('pengajar')->with('pengajar')->latest()->get();
         return view('pengajars.index', compact('pengajars'));
     }
 

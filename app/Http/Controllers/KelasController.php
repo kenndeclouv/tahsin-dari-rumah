@@ -18,10 +18,22 @@ class KelasController extends Controller
         $this->middleware('permission:kelas:delete')->only('destroy');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $kelasList = Kelas::with(['santri', 'pengajar', 'paketBelajar'])->latest()->get();
-        return view('kelas.index', compact('kelasList'));
+        $bulan = $request->input('bulan', date('m'));
+        $tahun = $request->input('tahun', date('Y'));
+
+        $query = Kelas::with(['santri', 'pengajar', 'paketBelajar'])->latest();
+
+        if ($bulan !== 'all') {
+            $query->whereMonth('created_at', $bulan);
+        }
+        if ($tahun !== 'all') {
+            $query->whereYear('created_at', $tahun);
+        }
+
+        $kelasList = $query->get();
+        return view('kelas.index', compact('kelasList', 'bulan', 'tahun'));
     }
 
     public function create()

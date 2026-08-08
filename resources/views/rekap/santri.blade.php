@@ -7,8 +7,8 @@
                 <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden mb-6">
                     <div class="px-6 py-4 border-b border-gray-200 flex flex-wrap justify-between items-center gap-4">
                         <div>
-                            <h2 class="text-xl font-semibold text-gray-800">Rekap Kehadiran & Tagihan Santri</h2>
-                            <p class="text-sm text-gray-500">Laporan rekapitulasi kehadiran santri dan estimasi tagihan.</p>
+                            <h2 class="text-xl font-semibold text-gray-800">Rekap Kelas Selesai (Santri)</h2>
+                            <p class="text-sm text-gray-500">Laporan daftar kelas yang telah selesai.</p>
                         </div>
                         
                         <form action="{{ route('rekap.santri') }}" method="GET" class="flex gap-3 items-center">
@@ -21,7 +21,12 @@
                             </select>
                             
                             <select name="tahun" class="py-2 px-3 border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500">
-                                @for($i = date('Y') - 2; $i <= date('Y') + 1; $i++)
+                                @php
+                                    $firstKelas = \App\Models\Kelas::orderBy('created_at', 'asc')->first();
+                                    $startYear = $firstKelas ? $firstKelas->created_at->format('Y') : date('Y');
+                                    $endYear = date('Y') + 5;
+                                @endphp
+                                @for($i = $startYear; $i <= $endYear; $i++)
                                     <option value="{{ $i }}" {{ $tahun == $i ? 'selected' : '' }}>{{ $i }}</option>
                                 @endfor
                             </select>
@@ -39,23 +44,21 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Nama Santri</th>
-                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Total Kehadiran (Bulan Ini)</th>
-                                <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">Estimasi Tagihan</th>
+                                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Program/Paket</th>
+                                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Tanggal Selesai</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
                             @forelse ($rekap as $data)
                                 <tr class="hover:bg-gray-50 transition-colors">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">
-                                        {{ $data['santri_nama'] }}
+                                        {{ $data->santri->nama ?? 'Unknown' }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
-                                        <span class="inline-flex items-center gap-1.5 py-1 px-3 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800">
-                                            {{ $data['total_hadir'] }}x Hadir
-                                        </span>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ $data->paketBelajar->nama_paket ?? '-' }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-semibold text-rose-600">
-                                        Rp {{ number_format($data['estimasi_tagihan'], 0, ',', '.') }}
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ $data->updated_at->format('d M Y') }}
                                     </td>
                                 </tr>
                             @empty
@@ -63,22 +66,13 @@
                                     <td colspan="3" class="px-6 py-12 text-center">
                                         <div class="flex flex-col justify-center items-center">
                                             <svg class="shrink-0 size-12 text-gray-400 mb-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-                                            <p class="text-gray-500">Belum ada data presensi di bulan ini.</p>
+                                            <p class="text-gray-500">Belum ada kelas yang selesai di bulan ini.</p>
                                         </div>
                                     </td>
                                 </tr>
                             @endforelse
                         </tbody>
-                        @if($rekap->count() > 0)
-                        <tfoot class="bg-gray-50 font-semibold text-gray-800">
-                            <tr>
-                                <td class="px-6 py-4 text-end" colspan="2">Total Keseluruhan</td>
-                                <td class="px-6 py-4 text-end text-rose-700">
-                                    Rp {{ number_format($rekap->sum('estimasi_tagihan'), 0, ',', '.') }}
-                                </td>
-                            </tr>
-                        </tfoot>
-                        @endif
+                        </tbody>
                     </table>
                 </div>
 
