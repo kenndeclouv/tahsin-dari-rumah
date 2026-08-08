@@ -1,10 +1,12 @@
 <x-layouts.app title="Pengaturan Form Santri">
     
     <x-slot:actions>
+        @can('santri_fields:create')
         <a href="{{ route('santri_fields.create') }}" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none">
             <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
             Tambah Field
         </a>
+        @endcan
     </x-slot:actions>
 
     <div class="flex flex-col">
@@ -29,7 +31,9 @@
                                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Name (DB)</th>
                                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Type</th>
                                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Required?</th>
+                                @canany(['santri_fields:edit', 'santri_fields:delete'])
                                 <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                                @endcanany
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-200">
@@ -55,12 +59,16 @@
                                             <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-gray-100 text-gray-600">Tidak</span>
                                         @endif
                                     </td>
+                                    @canany(['santri_fields:edit', 'santri_fields:delete'])
                                     <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                                         <div class="flex items-center justify-end">
                                             <x-action-dropdown>
+                                                @can('santri_fields:edit')
                                                 <a href="{{ route('santri_fields.edit', $field->id) }}" class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100">
                                                     <i class="fa-solid fa-pen-to-square text-gray-400"></i> Edit
                                                 </a>
+                                                @endcan
+                                                @can('santri_fields:delete')
                                                 <form action="{{ route('santri_fields.destroy', $field->id) }}" method="POST" class="inline-block w-full" onsubmit="event.preventDefault(); confirmDelete(this, 'Yakin ingin menghapus field ini? Data lama pada santri tidak akan terhapus namun tidak akan muncul lagi di form.')">
                                                     @csrf
                                                     @method('DELETE')
@@ -68,9 +76,11 @@
                                                         <i class="fa-solid fa-trash-can text-red-400"></i> Hapus
                                                     </button>
                                                 </form>
+                                                @endcan
                                             </x-action-dropdown>
                                         </div>
                                     </td>
+                                    @endcanany
                                 </tr>
                             @empty
                                 <tr>

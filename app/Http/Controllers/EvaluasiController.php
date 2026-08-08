@@ -12,6 +12,7 @@ class EvaluasiController extends Controller
     public function __construct()
     {
         $this->middleware('permission:evaluasis:create')->only('create', 'store');
+        $this->middleware('permission:evaluasis:view')->only('show');
     }
     
     public function create($kelasId)
@@ -71,6 +72,10 @@ class EvaluasiController extends Controller
     public function show($kelasId)
     {
         $kelas = Kelas::with(['santri', 'evaluasi', 'pengajar'])->findOrFail($kelasId);
+
+        if (!Auth::user()->canManageKelas($kelas)) {
+            abort(403, 'Anda tidak memiliki akses untuk melihat evaluasi kelas ini.');
+        }
 
         if (!$kelas->evaluasi) {
             return redirect()->back()->with('error', 'Evaluasi belum tersedia.');

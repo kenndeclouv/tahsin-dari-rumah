@@ -128,13 +128,17 @@
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                                                 <div class="flex items-center justify-end gap-x-2">
+                                                    @can('kelas:view')
                                                     <a href="{{ route('kelas.show', $kelasItem->id) }}" class="inline-flex items-center justify-center size-8 rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" title="Detail Kelas">
                                                         <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
                                                     </a>
+                                                    @endcan
                                                     @if ($kelasItem->status == 'selesai')
+                                                        @can('evaluasis:view')
                                                         <a href="{{ route('evaluasi.show', $kelasItem->id) }}" class="inline-flex items-center justify-center py-1.5 px-3 rounded-lg border border-primary-200 bg-primary-50 text-primary-700 shadow-sm hover:bg-primary-100 disabled:opacity-50 disabled:pointer-events-none text-xs font-medium" title="Lihat Evaluasi">
                                                             Lihat Evaluasi
                                                         </a>
+                                                        @endcan
                                                     @endif
                                                 </div>
                                             </td>

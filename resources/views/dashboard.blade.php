@@ -266,21 +266,29 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
                                         <div class="flex items-center justify-end">
                                             <x-action-dropdown>
+                                                @can('kelas:view')
                                                 <a href="{{ route('kelas.show', $kelasItem->id) }}" class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100">
                                                     <i class="fa-solid fa-eye text-gray-400"></i> Detail
                                                 </a>
+                                                @endcan
                                                 @if ($kelasItem->status == 'berjalan' && $kelasItem->presensis_count < $kelasItem->jumlah_pertemuan)
+                                                    @can('presensis:create')
                                                     <a href="{{ route('presensi.create', $kelasItem->id) }}" class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-primary-600 hover:bg-primary-50 focus:outline-none focus:bg-primary-50">
                                                         <i class="fa-solid fa-clipboard-check text-primary-400"></i> Isi Presensi
                                                     </a>
+                                                    @endcan
                                                 @elseif ($kelasItem->status == 'menunggu_evaluasi' || ($kelasItem->status == 'berjalan' && $kelasItem->presensis_count >= $kelasItem->jumlah_pertemuan))
+                                                    @can('evaluasis:create')
                                                     <a href="{{ route('evaluasi.create', $kelasItem->id) }}" class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-orange-600 hover:bg-orange-50 focus:outline-none focus:bg-orange-50">
                                                         <i class="fa-solid fa-file-pen text-orange-400"></i> Isi Evaluasi
                                                     </a>
+                                                    @endcan
                                                 @elseif ($kelasItem->status == 'selesai')
+                                                    @can('evaluasis:view')
                                                     <a href="{{ route('evaluasi.show', $kelasItem->id) }}" class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-primary-600 hover:bg-primary-50 focus:outline-none focus:bg-primary-50">
                                                         <i class="fa-solid fa-file-contract text-primary-400"></i> Lihat Evaluasi
                                                     </a>
+                                                    @endcan
                                                 @endif
                                             </x-action-dropdown>
                                         </div>

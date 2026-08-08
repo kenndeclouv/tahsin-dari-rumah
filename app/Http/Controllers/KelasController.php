@@ -23,10 +23,19 @@ class KelasController extends Controller
         $bulan = $request->input('bulan', date('m'));
         $tahun = $request->input('tahun', date('Y'));
 
-        $kelasList = Kelas::with(['santri', 'pengajar', 'paketBelajar'])
+        $query = Kelas::with(['santri', 'pengajar', 'paketBelajar'])
             ->filterByMonthYear('created_at', $bulan, $tahun)
-            ->latest()
-            ->get();
+            ->latest();
+
+        if (!auth()->user()->isAdminOrSuperAdmin()) {
+            if (auth()->user()->pengajar) {
+                $query->where('pengajar_id', auth()->user()->pengajar->id);
+            } else {
+                $query->where('id', 0);
+            }
+        }
+
+        $kelasList = $query->get();
 
         return view('kelas.index', compact('kelasList', 'bulan', 'tahun'));
     }
@@ -55,6 +64,10 @@ class KelasController extends Controller
 
     public function show(Kelas $kelas)
     {
+        if (!auth()->user()->canManageKelas($kelas)) {
+            abort(403, 'Akses ditolak.');
+        }
+
         $kelas->load(['santri', 'pengajar', 'paketBelajar', 'evaluasi', 'presensis' => function ($query) {
             $query->orderBy('tanggal', 'asc');
         }]);
@@ -64,6 +77,10 @@ class KelasController extends Controller
 
     public function edit(Kelas $kelas)
     {
+        if (!auth()->user()->canManageKelas($kelas)) {
+            abort(403, 'Akses ditolak.');
+        }
+
         $santris = Santri::all();
         $pengajars = Pengajar::all();
         $paketBelajars = PaketBelajar::all();
@@ -72,6 +89,10 @@ class KelasController extends Controller
 
     public function update(Request $request, Kelas $kelas)
     {
+        if (!auth()->user()->canManageKelas($kelas)) {
+            abort(403, 'Akses ditolak.');
+        }
+
         $validated = $request->validate([
             'santri_id' => 'required|exists:santris,id',
             'pengajar_id' => 'required|exists:pengajars,id',
@@ -87,6 +108,10 @@ class KelasController extends Controller
 
     public function destroy(Kelas $kelas)
     {
+        if (!auth()->user()->canManageKelas($kelas)) {
+            abort(403, 'Akses ditolak.');
+        }
+
         $kelas->delete();
         return redirect()->route('kelas.index')->with('success', 'Data Kelas berhasil dihapus.');
     }

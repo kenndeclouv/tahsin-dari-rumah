@@ -84,13 +84,17 @@
             </div>
             
             @if ($kelas->evaluasi)
+                @can('evaluasis:view')
                 <a href="{{ route('evaluasi.show', $kelas->id) }}" class="w-full py-2 px-3 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-primary-200 bg-primary-50 text-primary-700 shadow-sm hover:bg-primary-100">
                     <i class="fa-solid fa-file-contract"></i> Lihat Evaluasi
                 </a>
+                @endcan
             @elseif($kelas->status == 'menunggu_evaluasi')
+                @can('evaluasis:create')
                 <a href="{{ route('evaluasi.create', $kelas->id) }}" class="w-full py-2 px-3 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-orange-600 text-white shadow-sm hover:bg-orange-700">
                     <i class="fa-solid fa-file-pen"></i> Isi Evaluasi
                 </a>
+                @endcan
             @endif
         </div>
     </div>

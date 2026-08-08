@@ -27,8 +27,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Rekap
-    Route::get('rekap/pengajar', [\App\Http\Controllers\RekapController::class, 'pengajar'])->name('rekap.pengajar');
-    Route::get('rekap/santri', [\App\Http\Controllers\RekapController::class, 'santri'])->name('rekap.santri');
+    Route::get('rekap/pengajar', [\App\Http\Controllers\RekapController::class, 'pengajar'])->name('rekap.pengajar')->middleware('permission:mukafaahs:view');
+    Route::get('rekap/santri', [\App\Http\Controllers\RekapController::class, 'santri'])->name('rekap.santri')->middleware('permission:presensis:view');
 
     // Presensi
     Route::get('kelas/{kelas}/presensi/create', [PresensiController::class, 'create'])->name('presensi.create');

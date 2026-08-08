@@ -17,11 +17,20 @@ class RekapController extends Controller
         $bulan = $request->input('bulan', date('m'));
         $tahun = $request->input('tahun', date('Y'));
 
-        $rekap = \App\Models\Kelas::with(['pengajar', 'paketBelajar'])
+        $query = \App\Models\Kelas::with(['pengajar', 'paketBelajar'])
             ->selesai()
             ->filterByMonthYear('updated_at', $bulan, $tahun)
-            ->latest('updated_at')
-            ->get();
+            ->latest('updated_at');
+
+        if (!auth()->user()->isAdminOrSuperAdmin()) {
+            if (auth()->user()->pengajar) {
+                $query->where('pengajar_id', auth()->user()->pengajar->id);
+            } else {
+                $query->where('id', 0);
+            }
+        }
+
+        $rekap = $query->get();
 
         return view('rekap.pengajar', compact('rekap', 'bulan', 'tahun'));
     }
@@ -31,11 +40,20 @@ class RekapController extends Controller
         $bulan = $request->input('bulan', date('m'));
         $tahun = $request->input('tahun', date('Y'));
 
-        $rekap = \App\Models\Kelas::with(['santri', 'paketBelajar'])
+        $query = \App\Models\Kelas::with(['santri', 'paketBelajar'])
             ->selesai()
             ->filterByMonthYear('updated_at', $bulan, $tahun)
-            ->latest('updated_at')
-            ->get();
+            ->latest('updated_at');
+
+        if (!auth()->user()->isAdminOrSuperAdmin()) {
+            if (auth()->user()->pengajar) {
+                $query->where('pengajar_id', auth()->user()->pengajar->id);
+            } else {
+                $query->where('id', 0);
+            }
+        }
+
+        $rekap = $query->get();
 
         return view('rekap.santri', compact('rekap', 'bulan', 'tahun'));
     }
