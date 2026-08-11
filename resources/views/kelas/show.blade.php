@@ -63,7 +63,7 @@
                     </div>
                     <div>
                         <p class="text-xs text-gray-500 uppercase tracking-wide">Pengajar</p>
-                        <p class="text-sm font-semibold text-gray-800">{{ $kelas->pengajar?->name ?? 'Pengajar Dihapus' }}</p>
+                        <p class="text-sm font-semibold text-gray-800">{{ $kelas->pengajar?->nama ?? 'Pengajar Dihapus' }}</p>
                     </div>
                 </div>
             </div>

@@ -80,7 +80,7 @@
                                             </span>
                                         @endif
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $kelasItem->pengajar->name }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $kelasItem->pengajar->nama }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $kelasItem->hari_jam }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $kelasItem->jumlah_pertemuan }}x</td>
                                     <td class="px-6 py-4 whitespace-nowrap">
@@ -109,6 +109,9 @@
                                                     @if ($kelasItem->status == 'selesai')
                                                         <a href="{{ route('evaluasi.show', $kelasItem->id) }}" class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-primary-600 hover:bg-primary-50 focus:outline-none focus:bg-primary-50">
                                                             <i class="fa-solid fa-file-contract text-primary-400"></i> Lihat Evaluasi
+                                                        </a>
+                                                        <a href="{{ route('evaluasi.public', $kelasItem->id) }}" target="_blank" class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-green-600 hover:bg-green-50 focus:outline-none focus:bg-green-50">
+                                                            <i class="fa-solid fa-share-nodes text-green-400"></i> Link Public Rapor
                                                         </a>
                                                     @endif
                                                     @can('kelas:edit')

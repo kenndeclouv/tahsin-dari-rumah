@@ -70,6 +70,41 @@
                             <label class="block text-sm font-medium mb-2">Catatan Tambahan</label>
                             <textarea name="catatan" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" rows="3" placeholder="Opsional..."></textarea>
                         </div>
+
+                        @if(($count + 1) >= $kelas->jumlah_pertemuan)
+                            <div class="mt-8 pt-6 border-t border-gray-200">
+                                <h3 class="text-lg font-semibold text-gray-800 mb-2">Evaluasi Akhir Kelas</h3>
+                                <p class="text-sm text-gray-600 mb-6">Ini adalah pertemuan terakhir. Silakan isi form evaluasi di bawah ini agar status kelas menjadi Selesai.</p>
+                                
+                                <div class="space-y-6">
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2 text-gray-800">Perkembangan Bacaan <span class="text-red-500">*</span></label>
+                                        <textarea name="perkembangan_bacaan" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" rows="3" placeholder="Jelaskan sejauh mana perkembangan bacaan santri..." required></textarea>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label class="block text-sm font-medium mb-2 text-gray-800">Catatan Makhraj <span class="text-red-500">*</span></label>
+                                            <textarea name="makhraj" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" rows="3" placeholder="Catatan mengenai pelafalan huruf..." required></textarea>
+                                        </div>
+                                        <div>
+                                            <label class="block text-sm font-medium mb-2 text-gray-800">Catatan Tajwid <span class="text-red-500">*</span></label>
+                                            <textarea name="tajwid" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" rows="3" placeholder="Catatan mengenai hukum-hukum tajwid..." required></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2 text-gray-800">Catatan Tambahan Pengajar</label>
+                                        <textarea name="catatan_pengajar" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" rows="2" placeholder="Pesan atau catatan khusus (opsional)"></textarea>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-sm font-medium mb-2 text-gray-800">Saran Latihan Mandiri</label>
+                                        <textarea name="saran_latihan" class="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" rows="2" placeholder="Saran untuk dilatih di rumah (opsional)"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                     
                     <div class="mt-8 pt-6 border-t border-gray-200 flex justify-end gap-x-3">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kelas;
 use App\Models\Presensi;
+use App\Models\Evaluasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,7 +24,7 @@ class PresensiController extends Controller
         }
 
         if ($kelas->isFull()) {
-            return redirect()->route('dashboard')->with('error', 'Kelas ini sudah mencapai batas maksimum pertemuan. Silakan isi evaluasi.');
+            return redirect()->route('kelas.index')->with('error', 'Kelas ini sudah mencapai batas maksimum pertemuan. Silakan isi evaluasi.');
         }
 
         $count = $kelas->presensis()->count();
@@ -39,12 +40,24 @@ class PresensiController extends Controller
         }
 
         if ($kelas->isFull()) {
-            return redirect()->route('dashboard')->with('error', 'Kelas ini sudah penuh.');
+            return redirect()->route('kelas.index')->with('error', 'Kelas ini sudah penuh.');
         }
 
         $request->validate([
             'catatan' => 'nullable|string'
         ]);
+
+        $isLastMeeting = ($kelas->presensis()->count() + 1) >= $kelas->jumlah_pertemuan;
+
+        if ($isLastMeeting) {
+            $request->validate([
+                'perkembangan_bacaan' => 'required|string',
+                'makhraj' => 'required|string',
+                'tajwid' => 'required|string',
+                'catatan_pengajar' => 'nullable|string',
+                'saran_latihan' => 'nullable|string',
+            ]);
+        }
 
         $tanggalSekarang = date('Y-m-d');
 
@@ -52,7 +65,7 @@ class PresensiController extends Controller
         $alreadyPresensi = Presensi::where('kelas_id', $kelas->id)
             ->whereDate('tanggal', $tanggalSekarang)
             ->exists();
-        if ($alreadyPresensi) {
+        if ($alreadyPresensi && app()->isProduction()) {
             return redirect()->back()->withInput()->with('error', 'Presensi untuk hari ini sudah diisi.');
         }
 
@@ -63,7 +76,7 @@ class PresensiController extends Controller
             $imageType = $imageTypeAux[1];
             $imageBase64 = base64_decode($imageParts[1]);
             $fileName = uniqid() . '.png'; // default to png from canvas
-            
+
             \Illuminate\Support\Facades\Storage::disk('public')->put('presensi/' . $fileName, $imageBase64);
             $fotoPath = 'presensi/' . $fileName;
         }
@@ -82,13 +95,19 @@ class PresensiController extends Controller
             'nominal_fee' => $nominalFee,
         ]);
 
-        // Jika ini pertemuan terakhir, ubah status ke menunggu_evaluasi
-        $count = $kelas->presensis()->count();
-        if ($count >= $kelas->jumlah_pertemuan) {
-            $kelas->update(['status' => 'menunggu_evaluasi']);
-            return redirect()->route('dashboard')->with('success', 'Presensi terakhir berhasil diisi. Silakan isi evaluasi kelas ini.');
+        if ($isLastMeeting) {
+            Evaluasi::create([
+                'kelas_id' => $kelas->id,
+                'perkembangan_bacaan' => $request->perkembangan_bacaan,
+                'makhraj' => $request->makhraj,
+                'tajwid' => $request->tajwid,
+                'catatan_pengajar' => $request->catatan_pengajar,
+                'saran_latihan' => $request->saran_latihan,
+            ]);
+            $kelas->update(['status' => 'selesai']);
+            return redirect()->route('kelas.index')->with('success', 'Presensi dan Evaluasi akhir berhasil disimpan.');
         }
 
-        return redirect()->route('dashboard')->with('success', 'Presensi berhasil diisi.');
+        return redirect()->route('kelas.index')->with('success', 'Presensi berhasil diisi.');
     }
 }
