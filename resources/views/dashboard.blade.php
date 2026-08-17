@@ -125,40 +125,40 @@
         </div>
 
         <!-- Card -->
-        <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
+        <a href="{{ route('rekap.santri') }}" class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl hover:shadow-md transition">
             <div class="p-4 md:p-5 flex justify-between gap-x-3">
                 <div>
-                    <p class="text-xs uppercase tracking-wide text-gray-500">Selesai Evaluasi</p>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Rekap Santri</p>
                     <div class="mt-1 flex items-center gap-x-2">
                         <h3 class="text-xl sm:text-2xl font-medium text-primary-600">{{ $paketSelesai }}</h3>
                     </div>
                 </div>
                 <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-primary-100 text-primary-600 rounded-full">
-                    <i class="fa-solid fa-file-circle-check text-xl"></i>
+                    <i class="fa-solid fa-file-invoice text-xl"></i>
                 </div>
             </div>
-        </div>
+        </a>
 
         <!-- Card -->
-        <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
+        <a href="{{ route('rekap.pengajar') }}" class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl hover:shadow-md transition">
             <div class="p-4 md:p-5 flex justify-between gap-x-3">
                 <div>
-                    <p class="text-xs uppercase tracking-wide text-gray-500">Mukafaah Siap</p>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Rekap Pengajar</p>
                     <div class="mt-1 flex items-center gap-x-2">
                         <h3 class="text-xl sm:text-2xl font-medium text-rose-600">{{ $mukafaahSiap }}</h3>
                     </div>
                 </div>
                 <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-rose-100 text-rose-600 rounded-full">
-                    <i class="fa-solid fa-coins text-xl"></i>
+                    <i class="fa-solid fa-money-check-dollar text-xl"></i>
                 </div>
             </div>
-        </div>
+        </a>
 
     </div>
     @else
     
     <!-- Pengajar Metrics -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 mb-8">
         
         <!-- Card -->
         <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
@@ -211,6 +211,19 @@
                 </div>
             </div>
         </div>
+
+        <!-- Card -->
+        <a href="{{ route('rekap.pengajar') }}" class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl hover:shadow-md transition">
+            <div class="p-4 flex justify-between gap-x-3">
+                <div>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Rekap Pengajar</p>
+                    <h3 class="text-xl font-medium text-emerald-600 mt-1">{{ $mukafaahDiproses }}</h3>
+                </div>
+                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-emerald-100 text-emerald-600 rounded-full">
+                    <i class="fa-solid fa-money-check-dollar text-xl"></i>
+                </div>
+            </div>
+        </a>
         
     </div>
 
