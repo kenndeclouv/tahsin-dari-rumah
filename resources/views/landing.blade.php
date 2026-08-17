@@ -130,11 +130,8 @@
             </p>
             
             <div class="hero-cta flex flex-col sm:flex-row justify-center items-center gap-3 mb-12">
-                <a href="https://wa.me/628123456789" class="btn-magnetic py-3 px-6 inline-flex items-center justify-center gap-x-2 text-base font-semibold rounded-full border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none shadow-md shadow-primary-600/20 w-full sm:w-auto">
+                <a href="https://wa.me/ " class="btn-magnetic py-3 px-6 inline-flex items-center justify-center gap-x-2 text-base font-semibold rounded-full border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none shadow-md shadow-primary-600/20 w-full sm:w-auto">
                     <i class="fa-solid fa-play text-sm"></i> Belajar Sekarang
-                </a>
-                <a href="#biaya" class="btn-magnetic py-3 px-6 inline-flex items-center justify-center gap-x-2 text-base font-semibold rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none w-full sm:w-auto">
-                    Lihat Pilihan Paket
                 </a>
             </div>
         </div>
@@ -160,10 +157,10 @@
                 <span class="line-draw mx-auto"></span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {{-- Online --}}
                 <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
-                    <div class="relative h-56 w-full overflow-hidden bg-gray-100">
+                    <div class="relative h-96 w-full overflow-hidden bg-gray-100">
                         <video src="{{ asset('assets/video/online.mp4') }}" class="w-full h-full object-cover" autoplay loop muted playsinline></video>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                         <div class="absolute bottom-5 left-5 text-white">
@@ -177,8 +174,8 @@
 
                 {{-- Offline --}}
                 <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
-                    <div class="relative h-56 w-full overflow-hidden bg-gray-100">
-                        <video src="{{ asset('assets/video/offline.mp4') }}" class="w-full h-full object-cover" autoplay loop muted playsinline></video>
+                    <div class="relative h-96 w-full overflow-hidden bg-gray-100">
+                        <video src="{{ asset('assets/video/anak-anak.mp4') }}" class="w-full h-full object-cover" autoplay loop muted playsinline></video>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                         <div class="absolute bottom-5 left-5 text-white">
                             <h3 class="font-bold text-2xl flex items-center gap-2 !text-white"><i class="fa-solid fa-house text-primary-400"></i> Kelas Offline</h3>
@@ -190,7 +187,7 @@
                 </div>
 
                 {{-- Anak-anak --}}
-                <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+                {{-- <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
                     <div class="relative h-56 w-full overflow-hidden bg-gray-100">
                         <video src="{{ asset('assets/video/anak-anak.mp4') }}" class="w-full h-full object-cover" autoplay loop muted playsinline></video>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -201,7 +198,7 @@
                     <div class="p-6">
                         <p class="text-gray-600 mb-0">Metode belajar yang menyenangkan, interaktif, dan penuh kesabaran khusus anak-anak agar semangat belajar mengaji sedari dini.</p>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
@@ -211,7 +208,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 reveal-up">
                 <h6 class="font-bold uppercase tracking-wider" style="color:var(--premium-secondary);">Mengapa {{ config('app.name') }}?</h6>
-                <h2 class="text-3xl md:text-4xl font-bold mt-3">Cocok buat kamu yang ingin lancar<br>baca Al-Quran, anak-anak maupun dewasa</h2>
+                <h2 class="text-3xl md:text-4xl font-bold mt-3">Cocok buat kamu yang ingin lancar<br>baca Al-Quran untuk anak-anak maupun dewasa</h2>
                 <span class="line-draw mx-auto"></span>
             </div>
 
@@ -349,54 +346,59 @@
             
             <div class="max-w-3xl mx-auto text-left reveal-up">
                 <div class="hs-accordion-group">
-                    
-                    <div class="hs-accordion active bg-white border border-gray-200 mb-4 rounded-xl shadow-sm" id="faq1">
-                        <button class="hs-accordion-toggle hs-accordion-active:text-primary-600 hs-accordion-active:bg-primary-50 inline-flex items-center justify-between w-full font-bold text-start text-gray-800 py-5 px-6 hover:text-primary-600 rounded-xl transition-colors" aria-controls="faq1-content">
-                            Pakai metode apa saja disini ?
-                            <span class="hs-accordion-active:hidden block"><i class="fa-solid fa-plus"></i></span>
-                            <span class="hs-accordion-active:block hidden"><i class="fa-solid fa-minus"></i></span>
-                        </button>
-                        <div id="faq1-content" class="hs-accordion-content w-full overflow-hidden transition-[height] duration-300" aria-labelledby="faq1">
-                            <div class="pb-5 px-6">
-                                <p class="text-gray-600">
+                    @php
+                        $faqs = [
+                            [
+                                'question' => 'Pakai metode apa saja disini ?',
+                                'answer' => '<p class="text-gray-600">
                                     Kami menggunakan beragam metode untuk pembelajaran Al-Quran: Ummi, Tilawati, Qiroati, Yanbua, dan Iqra. Anda bebas memilih yang paling nyaman.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="hs-accordion bg-white border border-gray-200 mb-4 rounded-xl shadow-sm" id="faq2">
-                        <button class="hs-accordion-toggle hs-accordion-active:text-primary-600 hs-accordion-active:bg-primary-50 inline-flex items-center justify-between w-full font-bold text-start text-gray-800 py-5 px-6 hover:text-primary-600 rounded-xl transition-colors" aria-controls="faq2-content">
-                            Perbedaan dari metode-metode yang ada apa ?
-                            <span class="hs-accordion-active:hidden block"><i class="fa-solid fa-plus"></i></span>
-                            <span class="hs-accordion-active:block hidden"><i class="fa-solid fa-minus"></i></span>
-                        </button>
-                        <div id="faq2-content" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="faq2">
-                            <div class="pb-5 px-6 text-gray-600 space-y-2">
-                                <p><strong>1. Ummi:</strong> Menekankan bacaan tartil dengan tajwid sejak awal & standar jelas.</p>
-                                <p><strong>2. Tilawati:</strong> Menggunakan pola bacaan terstruktur (nada) agar panjang-pendek akurat.</p>
-                                <p><strong>3. Qiroati:</strong> Sangat fokus pada ketepatan bacaan; tidak naik tingkat sebelum benar sempurna.</p>
-                                <p><strong>4. Yanbu’a:</strong> Selain membaca, murid dilatih menulis Arab & makhraj huruf (khas Kudus).</p>
-                                <p><strong>5. Iqra:</strong> Paling umum, belajar bertahap dari pengenalan huruf tunggal hingga lancar.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="hs-accordion bg-white border border-gray-200 mb-4 rounded-xl shadow-sm" id="faq3">
-                        <button class="hs-accordion-toggle hs-accordion-active:text-primary-600 hs-accordion-active:bg-primary-50 inline-flex items-center justify-between w-full font-bold text-start text-gray-800 py-5 px-6 hover:text-primary-600 rounded-xl transition-colors" aria-controls="faq3-content">
-                            Durasi per pertemuan berapa lama?
-                            <span class="hs-accordion-active:hidden block"><i class="fa-solid fa-plus"></i></span>
-                            <span class="hs-accordion-active:block hidden"><i class="fa-solid fa-minus"></i></span>
-                        </button>
-                        <div id="faq3-content" class="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300" aria-labelledby="faq3">
-                            <div class="pb-5 px-6">
-                                <p class="text-gray-600">
+                                </p>'
+                            ],
+                            [
+                                'question' => 'Perbedaan dari metode-metode yang ada apa ?',
+                                'answer' => '<div class="text-gray-600 space-y-2">
+                                    <p><strong>1. Ummi:</strong> Menekankan bacaan tartil dengan tajwid sejak awal & standar jelas.</p>
+                                    <p><strong>2. Tilawati:</strong> Menggunakan pola bacaan terstruktur (nada) agar panjang-pendek akurat.</p>
+                                    <p><strong>3. Qiroati:</strong> Sangat fokus pada ketepatan bacaan; tidak naik tingkat sebelum benar sempurna.</p>
+                                    <p><strong>4. Yanbu’a:</strong> Selain membaca, murid dilatih menulis Arab & makhraj huruf (khas Kudus).</p>
+                                    <p><strong>5. Iqra:</strong> Paling umum, belajar bertahap dari pengenalan huruf tunggal hingga lancar.</p>
+                                </div>'
+                            ],
+                            [
+                                'question' => 'Durasi per pertemuan berapa lama?',
+                                'answer' => '<p class="text-gray-600">
                                     Durasi belajarnya 60 menit per-sesi. Sudah mencakup penjelasan materi, latihan baca, koreksi bacaan dan tanya jawab dengan Ustadz/Ustadzah.
-                                </p>
+                                </p>'
+                            ],
+                            [
+                                'question' => 'Apa saja yang sudah include?',
+                                'answer' => '<div class="text-gray-600 space-y-3">
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>Transport pengajar</li>
+                                        <li>Buku evaluasi harian dan bulanan</li>
+                                        <li>Buku adab dan doa</li>
+                                        <li>Pelajaran adab dan hadits di akhir sesi</li>
+                                    </ul>
+                                    <p class="font-medium text-primary-600 italic">Insyaa Allah bunda cukup memantau buku evaluasi saja, biar kami yang membimbing ananda.</p>
+                                </div>'
+                            ]
+                        ];
+                    @endphp
+
+                    @foreach($faqs as $index => $faq)
+                    <div class="hs-accordion {{ $loop->first ? 'active' : '' }} bg-white border border-gray-200 mb-4 rounded-xl shadow-sm" id="faq{{ $index + 1 }}">
+                        <button class="hs-accordion-toggle hs-accordion-active:text-primary-600 hs-accordion-active:bg-primary-50 inline-flex items-center justify-between w-full font-bold text-start text-gray-800 py-5 px-6 hover:text-primary-600 rounded-xl transition-colors" aria-controls="faq{{ $index + 1 }}-content">
+                            {{ $faq['question'] }}
+                            <span class="hs-accordion-active:hidden block"><i class="fa-solid fa-plus"></i></span>
+                            <span class="hs-accordion-active:block hidden"><i class="fa-solid fa-minus"></i></span>
+                        </button>
+                        <div id="faq{{ $index + 1 }}-content" class="hs-accordion-content {{ $loop->first ? '' : 'hidden' }} w-full overflow-hidden transition-[height] duration-300" aria-labelledby="faq{{ $index + 1 }}">
+                            <div class="pb-5 px-6">
+                                {!! $faq['answer'] !!}
                             </div>
                         </div>
                     </div>
-
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -366,12 +366,10 @@
                 <nav>
                     <a class="menu-link menu-link-item" href="#kenapa" tabindex="-1"><span>Keunggulan</span><span
                             class="link-num">01</span></a>
-                    <a class="menu-link menu-link-item" href="#biaya" tabindex="-1"><span>Paket Belajar</span><span
-                            class="link-num">02</span></a>
                     <a class="menu-link menu-link-item" href="#testimoni" tabindex="-1"><span>Testimoni</span><span
-                            class="link-num">03</span></a>
+                            class="link-num">02</span></a>
                     <a class="menu-link menu-link-item" href="#faq" tabindex="-1"><span>FAQ</span><span
-                            class="link-num">04</span></a>
+                            class="link-num">03</span></a>
                     @auth
                         <a class="menu-link menu-link-item !text-primary-600" href="{{ route('dashboard') }}"
                             tabindex="-1"><span>Dashboard</span><span class="link-num"><i
