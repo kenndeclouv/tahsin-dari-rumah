@@ -130,7 +130,7 @@
             </p>
             
             <div class="hero-cta flex flex-col sm:flex-row justify-center items-center gap-3 mb-12">
-                <a href="https://wa.me/ " class="btn-magnetic py-3 px-6 inline-flex items-center justify-center gap-x-2 text-base font-semibold rounded-full border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none shadow-md shadow-primary-600/20 w-full sm:w-auto">
+                <a href="https://wa.me/6285280028408" target="_blank" class="btn-magnetic py-3 px-6 inline-flex items-center justify-center gap-x-2 text-base font-semibold rounded-full border border-transparent bg-primary-600 text-white hover:bg-primary-700 disabled:opacity-50 disabled:pointer-events-none shadow-md shadow-primary-600/20 w-full sm:w-auto">
                     <i class="fa-solid fa-play text-sm"></i> Belajar Sekarang
                 </a>
             </div>
@@ -416,7 +416,7 @@
                     <p class="text-lg mb-8 mx-auto text-white/80 max-w-2xl">
                         Jangan tunda lagi. Mari belajar mengaji dan memahami Al-Quran bersama {{ config('app.name') }} sekarang juga!
                     </p>
-                    <a href="https://wa.me/628123456789" class="btn-magnetic py-4 px-8 inline-flex justify-center items-center gap-x-3 text-lg font-bold rounded-full border border-transparent bg-white text-green-600 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none shadow-lg">
+                    <a href="https://wa.me/6285280028408" target="_blank" class="btn-magnetic py-4 px-8 inline-flex justify-center items-center gap-x-3 text-lg font-bold rounded-full border border-transparent bg-white text-green-600 hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none shadow-lg">
                         <i class="fa-brands fa-whatsapp text-2xl"></i> Konsultasi & Daftar Sekarang
                     </a>
                 </div>

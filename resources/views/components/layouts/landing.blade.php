@@ -4,7 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>{{ $title ?? config('app.name') }}</title>
+    <meta name="description"
+        content="{{ $description ?? 'Platform belajar mengaji online dan offline terpercaya. Membantu Anda dan anak-anak lancar membaca Al-Quran dengan guru bersertifikat.' }}">
+    <meta name="keywords"
+        content="belajar mengaji, ngaji online, ngaji offline, guru ngaji, bimbingan al-quran, kelas tahsin, ust icas">
+    <meta name="author" content="{{ config('app.name') }}">
+    <meta name="robots" content="index, follow">
+    <title>{{ $title ?? config('app.name') . ' - Belajar Mengaji Online & Offline' }}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -401,34 +407,34 @@
                                 lancar membaca Al-Quran dengan guru bersertifikat.
                             </p>
                             <div class="flex gap-4">
-                                <a href="#"
+                                <a href="#" aria-label="Instagram"
                                     class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400 hover:text-primary-600 hover:border-primary-600 transition-colors">
                                     <i class="fa-brands fa-instagram text-lg"></i>
                                 </a>
-                                <a href="#"
+                                {{-- <a href="#" aria-label="Facebook"
                                     class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400 hover:text-primary-600 hover:border-primary-600 transition-colors">
                                     <i class="fa-brands fa-facebook-f text-lg"></i>
                                 </a>
-                                <a href="#"
+                                <a href="#" aria-label="YouTube"
                                     class="w-10 h-10 rounded-full bg-white border border-gray-200 flex items-center justify-center text-gray-400 hover:text-primary-600 hover:border-primary-600 transition-colors">
                                     <i class="fa-brands fa-youtube text-lg"></i>
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
 
                         <div>
                             <h4 class="font-bold text-gray-900 mb-6">Program</h4>
                             <ul class="space-y-4">
-                                <li><a href="#kenapa"
+                                <li>
+                                    <a href="#kenapa"
                                         class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Keunggulan</a>
                                 </li>
-                                <li><a href="#biaya"
-                                        class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Paket
-                                        Belajar</a></li>
-                                <li><a href="#testimoni"
+                                <li>
+                                    <a href="#testimoni"
                                         class="text-gray-500 hover:text-primary-600 text-sm transition-colors">Testimoni</a>
                                 </li>
-                                <li><a href="#faq"
+                                <li>
+                                    <a href="#faq"
                                         class="text-gray-500 hover:text-primary-600 text-sm transition-colors">FAQ</a>
                                 </li>
                             </ul>
@@ -459,9 +465,10 @@
 
                     <div
                         class="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
-                        <p class="text-gray-400 text-sm mb-0">© {{ date('Y') }} {{ config('app.name') }}. Hak cipta
+                        <p class="text-gray-400 text-sm mb-0">© {{ date('Y') }} {{ config('app.name') }}. Hak
+                            cipta
                             dilindungi.</p>
-                        <div class="flex gap-4">
+                        {{-- <div class="flex gap-4">
                             @auth
                                 <a href="{{ route('dashboard') }}"
                                     class="py-2 px-6 inline-flex items-center gap-x-2 text-sm font-bold rounded-full border border-transparent bg-primary-600 text-white hover:bg-primary-700 transition-colors">
@@ -473,7 +480,7 @@
                                     <i class="fa-solid fa-right-to-bracket"></i> Masuk App
                                 </a>
                             @endauth
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </footer>
