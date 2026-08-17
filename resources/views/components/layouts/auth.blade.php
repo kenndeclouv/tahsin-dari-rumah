@@ -20,7 +20,7 @@
         rel="stylesheet">
 
     <!-- FontAwesome 7.2.0 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kenndeclouv/font-awesome@main/v7.2.0/css/all.css" />
+    <link rel="stylesheet" href="{{ asset('assets/font-awesome/v7.2.0/css/all.css') }}" />
 
     <!-- Tailwind & Preline -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])

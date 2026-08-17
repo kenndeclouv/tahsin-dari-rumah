@@ -426,7 +426,7 @@
     </section>
 
     <x-slot name="scripts">
-        <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+        <script src="{{ asset('assets/js/typed.umd.js') }}"></script>
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 new Typed('#typewriter', {

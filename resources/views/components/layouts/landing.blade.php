@@ -19,7 +19,7 @@
         rel="stylesheet">
 
     <!-- FontAwesome 7.2.0 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kenndeclouv/font-awesome@main/v7.2.0/css/all.css" />
+    <link rel="stylesheet" href="{{ asset('assets/font-awesome/v7.2.0/css/all.css') }}" />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -495,11 +495,11 @@
 
             <!-- GSAP Premium Assets -->
             <script src="{{ asset('assets/js/gsap.min.js') }}"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+            <script src="{{ asset('assets/js/ScrollToPlugin.min.js') }}"></script>
             <script src="{{ asset('assets/js/scrollTrigger.min.js') }}"></script>
             <script src="{{ asset('assets/js/scrollSmoother.min.js') }}"></script>
             <script src="{{ asset('assets/js/observer.min.js') }}"></script>
-            <script src="https://unpkg.com/split-type"></script>
+            <script src="{{ asset('assets/js/split-type.js') }}"></script>
 
             <script>
                 gsap.registerPlugin(ScrollSmoother, ScrollTrigger, Observer, ScrollToPlugin);
