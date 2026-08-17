@@ -151,6 +151,61 @@
         </div>
     </section>
 
+    {{-- ─── METODE PEMBELAJARAN ────────────────────────────────────────────── --}}
+    <section class="py-20 bg-gray-50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12 reveal-up">
+                <h6 class="font-bold uppercase tracking-wider" style="color:var(--premium-secondary);">Pilihan Kelas</h6>
+                <h2 class="text-3xl md:text-4xl font-bold mt-3">Pilih metode belajar yang paling nyaman buat kamu</h2>
+                <span class="line-draw mx-auto"></span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {{-- Online --}}
+                <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+                    <div class="relative h-56 w-full overflow-hidden bg-gray-100">
+                        <video src="{{ asset('assets/video/online.mp4') }}" class="w-full h-full object-cover" autoplay loop muted playsinline></video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-5 left-5 text-white">
+                            <h3 class="font-bold text-2xl flex items-center gap-2 !text-white"><i class="fa-solid fa-globe text-primary-400"></i> Kelas Online</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-0">Belajar dari mana saja, lebih fleksibel atur jadwal tanpa harus keluar rumah. Bisa diakses di seluruh dunia, interaktif dan efektif via Zoom/Google Meet.</p>
+                    </div>
+                </div>
+
+                {{-- Offline --}}
+                <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+                    <div class="relative h-56 w-full overflow-hidden bg-gray-100">
+                        <video src="{{ asset('assets/video/offline.mp4') }}" class="w-full h-full object-cover" autoplay loop muted playsinline></video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-5 left-5 text-white">
+                            <h3 class="font-bold text-2xl flex items-center gap-2 !text-white"><i class="fa-solid fa-house text-primary-400"></i> Kelas Offline</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-0">Pengajar profesional kami siap datang langsung ke rumah Anda. Saat ini kelas offline tersedia khusus untuk wilayah <strong>Kota Malang</strong> dan <strong>Surabaya</strong>.</p>
+                    </div>
+                </div>
+
+                {{-- Anak-anak --}}
+                <div class="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
+                    <div class="relative h-56 w-full overflow-hidden bg-gray-100">
+                        <video src="{{ asset('assets/video/anak-anak.mp4') }}" class="w-full h-full object-cover" autoplay loop muted playsinline></video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-5 left-5 text-white">
+                            <h3 class="font-bold text-2xl flex items-center gap-2 !text-white"><i class="fa-solid fa-child text-primary-400"></i> Kelas Anak</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 mb-0">Metode belajar yang menyenangkan, interaktif, dan penuh kesabaran khusus anak-anak agar semangat belajar mengaji sedari dini.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     {{-- ─── BENTO GRID: KEUNGGULAN ─────────────────────────────────────────── --}}
     <section class="py-20" id="kenapa">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -217,146 +272,7 @@
         </div>
     </section>
 
-    {{-- ─── HARGA PAKET ──────────────────────────────────────────────────────── --}}
-    <section class="py-20" id="biaya">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <div class="text-center mb-16 reveal-up">
-                <h6 class="font-bold uppercase tracking-wider" style="color:var(--premium-secondary);">Biaya Fleksibel</h6>
-                <h2 class="text-3xl md:text-4xl font-bold mt-3">Harga paket investasi belajar Al-Quran</h2>
-                <p class="text-gray-500 mt-3 mx-auto max-w-lg">Apapun paketnya, kualitas tetap yang utama dengan guru bersertifikat.</p>
-            </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 items-center justify-center stagger-parent mt-8">
-                @php
-                    $pakets = [
-                        ['Paket 1', '300', '4x', '1x', false],
-                        ['Paket 2', '600', '8x', '2x', false],
-                        ['Paket 3', '800', '12x', '3x', true],
-                        ['Paket 4', '1.300', '20x', 'Minimal 4x', false]
-                    ];
-                @endphp
-
-                @foreach ($pakets as [$nama, $harga, $pertemuan, $jadwal, $isFeatured])
-                    <div class="relative group h-full {{ $isFeatured ? 'lg:-mt-6 lg:mb-6 z-10' : 'z-0' }}">
-                        <!-- Glowing effect behind the featured card -->
-                        @if($isFeatured)
-                            <div class="absolute inset-0 bg-primary-600/20 blur-2xl rounded-[32px] group-hover:bg-primary-600/30 transition-all duration-500"></div>
-                        @endif
-                        
-                        <div class="relative h-full flex flex-col bg-white border {{ $isFeatured ? 'border-primary-500 shadow-xl shadow-primary-600/10' : 'border-gray-100 shadow-sm' }} rounded-[32px] p-8 hover:-translate-y-2 hover:shadow-xl transition-all duration-300">
-                            
-                            @if($isFeatured)
-                                <!-- Top Ribbon / Highlight -->
-                                <div class="absolute top-0 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary-500 to-primary-700 text-white text-[10px] sm:text-xs font-bold px-4 py-1.5 rounded-b-xl shadow-sm tracking-wider">
-                                    TERPOPULER
-                                </div>
-                            @endif
-                            
-                            <div class="mb-6 {{ $isFeatured ? 'mt-3' : '' }}">
-                                <h5 class="font-semibold text-gray-500 mb-2">{{ $nama }}</h5>
-                                <div class="flex items-baseline text-gray-900">
-                                    <span class="text-xl md:text-2xl font-bold mr-1">Rp</span>
-                                    <span class="text-4xl md:text-5xl font-black tracking-tight">{{ $harga }}</span>
-                                    <span class="text-gray-500 font-medium ml-1">.000</span>
-                                </div>
-                            </div>
-                            
-                            <div class="flex-grow">
-                                <ul class="space-y-4 mb-8 text-gray-600 text-sm md:text-base">
-                                    <li class="flex items-start">
-                                        <span class="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full {{ $isFeatured ? 'bg-primary-100 text-primary-600' : 'bg-gray-100 text-gray-400' }} mr-3 mt-0.5">
-                                            <i class="fa-solid fa-check text-[10px]"></i>
-                                        </span>
-                                        <span><strong>{{ $pertemuan }} Pertemuan</strong> Mengaji</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <span class="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full {{ $isFeatured ? 'bg-primary-100 text-primary-600' : 'bg-gray-100 text-gray-400' }} mr-3 mt-0.5">
-                                            <i class="fa-solid fa-check text-[10px]"></i>
-                                        </span>
-                                        <span>Jadwal <strong>{{ $jadwal }} Tiap Pekan</strong></span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <span class="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full {{ $isFeatured ? 'bg-primary-100 text-primary-600' : 'bg-gray-100 text-gray-400' }} mr-3 mt-0.5">
-                                            <i class="fa-solid fa-check text-[10px]"></i>
-                                        </span>
-                                        <span>60 Menit Per Sesi</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <span class="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full {{ $isFeatured ? 'bg-primary-100 text-primary-600' : 'bg-gray-100 text-gray-400' }} mr-3 mt-0.5">
-                                            <i class="fa-solid fa-check text-[10px]"></i>
-                                        </span>
-                                        <span>Privat 1 Murid 1 Guru</span>
-                                    </li>
-                                    <li class="flex items-start">
-                                        <span class="flex-shrink-0 w-6 h-6 flex items-center justify-center rounded-full {{ $isFeatured ? 'bg-primary-100 text-primary-600' : 'bg-gray-100 text-gray-400' }} mr-3 mt-0.5">
-                                            <i class="fa-solid fa-check text-[10px]"></i>
-                                        </span>
-                                        <span>Free Materi & Evaluasi</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            
-                            <a href="https://wa.me/628123456789" class="btn-magnetic w-full py-3.5 inline-flex justify-center items-center gap-x-2 text-sm font-bold rounded-full border {{ $isFeatured ? 'border-transparent bg-primary-600 text-white hover:bg-primary-700 shadow-lg shadow-primary-600/20' : 'border-gray-200 bg-white text-gray-800 hover:bg-gray-50 hover:border-gray-300' }}">
-                                Pilih Paket Ini
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-
-    {{-- ─── PENGAJAR & SERTIFIKASI ────────────────────────────────────────────── --}}
-    <section class="py-24 bg-gray-50 relative overflow-hidden">
-        <!-- Decorative Background Blobs -->
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-72 h-72 rounded-full bg-primary-200/40 blur-3xl"></div>
-        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-blue-200/30 blur-3xl"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-12 lg:gap-16">
-                
-                <div class="lg:col-span-5">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-sm font-bold text-primary-600 mb-6">
-                        <i class="fa-solid fa-award text-amber-500"></i> Kualitas Pengajar
-                    </div>
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900 leading-tight">Pengajar tersertifikasi & lulusan pesantren.</h2>
-                    <p class="text-gray-500 text-lg mb-8 leading-relaxed">Kami memastikan setiap guru di {{ config('app.name') }} memiliki kapabilitas dan standar mutu yang diakui oleh lembaga pendidikan nasional maupun yayasan metode baca Al-Quran ternama.</p>
-                    
-                    <div class="flex items-center gap-4 bg-white p-4 rounded-2xl border border-gray-100 shadow-sm inline-flex">
-                        <div class="flex -space-x-3">
-                            <img class="w-12 h-12 rounded-full border-2 border-white object-cover bg-gray-100" src="https://ui-avatars.com/api/?name=Ustadz+A&background=random" alt="Guru 1">
-                            <img class="w-12 h-12 rounded-full border-2 border-white object-cover bg-gray-100" src="https://ui-avatars.com/api/?name=Ustadzah+B&background=random" alt="Guru 2">
-                            <img class="w-12 h-12 rounded-full border-2 border-white object-cover bg-gray-100" src="https://ui-avatars.com/api/?name=Ustadz+C&background=random" alt="Guru 3">
-                        </div>
-                        <div class="text-sm">
-                            <p class="text-gray-900 font-bold mb-0">100+ Pengajar</p>
-                            <p class="text-gray-500 mb-0">Siap membimbing Anda</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-7 mt-10 lg:mt-0">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        @foreach ([
-                            ['Iqro', 'Pelopor metode cepat membaca Al-Quran oleh KH. As\'ad Humam.', 'fa-book-quran'],
-                            ['BNSP', 'Lembaga resmi pemerintah untuk menjamin mutu dan kompetensi.', 'fa-certificate'],
-                            ['Ummi Foundation', 'Standar pendidikan untuk peningkatan kualitas Guru Al-Qur\'an.', 'fa-school'],
-                            ['Pondok Al Karomah', 'Fokus pada hafalan, tafsir dan pembelajaran Al-Qur\'an.', 'fa-mosque']
-                        ] as [$title, $desc, $icon])
-                            <div class="group p-8 rounded-[32px] bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
-                                <div class="w-14 h-14 rounded-2xl bg-primary-50 flex items-center justify-center mb-6 text-primary-600 group-hover:bg-primary-600 group-hover:text-white group-hover:rotate-6 transition-all duration-300">
-                                    <i class="fa-solid {{ $icon }} text-2xl"></i>
-                                </div>
-                                <h5 class="font-bold mb-3 text-xl text-gray-900">{{ $title }}</h5>
-                                <p class="text-gray-500 leading-relaxed text-sm md:text-base">{{ $desc }}</p>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
 
     <style>
         .marquee-wrapper {
