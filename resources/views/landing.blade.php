@@ -371,15 +371,16 @@
                                 </p>'
                             ],
                             [
-                                'question' => 'Apa saja yang sudah include?',
+                                'question' => 'Apa saja benefitnya?',
                                 'answer' => '<div class="text-gray-600 space-y-3">
-                                    <ul class="list-disc pl-5 space-y-1">
-                                        <li>Transport pengajar</li>
-                                        <li>Buku evaluasi harian dan bulanan</li>
-                                        <li>Buku adab dan doa</li>
-                                        <li>Pelajaran adab dan hadits di akhir sesi</li>
+                                    <ul class="list-disc pl-5 space-y-2">
+                                        <li>Dibimbing dengan <strong>guru yang berkompeten</strong> dibidangnya, dan beberapa <strong>bersanad</strong>.</li>
+                                        <li>Berkesempatan untuk mendapatkan <strong>sanad Al Fatihah dan mutun lainnya</strong> (S/K berlaku).</li>
+                                        <li>Mendapatkan <strong>ebook full akses</strong> untuk pembelajaran.</li>
+                                        <li>Boleh <strong>reschedule</strong> apabila berhalangan hadir.</li>
+                                        <li>Mendapatkan <strong>mulahadzoh/koreksi bacaan</strong> (catatan evaluasi mendalam) setelah kelas berlangsung.</li>
+                                        <li>Akses <strong>konsultasi gratis</strong> dengan guru baik itu berkaitan dengan tahsin atau materi yang lain.</li>
                                     </ul>
-                                    <p class="font-medium text-primary-600 italic">Insyaa Allah bunda cukup memantau buku evaluasi saja, biar kami yang membimbing ananda.</p>
                                 </div>'
                             ]
                         ];

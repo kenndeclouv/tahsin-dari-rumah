@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('kelas_id')->constrained('kelas')->cascadeOnDelete();
             $table->date('tanggal');
             $table->enum('kehadiran', ['hadir', 'reschedule', 'libur'])->default('hadir');
-            $table->string('foto')->nullable();
+            $table->string('foto', 100)->nullable();
             $table->text('catatan')->nullable();
             $table->timestamps();
         });

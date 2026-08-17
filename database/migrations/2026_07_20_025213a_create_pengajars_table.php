@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pengajars', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->string('nama');
+            $table->string('nama', 100);
             $table->json('additional_data')->nullable(); // Stores all dynamic fields
             $table->enum('status', ['aktif', 'nonaktif'])->default('aktif');
             $table->timestamps();

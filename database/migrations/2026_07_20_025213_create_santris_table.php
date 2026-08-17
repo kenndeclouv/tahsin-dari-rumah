@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('santris', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
+            $table->string('nama', 100);
             
-            $table->string('no_hp'); // Contact is essential
+            $table->string('no_hp', 100); // Contact is essential
             $table->json('additional_data')->nullable(); // Stores all dynamic fields
             $table->enum('status', ['aktif', 'selesai', 'nonaktif'])->default('aktif');
             
