@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             PengajarFieldSeeder::class,
         ]);
 
-        $superadminUser = User::factory()->create([
+        $superadminUser = User::create([
             'name' => 'Kenndeclouv',
             'email' => 'kenndeclouv@gmail.com',
             'password' => bcrypt("kenndeclouv"),
@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
         $superadminUser->assignRole('super-admin');
 
 
-        $pengajarUser = User::factory()->create([
+        $pengajarUser = User::create([
             'name' => 'Pengajar Tahsin',
             'email' => 'pengajar@gmail.com',
             'password' => bcrypt("password"),
