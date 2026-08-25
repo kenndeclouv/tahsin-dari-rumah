@@ -12,21 +12,13 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $hariIni = \Carbon\Carbon::now()->translatedFormat('l');
+        $hariIni = strtolower(\Carbon\Carbon::now()->locale('id')->translatedFormat('l'));
 
         if ($user->isAdminOrSuperAdmin()) {
             $pengajarAktif = \App\Models\Pengajar::where('status', 'aktif')->count();
             $santriAktif = Santri::where('status', 'aktif')->count();
             
-            $jadwalHariIniQuery = Kelas::where('hari_jam', 'like', "%{$hariIni}%")->berjalan();
-            $jadwalHariIni = $jadwalHariIniQuery->count();
-            
-            $kelasIdsHariIni = $jadwalHariIniQuery->pluck('id');
-            $presensiHariIni = \App\Models\Presensi::whereIn('kelas_id', $kelasIdsHariIni)
-                ->whereDate('tanggal', \Carbon\Carbon::today())
-                ->count();
-            
-            $presensiRatio = "{$presensiHariIni} dari {$jadwalHariIni}";
+            $presensiHariIni = \App\Models\Presensi::whereDate('tanggal', \Carbon\Carbon::today())->count();
 
             $paketBerjalan = Kelas::berjalan()->count();
             $evaluasiBelumDibuat = Kelas::menungguEvaluasi()->count();
@@ -36,8 +28,7 @@ class DashboardController extends Controller
             return view('dashboard', compact(
                 'pengajarAktif', 
                 'santriAktif', 
-                'jadwalHariIni', 
-                'presensiRatio',
+                'presensiHariIni',
                 'paketBerjalan',
                 'evaluasiBelumDibuat', 
                 'paketSelesai',
@@ -52,16 +43,10 @@ class DashboardController extends Controller
             ->distinct('santri_id')
             ->count('santri_id') : 0;
 
-        $jadwalHariIniQuery = Kelas::where('pengajar_id', $pengajarId)
-            ->where('hari_jam', 'like', "%{$hariIni}%")
-            ->berjalan();
-        $jadwalHariIni = $pengajarId ? $jadwalHariIniQuery->count() : 0;
-
-        $kelasIdsHariIni = $jadwalHariIniQuery->pluck('id');
-        $presensiHariIni = \App\Models\Presensi::whereIn('kelas_id', $kelasIdsHariIni)
+        $kelasIdsDiampu = Kelas::where('pengajar_id', $pengajarId)->pluck('id');
+        $presensiHariIni = \App\Models\Presensi::whereIn('kelas_id', $kelasIdsDiampu)
             ->whereDate('tanggal', \Carbon\Carbon::today())
-            ->pluck('kelas_id')->toArray();
-        $presensiBelumDiisi = $jadwalHariIni - count($presensiHariIni);
+            ->count();
 
         $evaluasiBelumDibuat = $pengajarId ? Kelas::where('pengajar_id', $pengajarId)
             ->menungguEvaluasi()->count() : 0;
@@ -76,8 +61,7 @@ class DashboardController extends Controller
 
         return view('dashboard', compact(
             'santriDiampu', 
-            'jadwalHariIni', 
-            'presensiBelumDiisi', 
+            'presensiHariIni', 
             'evaluasiBelumDibuat', 
             'mukafaahDiproses',
             'daftarKelasAktif'

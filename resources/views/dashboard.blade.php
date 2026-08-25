@@ -64,20 +64,7 @@
             </div>
         </div>
 
-        <!-- Card -->
-        <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 md:p-5 flex justify-between gap-x-3">
-                <div>
-                    <p class="text-xs uppercase tracking-wide text-gray-500">Jadwal Mengajar</p>
-                    <div class="mt-1 flex items-center gap-x-2">
-                        <h3 class="text-xl sm:text-2xl font-medium text-purple-600">{{ $jadwalHariIni }}</h3>
-                    </div>
-                </div>
-                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-purple-100 text-purple-600 rounded-full">
-                    <i class="fa-solid fa-calendar text-xl"></i>
-                </div>
-            </div>
-        </div>
+
 
         <!-- Card -->
         <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
@@ -85,7 +72,7 @@
                 <div>
                     <p class="text-xs uppercase tracking-wide text-gray-500">Presensi Hari Ini</p>
                     <div class="mt-1 flex items-center gap-x-2">
-                        <h3 class="text-xl sm:text-2xl font-medium text-indigo-600">{{ $presensiRatio }}</h3>
+                        <h3 class="text-xl sm:text-2xl font-medium text-indigo-600">{{ $presensiHariIni }}</h3>
                     </div>
                 </div>
                 <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-indigo-100 text-indigo-600 rounded-full">
@@ -173,25 +160,13 @@
             </div>
         </div>
         
-        <!-- Card -->
-        <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
-            <div class="p-4 flex justify-between gap-x-3">
-                <div>
-                    <p class="text-xs uppercase tracking-wide text-gray-500">Jadwal Hari Ini</p>
-                    <h3 class="text-xl font-medium text-blue-600 mt-1">{{ $jadwalHariIni }}</h3>
-                </div>
-                <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-blue-100 text-blue-600 rounded-full">
-                    <i class="fa-solid fa-calendar text-xl"></i>
-                </div>
-            </div>
-        </div>
 
         <!-- Card -->
         <div class="flex flex-col bg-white border border-gray-200 shadow-sm rounded-xl">
             <div class="p-4 flex justify-between gap-x-3">
                 <div>
-                    <p class="text-xs uppercase tracking-wide text-gray-500">Presensi Belum Diisi</p>
-                    <h3 class="text-xl font-medium text-orange-600 mt-1">{{ $presensiBelumDiisi }}</h3>
+                    <p class="text-xs uppercase tracking-wide text-gray-500">Presensi Hari Ini</p>
+                    <h3 class="text-xl font-medium text-orange-600 mt-1">{{ $presensiHariIni }}</h3>
                 </div>
                 <div class="flex-shrink-0 flex justify-center items-center size-[46px] bg-orange-100 text-orange-600 rounded-full">
                     <i class="fa-solid fa-clipboard-list text-xl"></i>
