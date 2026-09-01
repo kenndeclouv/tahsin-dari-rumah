@@ -39,7 +39,6 @@ class DashboardController extends Controller
         $pengajarId = $user->pengajar?->id;
 
         $santriDiampu = $pengajarId ? Kelas::where('pengajar_id', $pengajarId)
-            ->whereIn('status', ['berjalan', 'menunggu_evaluasi'])
             ->distinct('santri_id')
             ->count('santri_id') : 0;
 
@@ -56,7 +55,6 @@ class DashboardController extends Controller
             
         $daftarKelasAktif = $pengajarId ? Kelas::with('santri')->withCount('presensis')
             ->where('pengajar_id', $pengajarId)
-            ->whereIn('status', ['berjalan', 'menunggu_evaluasi'])
             ->get() : collect();
 
         return view('dashboard', compact(
