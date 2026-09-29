@@ -99,7 +99,7 @@
 
             @if($kelas->status == 'selesai')
                 @can('kelas:create')
-                <form action="{{ route('kelas.duplicate', $kelas->id) }}" method="POST" class="mt-2 w-full" onsubmit="event.preventDefault(); confirmDelete(this, 'Yakin ingin melanjutkan paket ini? Ini akan membuat kelas baru dengan santri dan pengajar yang sama.')">
+                <form action="{{ route('kelas.duplicate', $kelas->id) }}" method="POST" class="mt-2 w-full" onsubmit="event.preventDefault(); confirmAction(this, 'Yakin ingin melanjutkan paket ini? Ini akan membuat kelas baru dengan santri dan pengajar yang sama.', 'Konfirmasi Lanjut Paket', 'Ya, Lanjut Paket', 'indigo')">
                     @csrf
                     <button type="submit" class="w-full py-2 px-3 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-indigo-600 text-white shadow-sm hover:bg-indigo-700">
                         <i class="fa-solid fa-copy"></i> Lanjut Paket Baru

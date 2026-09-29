@@ -11,8 +11,8 @@
             </div>
             
             <div class="sm:flex sm:items-start">
-                <div class="flex items-center justify-center flex-shrink-0 w-12 h-12 mx-auto bg-red-100 rounded-full sm:mx-0 sm:h-10 sm:w-10">
-                    <svg class="w-6 h-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                <div id="delete-modal-icon-container" class="flex items-center justify-center flex-shrink-0 w-12 h-12 mx-auto bg-red-100 rounded-full sm:mx-0 sm:h-10 sm:w-10">
+                    <svg id="delete-modal-icon" class="w-6 h-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                 </div>
                 <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                     <h3 class="text-lg font-bold text-gray-900" id="delete-modal-title">Konfirmasi Hapus</h3>
@@ -38,6 +38,10 @@
     let isActionLink = false;
 
     function confirmDelete(element, message = null) {
+        confirmAction(element, message, 'Konfirmasi Hapus', 'Ya, Hapus Data', 'red');
+    }
+
+    function confirmAction(element, message, title, btnText, colorTheme) {
         // Find the closest form if the element is not a form
         currentDeleteForm = element.tagName.toLowerCase() === 'form' ? element : element.closest('form');
         
@@ -50,11 +54,35 @@
 
         const modal = document.getElementById('delete-confirmation-modal');
         const messageEl = document.getElementById('delete-modal-message');
+        const titleEl = document.getElementById('delete-modal-title');
+        const confirmBtn = document.getElementById('delete-modal-confirm-btn');
+        const iconContainer = document.getElementById('delete-modal-icon-container');
+        const icon = document.getElementById('delete-modal-icon');
         
-        if (message) {
-            messageEl.innerText = message;
+        messageEl.innerText = message || "Apakah Anda yakin ingin melakukan aksi ini?";
+        titleEl.innerText = title || "Konfirmasi Aksi";
+        confirmBtn.innerText = btnText || "Ya, Lanjutkan";
+
+        // Reset classes
+        confirmBtn.className = "inline-flex justify-center items-center gap-x-2 w-full px-4 py-2.5 text-sm font-semibold text-white border border-transparent rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 sm:w-auto";
+        iconContainer.className = "flex items-center justify-center flex-shrink-0 w-12 h-12 mx-auto rounded-full sm:mx-0 sm:h-10 sm:w-10";
+        icon.className = "w-6 h-6";
+
+        if (colorTheme === 'red') {
+            confirmBtn.classList.add('bg-red-600', 'hover:bg-red-700', 'focus:ring-red-500');
+            iconContainer.classList.add('bg-red-100');
+            icon.classList.add('text-red-600');
+            icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />';
+        } else if (colorTheme === 'indigo') {
+            confirmBtn.classList.add('bg-indigo-600', 'hover:bg-indigo-700', 'focus:ring-indigo-500');
+            iconContainer.classList.add('bg-indigo-100');
+            icon.classList.add('text-indigo-600');
+            icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />';
         } else {
-            messageEl.innerText = "Apakah Anda yakin ingin menghapus data ini? Aksi ini tidak dapat dibatalkan.";
+            confirmBtn.classList.add('bg-blue-600', 'hover:bg-blue-700', 'focus:ring-blue-500');
+            iconContainer.classList.add('bg-blue-100');
+            icon.classList.add('text-blue-600');
+            icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />';
         }
         
         modal.classList.remove('hidden');
