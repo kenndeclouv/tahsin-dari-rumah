@@ -14,11 +14,18 @@ class SantriController extends Controller
         $this->middleware('permission:santris:edit')->only('edit', 'update');
         $this->middleware('permission:santris:delete')->only('destroy');
     }
-    public function index()
+    public function index(Request $request)
     {
-        $santris = Santri::latest()->get();
+        $search = $request->input('search');
+        $query = Santri::latest();
+
+        if ($search) {
+            $query->where('nama', 'like', "%{$search}%");
+        }
+
+        $santris = $query->get();
         // Ambil label fields untuk header tabel, atau tampilkan info dasar saja.
-        return view('santris.index', compact('santris'));
+        return view('santris.index', compact('santris', 'search'));
     }
 
     public function create()

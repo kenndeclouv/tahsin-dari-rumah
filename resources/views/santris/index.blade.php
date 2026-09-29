@@ -15,11 +15,26 @@
                 <div class="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
                     
                     {{-- Header --}}
-                    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center bg-gray-50">
-                        <h2 class="text-xl font-semibold text-gray-800">Daftar Santri</h2>
-                        <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
-                            {{ $santris->count() }} Santri
-                        </span>
+                    <div class="px-6 py-4 border-b border-gray-200 flex flex-wrap justify-between items-center gap-4 bg-gray-50">
+                        <div class="flex items-center gap-3">
+                            <h2 class="text-xl font-semibold text-gray-800">Daftar Santri</h2>
+                            <span class="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
+                                {{ $santris->count() }} Santri
+                            </span>
+                        </div>
+
+                        <form action="{{ route('santris.index') }}" method="GET" class="flex gap-3 items-center">
+                            <div class="relative max-w-xs">
+                                <label for="search" class="sr-only">Search</label>
+                                <input type="text" name="search" id="search" value="{{ request('search') }}" class="py-2 px-3 ps-9 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Cari santri...">
+                                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-3">
+                                    <svg class="size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                                </div>
+                            </div>
+                            <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-700">
+                                Cari
+                            </button>
+                        </form>
                     </div>
 
                     {{-- Table --}}

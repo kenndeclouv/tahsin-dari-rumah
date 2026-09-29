@@ -15,10 +15,17 @@ class PengajarController extends Controller
         $this->middleware('permission:users:edit')->only('edit', 'update');
         $this->middleware('permission:users:delete')->only('destroy');
     }
-    public function index()
+    public function index(Request $request)
     {
-        $pengajars = User::role('pengajar')->with('pengajar')->latest()->get();
-        return view('pengajars.index', compact('pengajars'));
+        $search = $request->input('search');
+        $query = User::role('pengajar')->with('pengajar')->latest();
+
+        if ($search) {
+            $query->where('name', 'like', "%{$search}%");
+        }
+
+        $pengajars = $query->get();
+        return view('pengajars.index', compact('pengajars', 'search'));
     }
 
     public function create()

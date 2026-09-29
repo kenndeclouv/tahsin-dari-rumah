@@ -13,6 +13,8 @@ class PresensiController extends Controller
     public function __construct()
     {
         $this->middleware('permission:presensis:create')->only('create', 'store');
+        $this->middleware('permission:presensis:edit')->only('edit', 'update');
+        $this->middleware('permission:presensis:delete')->only('destroy');
     }
 
     public function create($kelasId)
@@ -109,5 +111,43 @@ class PresensiController extends Controller
         }
 
         return redirect()->route('kelas.index')->with('success', 'Presensi berhasil diisi.');
+    }
+
+    public function edit(Presensi $presensi)
+    {
+        if (!Auth::user()->hasRole(['admin', 'super-admin'])) {
+            abort(403);
+        }
+
+        return view('presensi.edit', compact('presensi'));
+    }
+
+    public function update(Request $request, Presensi $presensi)
+    {
+        if (!Auth::user()->hasRole(['admin', 'super-admin'])) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'tanggal' => 'required|date',
+            'kehadiran' => 'required|in:hadir,reschedule,libur',
+            'catatan' => 'nullable|string'
+        ]);
+
+        $presensi->update($validated);
+
+        return redirect()->route('kelas.show', $presensi->kelas_id)->with('success', 'Presensi berhasil diupdate.');
+    }
+
+    public function destroy(Presensi $presensi)
+    {
+        if (!Auth::user()->hasRole(['admin', 'super-admin'])) {
+            abort(403);
+        }
+        
+        $kelas_id = $presensi->kelas_id;
+        $presensi->delete();
+
+        return redirect()->route('kelas.show', $kelas_id)->with('success', 'Presensi berhasil dihapus.');
     }
 }

@@ -24,6 +24,19 @@
                         </div>
 
                         <form action="{{ route('kelas.index') }}" method="GET" class="flex gap-3 items-center">
+                            <div class="relative max-w-xs hidden sm:block">
+                                <label for="search" class="sr-only">Search</label>
+                                <input type="text" name="search" id="search" value="{{ request('search') }}" class="py-2 px-3 ps-9 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-primary-500 focus:ring-primary-500 disabled:opacity-50 disabled:pointer-events-none" placeholder="Cari santri/pengajar...">
+                                <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-3">
+                                    <svg class="size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                                </div>
+                            </div>
+                            <select name="status" class="py-2 px-3 border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500">
+                                <option value="all" {{ $status === 'all' ? 'selected' : '' }}>Semua Status</option>
+                                <option value="berjalan" {{ $status === 'berjalan' ? 'selected' : '' }}>Berjalan</option>
+                                <option value="menunggu_evaluasi" {{ $status === 'menunggu_evaluasi' ? 'selected' : '' }}>Menunggu Evaluasi</option>
+                                <option value="selesai" {{ $status === 'selesai' ? 'selected' : '' }}>Selesai</option>
+                            </select>
                             <select name="bulan" class="py-2 px-3 border border-gray-200 rounded-lg text-sm focus:border-primary-500 focus:ring-primary-500">
                                 <option value="all" {{ $bulan === 'all' ? 'selected' : '' }}>Semua Bulan</option>
                                 @for($i = 1; $i <= 12; $i++)

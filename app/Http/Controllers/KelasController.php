@@ -22,10 +22,26 @@ class KelasController extends Controller
     {
         $bulan = $request->input('bulan', date('m'));
         $tahun = $request->input('tahun', date('Y'));
+        $search = $request->input('search');
+        $status = $request->input('status', 'all');
 
         $query = Kelas::with(['santri', 'pengajar', 'paketBelajar'])
             ->filterByMonthYear('created_at', $bulan, $tahun)
             ->latest();
+
+        if ($status !== 'all') {
+            $query->where('status', $status);
+        }
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->whereHas('santri', function ($sq) use ($search) {
+                    $sq->where('nama', 'like', "%{$search}%");
+                })->orWhereHas('pengajar', function ($sq) use ($search) {
+                    $sq->where('nama', 'like', "%{$search}%");
+                });
+            });
+        }
 
         if (!auth()->user()->isAdminOrSuperAdmin()) {
             if (auth()->user()->pengajar) {
@@ -37,7 +53,7 @@ class KelasController extends Controller
 
         $kelasList = $query->get();
 
-        return view('kelas.index', compact('kelasList', 'bulan', 'tahun'));
+        return view('kelas.index', compact('kelasList', 'bulan', 'tahun', 'search', 'status'));
     }
 
     public function create()
@@ -114,5 +130,20 @@ class KelasController extends Controller
 
         $kelas->delete();
         return redirect()->route('kelas.index')->with('success', 'Data Kelas berhasil dihapus.');
+    }
+
+    public function duplicate(Kelas $kelas)
+    {
+        if (!auth()->user()->canManageKelas($kelas)) {
+            abort(403, 'Akses ditolak.');
+        }
+
+        $newKelas = $kelas->replicate();
+        $newKelas->status = 'berjalan';
+        $newKelas->created_at = now();
+        $newKelas->updated_at = now();
+        $newKelas->save();
+
+        return redirect()->route('kelas.show', $newKelas->id)->with('success', 'Paket berhasil dilanjutkan (Kelas baru dibuat).');
     }
 }

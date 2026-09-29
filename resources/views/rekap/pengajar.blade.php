@@ -53,10 +53,10 @@
                             @forelse ($rekap as $data)
                                 <tr class="hover:bg-gray-50 transition-colors">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">
-                                        {{ $data->pengajar->name ?? 'Unknown' }}
+                                        {{ $data->pengajar->nama ?? 'Unknown' }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {{ $data->paketBelajar->nama_paket ?? '-' }}
+                                        {{ $data->paketBelajar->nama ?? '-' }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         {{ $data->updated_at->format('d M Y') }}

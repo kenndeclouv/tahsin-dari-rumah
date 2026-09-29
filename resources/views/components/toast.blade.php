@@ -24,7 +24,7 @@
         $type = 'info';
         $title = 'Informasi';
         $message = session('info');
-    } elseif ($errors->any()) {
+    } elseif (isset($errors) && $errors->any()) {
         $hasAlert = true;
         $type = 'error';
         $title = 'Terdapat Kesalahan';

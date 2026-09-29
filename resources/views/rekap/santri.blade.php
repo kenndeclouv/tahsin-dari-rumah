@@ -56,7 +56,7 @@
                                         {{ $data->santri->nama ?? 'Unknown' }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {{ $data->paketBelajar->nama_paket ?? '-' }}
+                                        {{ $data->paketBelajar->nama ?? '-' }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         {{ $data->updated_at->format('d M Y') }}

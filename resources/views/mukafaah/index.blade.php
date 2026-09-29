@@ -1,7 +1,7 @@
 <x-layouts.app title="Rekap Mukafaah">
     
-    <div class="mb-6">
-        <nav class="flex px-4 py-3 bg-white border border-gray-200 rounded-xl shadow-sm" aria-label="Breadcrumb">
+    <div class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <nav class="flex px-4 py-3 bg-white border border-gray-200 rounded-xl shadow-sm w-full md:w-auto" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2">
                 <li class="inline-flex items-center">
                     <a href="{{ route('dashboard') }}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary-600">
@@ -16,6 +16,21 @@
                 </li>
             </ol>
         </nav>
+
+        @if($listPengajars->count() > 0)
+        <div class="w-full md:w-72">
+            <form action="{{ route('mukafaah.index') }}" method="GET" class="relative">
+                <select name="pengajar_id" onchange="this.form.submit()" class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-xl text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none shadow-sm">
+                    <option value="">Semua Tutor</option>
+                    @foreach($listPengajars as $lp)
+                        <option value="{{ $lp->id }}" {{ $pengajarFilter == $lp->id ? 'selected' : '' }}>
+                            {{ $lp->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </form>
+        </div>
+        @endif
     </div>
 
     @forelse ($pengajars as $pengajar)
@@ -26,75 +41,165 @@
             $totalUangBelumLunas = $paketBelumLunas->sum(function($paket) {
                 return $paket->paketBelajar ? $paket->paketBelajar->nominal : 0;
             });
+
+            $totalUangLunas = $paketLunas->sum(function($paket) {
+                return $paket->paketBelajar ? $paket->paketBelajar->nominal : 0;
+            });
+            
+            $isSemuaLunas = $paketBelumLunas->count() === 0 && $paketLunas->count() > 0;
+            
+            // Di desain image 3, total (mukaafah + bonus) ditampilkan untuk SEMUA tagihan (belum lunas & lunas) atau HANYA yg belum lunas?
+            // Biasanya dashboard finance per periode (misal bulan ini) menjumlahkan yg tertagih.
+            // Kita jumlahkan semua tagihan belum lunas untuk tutor ini.
+            
+            $semuaPaket = $pengajar->kelas;
         @endphp
 
-        <div class="bg-white border border-blue-200 rounded-xl shadow-sm mb-6 overflow-hidden">
-            <div class="px-6 py-4 border-b border-gray-200 flex flex-col md:flex-row justify-between md:items-center gap-4 bg-blue-50/50">
-                <div class="flex items-center gap-x-3">
-                    <img src="{{ $pengajar->photo_url }}" class="inline-block size-10 rounded-full ring-2 ring-white object-cover" alt="Image Description">
-                    <h5 class="text-lg font-semibold text-gray-800">{{ $pengajar->name }}</h5>
+        <div class="bg-white border border-gray-200 rounded-2xl shadow-sm mb-6 overflow-hidden">
+            <!-- Header (Dark) -->
+            <div class="px-6 py-6 bg-gray-900 text-white flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center justify-center size-12 bg-blue-600 rounded-full text-lg font-bold text-white">
+                        {{ substr($pengajar->name, 0, 1) }}
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-3 mb-2">
+                            <h5 class="text-xl font-bold">{{ $pengajar->name }}</h5>
+                            @if($isSemuaLunas)
+                                <span class="py-1 px-2.5 inline-flex items-center gap-x-1 text-xs font-bold bg-green-500 text-white rounded-md">
+                                    <i class="fa-solid fa-check"></i> GAJI LUNAS (PAID)
+                                </span>
+                            @else
+                                <span class="py-1 px-2.5 inline-flex items-center gap-x-1 text-xs font-bold bg-gray-700 text-gray-300 rounded-md">UNSETTLED COP</span>
+                            @endif
+                        </div>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="py-1 px-3 inline-flex items-center gap-x-1.5 text-xs font-medium border border-gray-600 text-gray-300 rounded-full">
+                                <i class="fa-brands fa-whatsapp text-green-400"></i> {{ $pengajar->pengajar->additional_data['no_hp'] ?? '-' }}
+                            </span>
+                            <span class="py-1 px-3 inline-flex items-center gap-x-1.5 text-xs font-medium border border-gray-600 text-gray-300 rounded-full">
+                                <i class="fa-solid fa-building-columns text-yellow-400"></i> 
+                                {{ $pengajar->pengajar->additional_data['bank'] ?? 'Bank' }}: 
+                                {{ $pengajar->pengajar->additional_data['no_rekening'] ?? '-' }}
+                                @if(isset($pengajar->pengajar->additional_data['nama_rekening']))
+                                    (a.n {{ $pengajar->pengajar->additional_data['nama_rekening'] }})
+                                @endif
+                                <i class="fa-regular fa-copy ml-1 cursor-pointer hover:text-white" onclick="navigator.clipboard.writeText('{{ $pengajar->pengajar->additional_data['no_rekening'] ?? '' }}'); alert('No Rekening dicopy!')"></i>
+                            </span>
+                        </div>
+                    </div>
                 </div>
-                <div class="md:text-right">
-                    <p class="text-sm font-medium text-gray-500 mb-1">Total Tagihan Belum Dibayar</p>
-                    <h4 class="text-xl font-bold text-red-600">Rp {{ number_format($totalUangBelumLunas, 0, ',', '.') }}</h4>
+                
+                <div class="text-right flex items-center gap-6">
+                    <div>
+                        <p class="text-[10px] text-gray-400 mb-1 uppercase tracking-wider font-bold">Total Mukaafah Tutor Ini</p>
+                        <h4 class="text-3xl font-bold text-yellow-500 mb-0">Rp {{ number_format($totalUangBelumLunas + $totalUangLunas, 0, ',', '.') }}</h4>
+                        <p class="text-xs text-gray-400 mt-1">Bonus Tambahan <span class="text-green-500 font-bold ml-1">Rp 0</span></p>
+                        <p class="text-sm text-gray-300 mt-2">TOTAL (MUKAAFAH + BONUS) <span class="text-yellow-500 font-bold ml-2">Rp {{ number_format($totalUangBelumLunas + $totalUangLunas, 0, ',', '.') }}</span></p>
+                    </div>
+                    @if(!$isSemuaLunas && $paketBelumLunas->count() > 0)
+                        @can('mukafaahs:edit')
+                        <form action="{{ route('mukafaah.payAll', $pengajar->id) }}" method="POST" class="ml-4">
+                            @csrf
+                            <button type="submit" class="flex flex-col items-center bg-gray-800 border border-gray-700 hover:bg-gray-700 transition rounded-xl p-2 px-3">
+                                <span class="text-white text-xs font-bold mb-1">PAID SEMUA</span>
+                                <div class="relative inline-flex items-center h-6 rounded-full w-12 transition-colors focus:outline-none bg-gray-500">
+                                    <span class="inline-block w-4 h-4 transform translate-x-1 bg-white rounded-full transition-transform"></span>
+                                </div>
+                                <span class="text-[8px] text-gray-400 mt-1">Klik utk semua kelas</span>
+                            </button>
+                        </form>
+                        @endcan
+                    @endif
                 </div>
             </div>
             
             <div class="p-6">
-                <h6 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">Daftar Kelas Selesai (Menunggu Pembayaran)</h6>
-                
                 <div class="-m-1.5 overflow-x-auto">
                     <div class="p-1.5 min-w-full inline-block align-middle">
                         <div class="border border-gray-200 rounded-lg overflow-hidden">
                             <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
+                                <thead class="bg-white border-b border-gray-200">
                                     <tr>
-                                        <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Santri</th>
-                                        <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Jadwal & Pertemuan</th>
-                                        <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Fee Kelas</th>
-                                        <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Status Pembayaran</th>
-                                        @can('mukafaahs:edit')
-                                        <th scope="col" class="px-4 py-3 text-end text-xs font-medium text-gray-500 uppercase">Aksi</th>
-                                        @endcan
+                                        <th scope="col" class="px-4 py-4 text-start text-xs font-bold text-gray-700 uppercase tracking-wider">Program & Kelas</th>
+                                        <th scope="col" class="px-4 py-4 text-center text-xs font-bold text-gray-700 uppercase tracking-wider">Hitungan<br>(Sesi)</th>
+                                        <th scope="col" class="px-4 py-4 text-center text-xs font-bold text-gray-700 uppercase tracking-wider">Skema</th>
+                                        <th scope="col" class="px-4 py-4 text-end text-xs font-bold text-gray-700 uppercase tracking-wider">Tarif Base</th>
+                                        <th scope="col" class="px-4 py-4 text-end text-xs font-bold text-gray-700 uppercase tracking-wider">Total<br>Mukaafah</th>
+                                        <th scope="col" class="px-4 py-4 text-center text-xs font-bold text-gray-700 uppercase tracking-wider">Detail KBM</th>
+                                        <th scope="col" class="px-4 py-4 text-center text-xs font-bold text-gray-700 uppercase tracking-wider">Status Gaji<br>(Finance)</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200">
-                                    @forelse ($paketBelumLunas as $paket)
+                                    @forelse ($semuaPaket as $paket)
                                     <tr class="hover:bg-gray-50">
-                                        <td class="px-4 py-3 whitespace-nowrap">
-                                            <span class="block text-sm font-semibold text-gray-800">{{ $paket->santri->nama }}</span>
+                                        <td class="px-4 py-4">
+                                            <span class="block text-sm font-bold text-gray-800">Tahsin Privat Offline</span>
+                                            <span class="block text-xs text-gray-500 mt-1 uppercase">{{ $paket->santri->nama }} - {{ $pengajar->name }}</span>
+                                            @if($paket->payment_status == 'lunas')
+                                                <span class="mt-2 inline-flex items-center py-0.5 px-2 rounded text-[10px] font-medium bg-green-100 text-green-700">Settled COP</span>
+                                            @else
+                                                <span class="mt-2 inline-flex items-center py-0.5 px-2 rounded text-[10px] font-medium bg-gray-100 text-gray-600">Unsettled COP</span>
+                                            @endif
                                         </td>
-                                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-800">
-                                            {{ $paket->hari_jam }} ({{ $paket->jumlah_pertemuan }}x)
+                                        <td class="px-4 py-4 text-center whitespace-nowrap">
+                                            <span class="text-sm font-bold text-blue-600">{{ $paket->jumlah_pertemuan }} Peserta</span>
                                         </td>
-                                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-800">
+                                        <td class="px-4 py-4 text-center whitespace-nowrap">
+                                            <span class="inline-flex items-center py-1 px-2 rounded-full text-[10px] font-bold bg-cyan-100 text-cyan-600">Per Peserta</span>
+                                        </td>
+                                        <td class="px-4 py-4 text-end whitespace-nowrap">
+                                            <span class="text-sm font-bold text-gray-800">
+                                            @if($paket->paketBelajar)
+                                                Rp {{ number_format($paket->paketBelajar->nominal / max($paket->jumlah_pertemuan, 1), 0, ',', '.') }}
+                                            @else
+                                                -
+                                            @endif
+                                            </span>
+                                        </td>
+                                        <td class="px-4 py-4 text-end whitespace-nowrap">
+                                            <span class="text-sm font-bold text-red-500">
                                             @if($paket->paketBelajar)
                                                 Rp {{ number_format($paket->paketBelajar->nominal, 0, ',', '.') }}
                                             @else
-                                                <span class="text-gray-400 italic">Tanpa Fee</span>
+                                                -
                                             @endif
+                                            </span>
                                         </td>
-                                        <td class="px-4 py-3 whitespace-nowrap">
-                                            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-red-100 text-red-800">Belum Lunas</span>
+                                        <td class="px-4 py-4 text-center whitespace-nowrap">
+                                            <a href="{{ route('kelas.show', $paket->id) }}" class="inline-flex flex-col items-center justify-center w-12 h-12 rounded-full border-2 border-cyan-200 text-cyan-500 hover:bg-cyan-50 transition">
+                                                <i class="fa-regular fa-eye text-sm"></i>
+                                                <span class="text-[9px] font-bold mt-0.5">Detail<br>KBM</span>
+                                            </a>
                                         </td>
-                                        @can('mukafaahs:edit')
-                                        <td class="px-4 py-3 whitespace-nowrap text-end text-sm font-medium">
-                                            <div class="flex items-center justify-end">
-                                                <x-action-dropdown>
-                                                    <form action="{{ route('mukafaah.pay', $paket->id) }}" method="POST" class="w-full">
-                                                        @csrf
-                                                        <button type="submit" class="w-full flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-primary-600 hover:bg-primary-50 focus:outline-none focus:bg-primary-50">
-                                                            <i class="fa-solid fa-check-circle text-primary-400"></i> Tandai Lunas
-                                                        </button>
-                                                    </form>
-                                                </x-action-dropdown>
-                                            </div>
+                                        <td class="px-4 py-4 text-center whitespace-nowrap">
+                                            @can('mukafaahs:edit')
+                                            <form action="{{ route('mukafaah.pay', $paket->id) }}" method="POST" class="inline-block">
+                                                @csrf
+                                                @if($paket->payment_status == 'belum')
+                                                <button type="submit" class="relative inline-flex items-center h-8 rounded-full w-16 transition-colors focus:outline-none bg-gray-300">
+                                                    <span class="absolute right-2 text-[10px] font-bold text-gray-600">UNPAID</span>
+                                                    <span class="inline-block w-6 h-6 transform translate-x-1 bg-white rounded-full transition-transform shadow-sm"></span>
+                                                </button>
+                                                @else
+                                                <button type="submit" class="relative inline-flex items-center h-8 rounded-full w-16 transition-colors focus:outline-none bg-green-500">
+                                                    <span class="absolute left-2 text-[10px] font-bold text-white">PAID</span>
+                                                    <span class="inline-block w-6 h-6 transform translate-x-9 bg-white rounded-full transition-transform shadow-sm"></span>
+                                                </button>
+                                                @endif
+                                            </form>
+                                            @else
+                                                @if($paket->payment_status == 'belum')
+                                                    <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-[10px] font-bold bg-gray-200 text-gray-700">UNPAID</span>
+                                                @else
+                                                    <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-[10px] font-bold bg-green-100 text-green-700">PAID</span>
+                                                @endif
+                                            @endcan
                                         </td>
-                                        @endcan
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="5" class="px-4 py-8 text-center text-sm text-gray-500">Tidak ada tagihan tertunda.</td>
+                                        <td colspan="7" class="px-4 py-8 text-center text-sm text-gray-500">Tidak ada tagihan tertunda.</td>
                                     </tr>
                                     @endforelse
                                 </tbody>
@@ -103,64 +208,6 @@
                     </div>
                 </div>
             </div>
-
-            @if($paketLunas->count() > 0)
-            <div class="p-6 border-t border-gray-200 bg-gray-50/50">
-                <h6 class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-4">Riwayat Lunas</h6>
-                
-                <div class="-m-1.5 overflow-x-auto">
-                    <div class="p-1.5 min-w-full inline-block align-middle">
-                        <div class="border border-gray-200 rounded-lg overflow-hidden bg-white opacity-80">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead class="bg-gray-50">
-                                    <tr>
-                                        <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Santri</th>
-                                        <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Jadwal & Pertemuan</th>
-                                        <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Fee Kelas</th>
-                                        <th scope="col" class="px-4 py-3 text-start text-xs font-medium text-gray-500 uppercase">Status Pembayaran</th>
-                                        @can('mukafaahs:edit')
-                                        <th scope="col" class="px-4 py-3 text-end text-xs font-medium text-gray-500 uppercase">Aksi</th>
-                                        @endcan
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y divide-gray-200">
-                                    @foreach ($paketLunas as $paket)
-                                    <tr class="hover:bg-gray-50 text-gray-500">
-                                        <td class="px-4 py-3 whitespace-nowrap text-sm">{{ $paket->santri->nama }}</td>
-                                        <td class="px-4 py-3 whitespace-nowrap text-sm">{{ $paket->hari_jam }} ({{ $paket->jumlah_pertemuan }}x)</td>
-                                        <td class="px-4 py-3 whitespace-nowrap text-sm">
-                                            @if($paket->paketBelajar)
-                                                Rp {{ number_format($paket->paketBelajar->nominal, 0, ',', '.') }}
-                                            @else
-                                                <span class="italic">Tanpa Fee</span>
-                                            @endif
-                                        </td>
-                                        <td class="px-4 py-3 whitespace-nowrap">
-                                            <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md text-xs font-medium bg-primary-100 text-primary-800">Lunas</span>
-                                        </td>
-                                        @can('mukafaahs:edit')
-                                        <td class="px-4 py-3 whitespace-nowrap text-end text-sm font-medium">
-                                            <div class="flex items-center justify-end">
-                                                <x-action-dropdown>
-                                                    <form action="{{ route('mukafaah.pay', $paket->id) }}" method="POST" class="w-full">
-                                                        @csrf
-                                                        <button type="submit" class="w-full flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100" onclick="event.preventDefault(); confirmDelete(this, 'Yakin ingin membatalkan status lunas?')">
-                                                            <i class="fa-solid fa-rotate-left text-gray-400"></i> Batal Lunas
-                                                        </button>
-                                                    </form>
-                                                </x-action-dropdown>
-                                            </div>
-                                        </td>
-                                        @endcan
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endif
         </div>
     @empty
         <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-12 text-center">

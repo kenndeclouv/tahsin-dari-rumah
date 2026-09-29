@@ -115,6 +115,13 @@ bg-slate-900 border-e border-slate-800"
 
                     @can('mukafaahs:view')
                         <li>
+                            <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('mukafaah.index') ? 'bg-primary-600 text-white font-medium' : '' }}"
+                                href="{{ route('mukafaah.index') }}">
+                                <i class="fa-solid fa-wallet hs-overlay-minified:mx-auto"></i>
+                                <span class="hs-overlay-minified:hidden">Mukafaah</span>
+                            </a>
+                        </li>
+                        <li>
                             <a class="min-h-[36px] flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-300 rounded-lg hover:bg-slate-800 hover:text-white {{ request()->routeIs('rekap.pengajar') ? 'bg-primary-600 text-white font-medium' : '' }}"
                                 href="{{ route('rekap.pengajar') }}">
                                 <i class="fa-regular fa-money-check-dollar hs-overlay-minified:mx-auto"></i>

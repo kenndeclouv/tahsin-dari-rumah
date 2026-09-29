@@ -33,6 +33,9 @@ Route::middleware(['auth'])->group(function () {
     // Presensi
     Route::get('kelas/{kelas}/presensi/create', [PresensiController::class, 'create'])->name('presensi.create');
     Route::post('kelas/{kelas}/presensi', [PresensiController::class, 'store'])->name('presensi.store');
+    Route::get('presensi/{presensi}/edit', [PresensiController::class, 'edit'])->name('presensi.edit');
+    Route::put('presensi/{presensi}', [PresensiController::class, 'update'])->name('presensi.update');
+    Route::delete('presensi/{presensi}', [PresensiController::class, 'destroy'])->name('presensi.destroy');
 
     // Evaluasi
     Route::get('kelas/{kelas}/evaluasi/create', [EvaluasiController::class, 'create'])->name('evaluasi.create');
@@ -47,8 +50,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('pengajar_fields', App\Http\Controllers\PengajarFieldController::class)->except(['show']);
 
     Route::resource('kelas', KelasController::class)->parameters(['kelas' => 'kelas']);
+    Route::post('kelas/{kelas}/duplicate', [KelasController::class, 'duplicate'])->name('kelas.duplicate');
     Route::get('mukafaah', [MukafaahController::class, 'index'])->name('mukafaah.index');
     Route::post('mukafaah/{kelas}/pay', [MukafaahController::class, 'pay'])->name('mukafaah.pay');
+    Route::post('mukafaah/pay-all/{pengajar}', [MukafaahController::class, 'payAll'])->name('mukafaah.payAll');
 
     // ─── Super-admin only: users & roles ──────────────────────────────────────
     Route::middleware(['permission:users:view|users:create|users:update|users:delete'])->group(function () {

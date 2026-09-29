@@ -96,6 +96,17 @@
                 </a>
                 @endcan
             @endif
+
+            @if($kelas->status == 'selesai')
+                @can('kelas:create')
+                <form action="{{ route('kelas.duplicate', $kelas->id) }}" method="POST" class="mt-2 w-full" onsubmit="event.preventDefault(); confirmDelete(this, 'Yakin ingin melanjutkan paket ini? Ini akan membuat kelas baru dengan santri dan pengajar yang sama.')">
+                    @csrf
+                    <button type="submit" class="w-full py-2 px-3 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-indigo-600 text-white shadow-sm hover:bg-indigo-700">
+                        <i class="fa-solid fa-copy"></i> Lanjut Paket Baru
+                    </button>
+                </form>
+                @endcan
+            @endif
         </div>
     </div>
 
@@ -114,6 +125,9 @@
                         <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Kehadiran</th>
                         <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Catatan</th>
                         <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Foto Bukti</th>
+                        @can('presensis:edit')
+                        <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">Aksi</th>
+                        @endcan
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
@@ -151,6 +165,16 @@
                                     <span class="text-xs text-gray-400 italic">Tidak ada foto</span>
                                 @endif
                             </td>
+                            @can('presensis:edit')
+                            <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                                <a href="{{ route('presensi.edit', $presensi->id) }}" class="text-primary-600 hover:text-primary-900 mr-3">Edit</a>
+                                <form action="{{ route('presensi.destroy', $presensi->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin menghapus presensi ini?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:text-red-900">Hapus</button>
+                                </form>
+                            </td>
+                            @endcan
                         </tr>
                     @empty
                         <tr>
